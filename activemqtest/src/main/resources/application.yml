@@ -1,0 +1,7 @@
+spring:
+  activemq:
+    broker-url: tcp://106.52.36.74:61616
+    packages:
+      trust-all: true
+    user: admin
+    password: admin
