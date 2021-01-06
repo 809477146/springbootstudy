@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  error:
+    path: /error
+  servlet:
+    context-path: /chapter01-2
+    session:
+      timeout: 30m
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 8120
+    threads:
+      max: 200
+    basedir: /home/tomcat/log
+spring:
+  profiles:
+    active: dev

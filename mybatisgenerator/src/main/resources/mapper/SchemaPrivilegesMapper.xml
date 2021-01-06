@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SchemaPrivilegesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SchemaPrivileges">
+    <result column="GRANTEE" jdbcType="VARCHAR" property="grantee" />
+    <result column="TABLE_CATALOG" jdbcType="VARCHAR" property="tableCatalog" />
+    <result column="TABLE_SCHEMA" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="PRIVILEGE_TYPE" jdbcType="VARCHAR" property="privilegeType" />
+    <result column="IS_GRANTABLE" jdbcType="VARCHAR" property="isGrantable" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SchemaPrivileges">
+    insert into SCHEMA_PRIVILEGES (GRANTEE, TABLE_CATALOG, TABLE_SCHEMA, 
+      PRIVILEGE_TYPE, IS_GRANTABLE)
+    values (#{grantee,jdbcType=VARCHAR}, #{tableCatalog,jdbcType=VARCHAR}, #{tableSchema,jdbcType=VARCHAR}, 
+      #{privilegeType,jdbcType=VARCHAR}, #{isGrantable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SchemaPrivileges">
+    insert into SCHEMA_PRIVILEGES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="grantee != null">
+        GRANTEE,
+      </if>
+      <if test="tableCatalog != null">
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="privilegeType != null">
+        PRIVILEGE_TYPE,
+      </if>
+      <if test="isGrantable != null">
+        IS_GRANTABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="grantee != null">
+        #{grantee,jdbcType=VARCHAR},
+      </if>
+      <if test="tableCatalog != null">
+        #{tableCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null">
+        #{privilegeType,jdbcType=VARCHAR},
+      </if>
+      <if test="isGrantable != null">
+        #{isGrantable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

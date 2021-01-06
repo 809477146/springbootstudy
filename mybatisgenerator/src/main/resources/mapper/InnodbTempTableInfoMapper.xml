@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbTempTableInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbTempTableInfo">
+    <result column="TABLE_ID" jdbcType="BIGINT" property="tableId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="N_COLS" jdbcType="INTEGER" property="nCols" />
+    <result column="SPACE" jdbcType="INTEGER" property="space" />
+    <result column="PER_TABLE_TABLESPACE" jdbcType="VARCHAR" property="perTableTablespace" />
+    <result column="IS_COMPRESSED" jdbcType="VARCHAR" property="isCompressed" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbTempTableInfo">
+    insert into INNODB_TEMP_TABLE_INFO (TABLE_ID, NAME, N_COLS, 
+      SPACE, PER_TABLE_TABLESPACE, IS_COMPRESSED
+      )
+    values (#{tableId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{nCols,jdbcType=INTEGER}, 
+      #{space,jdbcType=INTEGER}, #{perTableTablespace,jdbcType=VARCHAR}, #{isCompressed,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbTempTableInfo">
+    insert into INNODB_TEMP_TABLE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="nCols != null">
+        N_COLS,
+      </if>
+      <if test="space != null">
+        SPACE,
+      </if>
+      <if test="perTableTablespace != null">
+        PER_TABLE_TABLESPACE,
+      </if>
+      <if test="isCompressed != null">
+        IS_COMPRESSED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nCols != null">
+        #{nCols,jdbcType=INTEGER},
+      </if>
+      <if test="space != null">
+        #{space,jdbcType=INTEGER},
+      </if>
+      <if test="perTableTablespace != null">
+        #{perTableTablespace,jdbcType=VARCHAR},
+      </if>
+      <if test="isCompressed != null">
+        #{isCompressed,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

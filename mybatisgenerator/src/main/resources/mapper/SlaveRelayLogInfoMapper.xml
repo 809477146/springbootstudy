@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SlaveRelayLogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SlaveRelayLogInfo">
+    <id column="Channel_name" jdbcType="CHAR" property="channelName" />
+    <result column="Number_of_lines" jdbcType="INTEGER" property="numberOfLines" />
+    <result column="Relay_log_pos" jdbcType="BIGINT" property="relayLogPos" />
+    <result column="Master_log_pos" jdbcType="BIGINT" property="masterLogPos" />
+    <result column="Sql_delay" jdbcType="INTEGER" property="sqlDelay" />
+    <result column="Number_of_workers" jdbcType="INTEGER" property="numberOfWorkers" />
+    <result column="Id" jdbcType="INTEGER" property="id" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SlaveRelayLogInfoWithBLOBs">
+    <result column="Relay_log_name" jdbcType="LONGVARCHAR" property="relayLogName" />
+    <result column="Master_log_name" jdbcType="LONGVARCHAR" property="masterLogName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Channel_name, Number_of_lines, Relay_log_pos, Master_log_pos, Sql_delay, Number_of_workers, 
+    Id
+  </sql>
+  <sql id="Blob_Column_List">
+    Relay_log_name, Master_log_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from slave_relay_log_info
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from slave_relay_log_info
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.SlaveRelayLogInfoWithBLOBs">
+    insert into slave_relay_log_info (Channel_name, Number_of_lines, Relay_log_pos, 
+      Master_log_pos, Sql_delay, Number_of_workers, 
+      Id, Relay_log_name, Master_log_name
+      )
+    values (#{channelName,jdbcType=CHAR}, #{numberOfLines,jdbcType=INTEGER}, #{relayLogPos,jdbcType=BIGINT}, 
+      #{masterLogPos,jdbcType=BIGINT}, #{sqlDelay,jdbcType=INTEGER}, #{numberOfWorkers,jdbcType=INTEGER}, 
+      #{id,jdbcType=INTEGER}, #{relayLogName,jdbcType=LONGVARCHAR}, #{masterLogName,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SlaveRelayLogInfoWithBLOBs">
+    insert into slave_relay_log_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        Channel_name,
+      </if>
+      <if test="numberOfLines != null">
+        Number_of_lines,
+      </if>
+      <if test="relayLogPos != null">
+        Relay_log_pos,
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos,
+      </if>
+      <if test="sqlDelay != null">
+        Sql_delay,
+      </if>
+      <if test="numberOfWorkers != null">
+        Number_of_workers,
+      </if>
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="relayLogName != null">
+        Relay_log_name,
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="numberOfLines != null">
+        #{numberOfLines,jdbcType=INTEGER},
+      </if>
+      <if test="relayLogPos != null">
+        #{relayLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="masterLogPos != null">
+        #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="sqlDelay != null">
+        #{sqlDelay,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfWorkers != null">
+        #{numberOfWorkers,jdbcType=INTEGER},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="relayLogName != null">
+        #{relayLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="masterLogName != null">
+        #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.SlaveRelayLogInfoWithBLOBs">
+    update slave_relay_log_info
+    <set>
+      <if test="numberOfLines != null">
+        Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      </if>
+      <if test="relayLogPos != null">
+        Relay_log_pos = #{relayLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="sqlDelay != null">
+        Sql_delay = #{sqlDelay,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfWorkers != null">
+        Number_of_workers = #{numberOfWorkers,jdbcType=INTEGER},
+      </if>
+      <if test="id != null">
+        Id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="relayLogName != null">
+        Relay_log_name = #{relayLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name = #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sz.model.SlaveRelayLogInfoWithBLOBs">
+    update slave_relay_log_info
+    set Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      Relay_log_pos = #{relayLogPos,jdbcType=BIGINT},
+      Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      Sql_delay = #{sqlDelay,jdbcType=INTEGER},
+      Number_of_workers = #{numberOfWorkers,jdbcType=INTEGER},
+      Id = #{id,jdbcType=INTEGER},
+      Relay_log_name = #{relayLogName,jdbcType=LONGVARCHAR},
+      Master_log_name = #{masterLogName,jdbcType=LONGVARCHAR}
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.SlaveRelayLogInfo">
+    update slave_relay_log_info
+    set Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      Relay_log_pos = #{relayLogPos,jdbcType=BIGINT},
+      Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      Sql_delay = #{sqlDelay,jdbcType=INTEGER},
+      Number_of_workers = #{numberOfWorkers,jdbcType=INTEGER},
+      Id = #{id,jdbcType=INTEGER}
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.HostSummaryByStagesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.HostSummaryByStages">
+    <result column="host" jdbcType="VARCHAR" property="host" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.HostSummaryByStagesWithBLOBs">
+    <result column="total_latency" jdbcType="LONGVARCHAR" property="totalLatency" />
+    <result column="avg_latency" jdbcType="LONGVARCHAR" property="avgLatency" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    total_latency, avg_latency
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.HostSummaryByStagesWithBLOBs">
+    insert into host_summary_by_stages (host, event_name, total, 
+      total_latency, avg_latency)
+    values (#{host,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{totalLatency,jdbcType=LONGVARCHAR}, #{avgLatency,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.HostSummaryByStagesWithBLOBs">
+    insert into host_summary_by_stages
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        host,
+      </if>
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="avgLatency != null">
+        avg_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgLatency != null">
+        #{avgLatency,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

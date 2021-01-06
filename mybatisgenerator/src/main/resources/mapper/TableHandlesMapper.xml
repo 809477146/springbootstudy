@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TableHandlesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TableHandles">
+    <result column="OBJECT_TYPE" jdbcType="VARCHAR" property="objectType" />
+    <result column="OBJECT_SCHEMA" jdbcType="VARCHAR" property="objectSchema" />
+    <result column="OBJECT_NAME" jdbcType="VARCHAR" property="objectName" />
+    <result column="OBJECT_INSTANCE_BEGIN" jdbcType="BIGINT" property="objectInstanceBegin" />
+    <result column="OWNER_THREAD_ID" jdbcType="BIGINT" property="ownerThreadId" />
+    <result column="OWNER_EVENT_ID" jdbcType="BIGINT" property="ownerEventId" />
+    <result column="INTERNAL_LOCK" jdbcType="VARCHAR" property="internalLock" />
+    <result column="EXTERNAL_LOCK" jdbcType="VARCHAR" property="externalLock" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.TableHandles">
+    insert into table_handles (OBJECT_TYPE, OBJECT_SCHEMA, OBJECT_NAME, 
+      OBJECT_INSTANCE_BEGIN, OWNER_THREAD_ID, OWNER_EVENT_ID, 
+      INTERNAL_LOCK, EXTERNAL_LOCK)
+    values (#{objectType,jdbcType=VARCHAR}, #{objectSchema,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, 
+      #{objectInstanceBegin,jdbcType=BIGINT}, #{ownerThreadId,jdbcType=BIGINT}, #{ownerEventId,jdbcType=BIGINT}, 
+      #{internalLock,jdbcType=VARCHAR}, #{externalLock,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TableHandles">
+    insert into table_handles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        OBJECT_TYPE,
+      </if>
+      <if test="objectSchema != null">
+        OBJECT_SCHEMA,
+      </if>
+      <if test="objectName != null">
+        OBJECT_NAME,
+      </if>
+      <if test="objectInstanceBegin != null">
+        OBJECT_INSTANCE_BEGIN,
+      </if>
+      <if test="ownerThreadId != null">
+        OWNER_THREAD_ID,
+      </if>
+      <if test="ownerEventId != null">
+        OWNER_EVENT_ID,
+      </if>
+      <if test="internalLock != null">
+        INTERNAL_LOCK,
+      </if>
+      <if test="externalLock != null">
+        EXTERNAL_LOCK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectSchema != null">
+        #{objectSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectInstanceBegin != null">
+        #{objectInstanceBegin,jdbcType=BIGINT},
+      </if>
+      <if test="ownerThreadId != null">
+        #{ownerThreadId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerEventId != null">
+        #{ownerEventId,jdbcType=BIGINT},
+      </if>
+      <if test="internalLock != null">
+        #{internalLock,jdbcType=VARCHAR},
+      </if>
+      <if test="externalLock != null">
+        #{externalLock,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbLocksMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbLocks">
+    <result column="lock_id" jdbcType="VARCHAR" property="lockId" />
+    <result column="lock_trx_id" jdbcType="VARCHAR" property="lockTrxId" />
+    <result column="lock_mode" jdbcType="VARCHAR" property="lockMode" />
+    <result column="lock_type" jdbcType="VARCHAR" property="lockType" />
+    <result column="lock_table" jdbcType="VARCHAR" property="lockTable" />
+    <result column="lock_index" jdbcType="VARCHAR" property="lockIndex" />
+    <result column="lock_space" jdbcType="BIGINT" property="lockSpace" />
+    <result column="lock_page" jdbcType="BIGINT" property="lockPage" />
+    <result column="lock_rec" jdbcType="BIGINT" property="lockRec" />
+    <result column="lock_data" jdbcType="VARCHAR" property="lockData" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbLocks">
+    insert into INNODB_LOCKS (lock_id, lock_trx_id, lock_mode, 
+      lock_type, lock_table, lock_index, 
+      lock_space, lock_page, lock_rec, 
+      lock_data)
+    values (#{lockId,jdbcType=VARCHAR}, #{lockTrxId,jdbcType=VARCHAR}, #{lockMode,jdbcType=VARCHAR}, 
+      #{lockType,jdbcType=VARCHAR}, #{lockTable,jdbcType=VARCHAR}, #{lockIndex,jdbcType=VARCHAR}, 
+      #{lockSpace,jdbcType=BIGINT}, #{lockPage,jdbcType=BIGINT}, #{lockRec,jdbcType=BIGINT}, 
+      #{lockData,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbLocks">
+    insert into INNODB_LOCKS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lockId != null">
+        lock_id,
+      </if>
+      <if test="lockTrxId != null">
+        lock_trx_id,
+      </if>
+      <if test="lockMode != null">
+        lock_mode,
+      </if>
+      <if test="lockType != null">
+        lock_type,
+      </if>
+      <if test="lockTable != null">
+        lock_table,
+      </if>
+      <if test="lockIndex != null">
+        lock_index,
+      </if>
+      <if test="lockSpace != null">
+        lock_space,
+      </if>
+      <if test="lockPage != null">
+        lock_page,
+      </if>
+      <if test="lockRec != null">
+        lock_rec,
+      </if>
+      <if test="lockData != null">
+        lock_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lockId != null">
+        #{lockId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTrxId != null">
+        #{lockTrxId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockMode != null">
+        #{lockMode,jdbcType=VARCHAR},
+      </if>
+      <if test="lockType != null">
+        #{lockType,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTable != null">
+        #{lockTable,jdbcType=VARCHAR},
+      </if>
+      <if test="lockIndex != null">
+        #{lockIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="lockSpace != null">
+        #{lockSpace,jdbcType=BIGINT},
+      </if>
+      <if test="lockPage != null">
+        #{lockPage,jdbcType=BIGINT},
+      </if>
+      <if test="lockRec != null">
+        #{lockRec,jdbcType=BIGINT},
+      </if>
+      <if test="lockData != null">
+        #{lockData,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

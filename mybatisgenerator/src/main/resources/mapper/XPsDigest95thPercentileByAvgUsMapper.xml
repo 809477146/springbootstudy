@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XPsDigest95thPercentileByAvgUsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XPsDigest95thPercentileByAvgUs">
+    <result column="avg_us" jdbcType="DECIMAL" property="avgUs" />
+    <result column="percentile" jdbcType="DECIMAL" property="percentile" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XPsDigest95thPercentileByAvgUs">
+    insert into x$ps_digest_95th_percentile_by_avg_us (avg_us, percentile)
+    values (#{avgUs,jdbcType=DECIMAL}, #{percentile,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XPsDigest95thPercentileByAvgUs">
+    insert into x$ps_digest_95th_percentile_by_avg_us
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="avgUs != null">
+        avg_us,
+      </if>
+      <if test="percentile != null">
+        percentile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="avgUs != null">
+        #{avgUs,jdbcType=DECIMAL},
+      </if>
+      <if test="percentile != null">
+        #{percentile,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

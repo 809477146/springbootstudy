@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.PluginsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Plugins">
+    <result column="PLUGIN_NAME" jdbcType="VARCHAR" property="pluginName" />
+    <result column="PLUGIN_VERSION" jdbcType="VARCHAR" property="pluginVersion" />
+    <result column="PLUGIN_STATUS" jdbcType="VARCHAR" property="pluginStatus" />
+    <result column="PLUGIN_TYPE" jdbcType="VARCHAR" property="pluginType" />
+    <result column="PLUGIN_TYPE_VERSION" jdbcType="VARCHAR" property="pluginTypeVersion" />
+    <result column="PLUGIN_LIBRARY" jdbcType="VARCHAR" property="pluginLibrary" />
+    <result column="PLUGIN_LIBRARY_VERSION" jdbcType="VARCHAR" property="pluginLibraryVersion" />
+    <result column="PLUGIN_AUTHOR" jdbcType="VARCHAR" property="pluginAuthor" />
+    <result column="PLUGIN_LICENSE" jdbcType="VARCHAR" property="pluginLicense" />
+    <result column="LOAD_OPTION" jdbcType="VARCHAR" property="loadOption" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.Plugins">
+    <result column="PLUGIN_DESCRIPTION" jdbcType="LONGVARCHAR" property="pluginDescription" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    PLUGIN_DESCRIPTION
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.Plugins">
+    insert into PLUGINS (PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_STATUS, 
+      PLUGIN_TYPE, PLUGIN_TYPE_VERSION, PLUGIN_LIBRARY, 
+      PLUGIN_LIBRARY_VERSION, PLUGIN_AUTHOR, PLUGIN_LICENSE, 
+      LOAD_OPTION, PLUGIN_DESCRIPTION)
+    values (#{pluginName,jdbcType=VARCHAR}, #{pluginVersion,jdbcType=VARCHAR}, #{pluginStatus,jdbcType=VARCHAR}, 
+      #{pluginType,jdbcType=VARCHAR}, #{pluginTypeVersion,jdbcType=VARCHAR}, #{pluginLibrary,jdbcType=VARCHAR}, 
+      #{pluginLibraryVersion,jdbcType=VARCHAR}, #{pluginAuthor,jdbcType=VARCHAR}, #{pluginLicense,jdbcType=VARCHAR}, 
+      #{loadOption,jdbcType=VARCHAR}, #{pluginDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Plugins">
+    insert into PLUGINS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pluginName != null">
+        PLUGIN_NAME,
+      </if>
+      <if test="pluginVersion != null">
+        PLUGIN_VERSION,
+      </if>
+      <if test="pluginStatus != null">
+        PLUGIN_STATUS,
+      </if>
+      <if test="pluginType != null">
+        PLUGIN_TYPE,
+      </if>
+      <if test="pluginTypeVersion != null">
+        PLUGIN_TYPE_VERSION,
+      </if>
+      <if test="pluginLibrary != null">
+        PLUGIN_LIBRARY,
+      </if>
+      <if test="pluginLibraryVersion != null">
+        PLUGIN_LIBRARY_VERSION,
+      </if>
+      <if test="pluginAuthor != null">
+        PLUGIN_AUTHOR,
+      </if>
+      <if test="pluginLicense != null">
+        PLUGIN_LICENSE,
+      </if>
+      <if test="loadOption != null">
+        LOAD_OPTION,
+      </if>
+      <if test="pluginDescription != null">
+        PLUGIN_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pluginName != null">
+        #{pluginName,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginVersion != null">
+        #{pluginVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginStatus != null">
+        #{pluginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginType != null">
+        #{pluginType,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginTypeVersion != null">
+        #{pluginTypeVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginLibrary != null">
+        #{pluginLibrary,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginLibraryVersion != null">
+        #{pluginLibraryVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginAuthor != null">
+        #{pluginAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginLicense != null">
+        #{pluginLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="loadOption != null">
+        #{loadOption,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginDescription != null">
+        #{pluginDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

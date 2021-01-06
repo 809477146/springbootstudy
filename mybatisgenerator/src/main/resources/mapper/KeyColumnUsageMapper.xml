@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.KeyColumnUsageMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.KeyColumnUsage">
+    <result column="CONSTRAINT_CATALOG" jdbcType="VARCHAR" property="constraintCatalog" />
+    <result column="CONSTRAINT_SCHEMA" jdbcType="VARCHAR" property="constraintSchema" />
+    <result column="CONSTRAINT_NAME" jdbcType="VARCHAR" property="constraintName" />
+    <result column="TABLE_CATALOG" jdbcType="VARCHAR" property="tableCatalog" />
+    <result column="TABLE_SCHEMA" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="COLUMN_NAME" jdbcType="VARCHAR" property="columnName" />
+    <result column="ORDINAL_POSITION" jdbcType="BIGINT" property="ordinalPosition" />
+    <result column="POSITION_IN_UNIQUE_CONSTRAINT" jdbcType="BIGINT" property="positionInUniqueConstraint" />
+    <result column="REFERENCED_TABLE_SCHEMA" jdbcType="VARCHAR" property="referencedTableSchema" />
+    <result column="REFERENCED_TABLE_NAME" jdbcType="VARCHAR" property="referencedTableName" />
+    <result column="REFERENCED_COLUMN_NAME" jdbcType="VARCHAR" property="referencedColumnName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.KeyColumnUsage">
+    insert into KEY_COLUMN_USAGE (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME, TABLE_CATALOG, TABLE_SCHEMA, 
+      TABLE_NAME, COLUMN_NAME, ORDINAL_POSITION, 
+      POSITION_IN_UNIQUE_CONSTRAINT, REFERENCED_TABLE_SCHEMA, 
+      REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+      )
+    values (#{constraintCatalog,jdbcType=VARCHAR}, #{constraintSchema,jdbcType=VARCHAR}, 
+      #{constraintName,jdbcType=VARCHAR}, #{tableCatalog,jdbcType=VARCHAR}, #{tableSchema,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, #{ordinalPosition,jdbcType=BIGINT}, 
+      #{positionInUniqueConstraint,jdbcType=BIGINT}, #{referencedTableSchema,jdbcType=VARCHAR}, 
+      #{referencedTableName,jdbcType=VARCHAR}, #{referencedColumnName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.KeyColumnUsage">
+    insert into KEY_COLUMN_USAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null">
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null">
+        CONSTRAINT_NAME,
+      </if>
+      <if test="tableCatalog != null">
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="columnName != null">
+        COLUMN_NAME,
+      </if>
+      <if test="ordinalPosition != null">
+        ORDINAL_POSITION,
+      </if>
+      <if test="positionInUniqueConstraint != null">
+        POSITION_IN_UNIQUE_CONSTRAINT,
+      </if>
+      <if test="referencedTableSchema != null">
+        REFERENCED_TABLE_SCHEMA,
+      </if>
+      <if test="referencedTableName != null">
+        REFERENCED_TABLE_NAME,
+      </if>
+      <if test="referencedColumnName != null">
+        REFERENCED_COLUMN_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        #{constraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintSchema != null">
+        #{constraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintName != null">
+        #{constraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableCatalog != null">
+        #{tableCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinalPosition != null">
+        #{ordinalPosition,jdbcType=BIGINT},
+      </if>
+      <if test="positionInUniqueConstraint != null">
+        #{positionInUniqueConstraint,jdbcType=BIGINT},
+      </if>
+      <if test="referencedTableSchema != null">
+        #{referencedTableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="referencedTableName != null">
+        #{referencedTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="referencedColumnName != null">
+        #{referencedColumnName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

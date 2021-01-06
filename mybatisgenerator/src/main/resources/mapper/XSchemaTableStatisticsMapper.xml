@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XSchemaTableStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XSchemaTableStatistics">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="rows_fetched" jdbcType="BIGINT" property="rowsFetched" />
+    <result column="fetch_latency" jdbcType="BIGINT" property="fetchLatency" />
+    <result column="rows_inserted" jdbcType="BIGINT" property="rowsInserted" />
+    <result column="insert_latency" jdbcType="BIGINT" property="insertLatency" />
+    <result column="rows_updated" jdbcType="BIGINT" property="rowsUpdated" />
+    <result column="update_latency" jdbcType="BIGINT" property="updateLatency" />
+    <result column="rows_deleted" jdbcType="BIGINT" property="rowsDeleted" />
+    <result column="delete_latency" jdbcType="BIGINT" property="deleteLatency" />
+    <result column="io_read_requests" jdbcType="DECIMAL" property="ioReadRequests" />
+    <result column="io_read" jdbcType="DECIMAL" property="ioRead" />
+    <result column="io_read_latency" jdbcType="DECIMAL" property="ioReadLatency" />
+    <result column="io_write_requests" jdbcType="DECIMAL" property="ioWriteRequests" />
+    <result column="io_write" jdbcType="DECIMAL" property="ioWrite" />
+    <result column="io_write_latency" jdbcType="DECIMAL" property="ioWriteLatency" />
+    <result column="io_misc_requests" jdbcType="DECIMAL" property="ioMiscRequests" />
+    <result column="io_misc_latency" jdbcType="DECIMAL" property="ioMiscLatency" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XSchemaTableStatistics">
+    insert into x$schema_table_statistics (table_schema, table_name, total_latency, 
+      rows_fetched, fetch_latency, rows_inserted, 
+      insert_latency, rows_updated, update_latency, 
+      rows_deleted, delete_latency, io_read_requests, 
+      io_read, io_read_latency, io_write_requests, 
+      io_write, io_write_latency, io_misc_requests, 
+      io_misc_latency)
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{totalLatency,jdbcType=BIGINT}, 
+      #{rowsFetched,jdbcType=BIGINT}, #{fetchLatency,jdbcType=BIGINT}, #{rowsInserted,jdbcType=BIGINT}, 
+      #{insertLatency,jdbcType=BIGINT}, #{rowsUpdated,jdbcType=BIGINT}, #{updateLatency,jdbcType=BIGINT}, 
+      #{rowsDeleted,jdbcType=BIGINT}, #{deleteLatency,jdbcType=BIGINT}, #{ioReadRequests,jdbcType=DECIMAL}, 
+      #{ioRead,jdbcType=DECIMAL}, #{ioReadLatency,jdbcType=DECIMAL}, #{ioWriteRequests,jdbcType=DECIMAL}, 
+      #{ioWrite,jdbcType=DECIMAL}, #{ioWriteLatency,jdbcType=DECIMAL}, #{ioMiscRequests,jdbcType=DECIMAL}, 
+      #{ioMiscLatency,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XSchemaTableStatistics">
+    insert into x$schema_table_statistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="rowsFetched != null">
+        rows_fetched,
+      </if>
+      <if test="fetchLatency != null">
+        fetch_latency,
+      </if>
+      <if test="rowsInserted != null">
+        rows_inserted,
+      </if>
+      <if test="insertLatency != null">
+        insert_latency,
+      </if>
+      <if test="rowsUpdated != null">
+        rows_updated,
+      </if>
+      <if test="updateLatency != null">
+        update_latency,
+      </if>
+      <if test="rowsDeleted != null">
+        rows_deleted,
+      </if>
+      <if test="deleteLatency != null">
+        delete_latency,
+      </if>
+      <if test="ioReadRequests != null">
+        io_read_requests,
+      </if>
+      <if test="ioRead != null">
+        io_read,
+      </if>
+      <if test="ioReadLatency != null">
+        io_read_latency,
+      </if>
+      <if test="ioWriteRequests != null">
+        io_write_requests,
+      </if>
+      <if test="ioWrite != null">
+        io_write,
+      </if>
+      <if test="ioWriteLatency != null">
+        io_write_latency,
+      </if>
+      <if test="ioMiscRequests != null">
+        io_misc_requests,
+      </if>
+      <if test="ioMiscLatency != null">
+        io_misc_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsFetched != null">
+        #{rowsFetched,jdbcType=BIGINT},
+      </if>
+      <if test="fetchLatency != null">
+        #{fetchLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsInserted != null">
+        #{rowsInserted,jdbcType=BIGINT},
+      </if>
+      <if test="insertLatency != null">
+        #{insertLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsUpdated != null">
+        #{rowsUpdated,jdbcType=BIGINT},
+      </if>
+      <if test="updateLatency != null">
+        #{updateLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsDeleted != null">
+        #{rowsDeleted,jdbcType=BIGINT},
+      </if>
+      <if test="deleteLatency != null">
+        #{deleteLatency,jdbcType=BIGINT},
+      </if>
+      <if test="ioReadRequests != null">
+        #{ioReadRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="ioRead != null">
+        #{ioRead,jdbcType=DECIMAL},
+      </if>
+      <if test="ioReadLatency != null">
+        #{ioReadLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="ioWriteRequests != null">
+        #{ioWriteRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="ioWrite != null">
+        #{ioWrite,jdbcType=DECIMAL},
+      </if>
+      <if test="ioWriteLatency != null">
+        #{ioWriteLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="ioMiscRequests != null">
+        #{ioMiscRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="ioMiscLatency != null">
+        #{ioMiscLatency,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

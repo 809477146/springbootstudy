@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.RoutinesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Routines">
+    <result column="SPECIFIC_NAME" jdbcType="VARCHAR" property="specificName" />
+    <result column="ROUTINE_CATALOG" jdbcType="VARCHAR" property="routineCatalog" />
+    <result column="ROUTINE_SCHEMA" jdbcType="VARCHAR" property="routineSchema" />
+    <result column="ROUTINE_NAME" jdbcType="VARCHAR" property="routineName" />
+    <result column="ROUTINE_TYPE" jdbcType="VARCHAR" property="routineType" />
+    <result column="DATA_TYPE" jdbcType="VARCHAR" property="dataType" />
+    <result column="CHARACTER_MAXIMUM_LENGTH" jdbcType="INTEGER" property="characterMaximumLength" />
+    <result column="CHARACTER_OCTET_LENGTH" jdbcType="INTEGER" property="characterOctetLength" />
+    <result column="NUMERIC_PRECISION" jdbcType="BIGINT" property="numericPrecision" />
+    <result column="NUMERIC_SCALE" jdbcType="INTEGER" property="numericScale" />
+    <result column="DATETIME_PRECISION" jdbcType="BIGINT" property="datetimePrecision" />
+    <result column="CHARACTER_SET_NAME" jdbcType="VARCHAR" property="characterSetName" />
+    <result column="COLLATION_NAME" jdbcType="VARCHAR" property="collationName" />
+    <result column="ROUTINE_BODY" jdbcType="VARCHAR" property="routineBody" />
+    <result column="EXTERNAL_NAME" jdbcType="VARCHAR" property="externalName" />
+    <result column="EXTERNAL_LANGUAGE" jdbcType="VARCHAR" property="externalLanguage" />
+    <result column="PARAMETER_STYLE" jdbcType="VARCHAR" property="parameterStyle" />
+    <result column="IS_DETERMINISTIC" jdbcType="VARCHAR" property="isDeterministic" />
+    <result column="SQL_DATA_ACCESS" jdbcType="VARCHAR" property="sqlDataAccess" />
+    <result column="SQL_PATH" jdbcType="VARCHAR" property="sqlPath" />
+    <result column="SECURITY_TYPE" jdbcType="VARCHAR" property="securityType" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="LAST_ALTERED" jdbcType="TIMESTAMP" property="lastAltered" />
+    <result column="SQL_MODE" jdbcType="VARCHAR" property="sqlMode" />
+    <result column="DEFINER" jdbcType="VARCHAR" property="definer" />
+    <result column="CHARACTER_SET_CLIENT" jdbcType="VARCHAR" property="characterSetClient" />
+    <result column="COLLATION_CONNECTION" jdbcType="VARCHAR" property="collationConnection" />
+    <result column="DATABASE_COLLATION" jdbcType="VARCHAR" property="databaseCollation" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.RoutinesWithBLOBs">
+    <result column="DTD_IDENTIFIER" jdbcType="LONGVARCHAR" property="dtdIdentifier" />
+    <result column="ROUTINE_DEFINITION" jdbcType="LONGVARCHAR" property="routineDefinition" />
+    <result column="ROUTINE_COMMENT" jdbcType="LONGVARCHAR" property="routineComment" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    DTD_IDENTIFIER, ROUTINE_DEFINITION, ROUTINE_COMMENT
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.RoutinesWithBLOBs">
+    insert into ROUTINES (SPECIFIC_NAME, ROUTINE_CATALOG, ROUTINE_SCHEMA, 
+      ROUTINE_NAME, ROUTINE_TYPE, DATA_TYPE, 
+      CHARACTER_MAXIMUM_LENGTH, CHARACTER_OCTET_LENGTH, 
+      NUMERIC_PRECISION, NUMERIC_SCALE, DATETIME_PRECISION, 
+      CHARACTER_SET_NAME, COLLATION_NAME, ROUTINE_BODY, 
+      EXTERNAL_NAME, EXTERNAL_LANGUAGE, PARAMETER_STYLE, 
+      IS_DETERMINISTIC, SQL_DATA_ACCESS, SQL_PATH, 
+      SECURITY_TYPE, CREATED, LAST_ALTERED, 
+      SQL_MODE, DEFINER, CHARACTER_SET_CLIENT, 
+      COLLATION_CONNECTION, DATABASE_COLLATION, 
+      DTD_IDENTIFIER, ROUTINE_DEFINITION, 
+      ROUTINE_COMMENT)
+    values (#{specificName,jdbcType=VARCHAR}, #{routineCatalog,jdbcType=VARCHAR}, #{routineSchema,jdbcType=VARCHAR}, 
+      #{routineName,jdbcType=VARCHAR}, #{routineType,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
+      #{characterMaximumLength,jdbcType=INTEGER}, #{characterOctetLength,jdbcType=INTEGER}, 
+      #{numericPrecision,jdbcType=BIGINT}, #{numericScale,jdbcType=INTEGER}, #{datetimePrecision,jdbcType=BIGINT}, 
+      #{characterSetName,jdbcType=VARCHAR}, #{collationName,jdbcType=VARCHAR}, #{routineBody,jdbcType=VARCHAR}, 
+      #{externalName,jdbcType=VARCHAR}, #{externalLanguage,jdbcType=VARCHAR}, #{parameterStyle,jdbcType=VARCHAR}, 
+      #{isDeterministic,jdbcType=VARCHAR}, #{sqlDataAccess,jdbcType=VARCHAR}, #{sqlPath,jdbcType=VARCHAR}, 
+      #{securityType,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{lastAltered,jdbcType=TIMESTAMP}, 
+      #{sqlMode,jdbcType=VARCHAR}, #{definer,jdbcType=VARCHAR}, #{characterSetClient,jdbcType=VARCHAR}, 
+      #{collationConnection,jdbcType=VARCHAR}, #{databaseCollation,jdbcType=VARCHAR}, 
+      #{dtdIdentifier,jdbcType=LONGVARCHAR}, #{routineDefinition,jdbcType=LONGVARCHAR}, 
+      #{routineComment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.RoutinesWithBLOBs">
+    insert into ROUTINES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specificName != null">
+        SPECIFIC_NAME,
+      </if>
+      <if test="routineCatalog != null">
+        ROUTINE_CATALOG,
+      </if>
+      <if test="routineSchema != null">
+        ROUTINE_SCHEMA,
+      </if>
+      <if test="routineName != null">
+        ROUTINE_NAME,
+      </if>
+      <if test="routineType != null">
+        ROUTINE_TYPE,
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE,
+      </if>
+      <if test="characterMaximumLength != null">
+        CHARACTER_MAXIMUM_LENGTH,
+      </if>
+      <if test="characterOctetLength != null">
+        CHARACTER_OCTET_LENGTH,
+      </if>
+      <if test="numericPrecision != null">
+        NUMERIC_PRECISION,
+      </if>
+      <if test="numericScale != null">
+        NUMERIC_SCALE,
+      </if>
+      <if test="datetimePrecision != null">
+        DATETIME_PRECISION,
+      </if>
+      <if test="characterSetName != null">
+        CHARACTER_SET_NAME,
+      </if>
+      <if test="collationName != null">
+        COLLATION_NAME,
+      </if>
+      <if test="routineBody != null">
+        ROUTINE_BODY,
+      </if>
+      <if test="externalName != null">
+        EXTERNAL_NAME,
+      </if>
+      <if test="externalLanguage != null">
+        EXTERNAL_LANGUAGE,
+      </if>
+      <if test="parameterStyle != null">
+        PARAMETER_STYLE,
+      </if>
+      <if test="isDeterministic != null">
+        IS_DETERMINISTIC,
+      </if>
+      <if test="sqlDataAccess != null">
+        SQL_DATA_ACCESS,
+      </if>
+      <if test="sqlPath != null">
+        SQL_PATH,
+      </if>
+      <if test="securityType != null">
+        SECURITY_TYPE,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="lastAltered != null">
+        LAST_ALTERED,
+      </if>
+      <if test="sqlMode != null">
+        SQL_MODE,
+      </if>
+      <if test="definer != null">
+        DEFINER,
+      </if>
+      <if test="characterSetClient != null">
+        CHARACTER_SET_CLIENT,
+      </if>
+      <if test="collationConnection != null">
+        COLLATION_CONNECTION,
+      </if>
+      <if test="databaseCollation != null">
+        DATABASE_COLLATION,
+      </if>
+      <if test="dtdIdentifier != null">
+        DTD_IDENTIFIER,
+      </if>
+      <if test="routineDefinition != null">
+        ROUTINE_DEFINITION,
+      </if>
+      <if test="routineComment != null">
+        ROUTINE_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specificName != null">
+        #{specificName,jdbcType=VARCHAR},
+      </if>
+      <if test="routineCatalog != null">
+        #{routineCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="routineSchema != null">
+        #{routineSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="routineName != null">
+        #{routineName,jdbcType=VARCHAR},
+      </if>
+      <if test="routineType != null">
+        #{routineType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="characterMaximumLength != null">
+        #{characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="characterOctetLength != null">
+        #{characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="numericPrecision != null">
+        #{numericPrecision,jdbcType=BIGINT},
+      </if>
+      <if test="numericScale != null">
+        #{numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="datetimePrecision != null">
+        #{datetimePrecision,jdbcType=BIGINT},
+      </if>
+      <if test="characterSetName != null">
+        #{characterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="collationName != null">
+        #{collationName,jdbcType=VARCHAR},
+      </if>
+      <if test="routineBody != null">
+        #{routineBody,jdbcType=VARCHAR},
+      </if>
+      <if test="externalName != null">
+        #{externalName,jdbcType=VARCHAR},
+      </if>
+      <if test="externalLanguage != null">
+        #{externalLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterStyle != null">
+        #{parameterStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeterministic != null">
+        #{isDeterministic,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlDataAccess != null">
+        #{sqlDataAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlPath != null">
+        #{sqlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="securityType != null">
+        #{securityType,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastAltered != null">
+        #{lastAltered,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqlMode != null">
+        #{sqlMode,jdbcType=VARCHAR},
+      </if>
+      <if test="definer != null">
+        #{definer,jdbcType=VARCHAR},
+      </if>
+      <if test="characterSetClient != null">
+        #{characterSetClient,jdbcType=VARCHAR},
+      </if>
+      <if test="collationConnection != null">
+        #{collationConnection,jdbcType=VARCHAR},
+      </if>
+      <if test="databaseCollation != null">
+        #{databaseCollation,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdIdentifier != null">
+        #{dtdIdentifier,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="routineDefinition != null">
+        #{routineDefinition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="routineComment != null">
+        #{routineComment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

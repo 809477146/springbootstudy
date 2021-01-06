@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbSysTablestatsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbSysTablestats">
+    <result column="TABLE_ID" jdbcType="BIGINT" property="tableId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="STATS_INITIALIZED" jdbcType="VARCHAR" property="statsInitialized" />
+    <result column="NUM_ROWS" jdbcType="BIGINT" property="numRows" />
+    <result column="CLUST_INDEX_SIZE" jdbcType="BIGINT" property="clustIndexSize" />
+    <result column="OTHER_INDEX_SIZE" jdbcType="BIGINT" property="otherIndexSize" />
+    <result column="MODIFIED_COUNTER" jdbcType="BIGINT" property="modifiedCounter" />
+    <result column="AUTOINC" jdbcType="BIGINT" property="autoinc" />
+    <result column="REF_COUNT" jdbcType="INTEGER" property="refCount" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbSysTablestats">
+    insert into INNODB_SYS_TABLESTATS (TABLE_ID, NAME, STATS_INITIALIZED, 
+      NUM_ROWS, CLUST_INDEX_SIZE, OTHER_INDEX_SIZE, 
+      MODIFIED_COUNTER, AUTOINC, REF_COUNT
+      )
+    values (#{tableId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{statsInitialized,jdbcType=VARCHAR}, 
+      #{numRows,jdbcType=BIGINT}, #{clustIndexSize,jdbcType=BIGINT}, #{otherIndexSize,jdbcType=BIGINT}, 
+      #{modifiedCounter,jdbcType=BIGINT}, #{autoinc,jdbcType=BIGINT}, #{refCount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbSysTablestats">
+    insert into INNODB_SYS_TABLESTATS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="statsInitialized != null">
+        STATS_INITIALIZED,
+      </if>
+      <if test="numRows != null">
+        NUM_ROWS,
+      </if>
+      <if test="clustIndexSize != null">
+        CLUST_INDEX_SIZE,
+      </if>
+      <if test="otherIndexSize != null">
+        OTHER_INDEX_SIZE,
+      </if>
+      <if test="modifiedCounter != null">
+        MODIFIED_COUNTER,
+      </if>
+      <if test="autoinc != null">
+        AUTOINC,
+      </if>
+      <if test="refCount != null">
+        REF_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="statsInitialized != null">
+        #{statsInitialized,jdbcType=VARCHAR},
+      </if>
+      <if test="numRows != null">
+        #{numRows,jdbcType=BIGINT},
+      </if>
+      <if test="clustIndexSize != null">
+        #{clustIndexSize,jdbcType=BIGINT},
+      </if>
+      <if test="otherIndexSize != null">
+        #{otherIndexSize,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedCounter != null">
+        #{modifiedCounter,jdbcType=BIGINT},
+      </if>
+      <if test="autoinc != null">
+        #{autoinc,jdbcType=BIGINT},
+      </if>
+      <if test="refCount != null">
+        #{refCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

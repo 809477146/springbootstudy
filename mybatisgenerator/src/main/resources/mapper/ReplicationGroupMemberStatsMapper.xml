@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ReplicationGroupMemberStatsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ReplicationGroupMemberStats">
+    <result column="CHANNEL_NAME" jdbcType="CHAR" property="channelName" />
+    <result column="VIEW_ID" jdbcType="CHAR" property="viewId" />
+    <result column="MEMBER_ID" jdbcType="CHAR" property="memberId" />
+    <result column="COUNT_TRANSACTIONS_IN_QUEUE" jdbcType="BIGINT" property="countTransactionsInQueue" />
+    <result column="COUNT_TRANSACTIONS_CHECKED" jdbcType="BIGINT" property="countTransactionsChecked" />
+    <result column="COUNT_CONFLICTS_DETECTED" jdbcType="BIGINT" property="countConflictsDetected" />
+    <result column="COUNT_TRANSACTIONS_ROWS_VALIDATING" jdbcType="BIGINT" property="countTransactionsRowsValidating" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.ReplicationGroupMemberStatsWithBLOBs">
+    <result column="TRANSACTIONS_COMMITTED_ALL_MEMBERS" jdbcType="LONGVARCHAR" property="transactionsCommittedAllMembers" />
+    <result column="LAST_CONFLICT_FREE_TRANSACTION" jdbcType="LONGVARCHAR" property="lastConflictFreeTransaction" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    TRANSACTIONS_COMMITTED_ALL_MEMBERS, LAST_CONFLICT_FREE_TRANSACTION
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.ReplicationGroupMemberStatsWithBLOBs">
+    insert into replication_group_member_stats (CHANNEL_NAME, VIEW_ID, MEMBER_ID, 
+      COUNT_TRANSACTIONS_IN_QUEUE, COUNT_TRANSACTIONS_CHECKED, 
+      COUNT_CONFLICTS_DETECTED, COUNT_TRANSACTIONS_ROWS_VALIDATING, 
+      TRANSACTIONS_COMMITTED_ALL_MEMBERS, LAST_CONFLICT_FREE_TRANSACTION
+      )
+    values (#{channelName,jdbcType=CHAR}, #{viewId,jdbcType=CHAR}, #{memberId,jdbcType=CHAR}, 
+      #{countTransactionsInQueue,jdbcType=BIGINT}, #{countTransactionsChecked,jdbcType=BIGINT}, 
+      #{countConflictsDetected,jdbcType=BIGINT}, #{countTransactionsRowsValidating,jdbcType=BIGINT}, 
+      #{transactionsCommittedAllMembers,jdbcType=LONGVARCHAR}, #{lastConflictFreeTransaction,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ReplicationGroupMemberStatsWithBLOBs">
+    insert into replication_group_member_stats
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        CHANNEL_NAME,
+      </if>
+      <if test="viewId != null">
+        VIEW_ID,
+      </if>
+      <if test="memberId != null">
+        MEMBER_ID,
+      </if>
+      <if test="countTransactionsInQueue != null">
+        COUNT_TRANSACTIONS_IN_QUEUE,
+      </if>
+      <if test="countTransactionsChecked != null">
+        COUNT_TRANSACTIONS_CHECKED,
+      </if>
+      <if test="countConflictsDetected != null">
+        COUNT_CONFLICTS_DETECTED,
+      </if>
+      <if test="countTransactionsRowsValidating != null">
+        COUNT_TRANSACTIONS_ROWS_VALIDATING,
+      </if>
+      <if test="transactionsCommittedAllMembers != null">
+        TRANSACTIONS_COMMITTED_ALL_MEMBERS,
+      </if>
+      <if test="lastConflictFreeTransaction != null">
+        LAST_CONFLICT_FREE_TRANSACTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="viewId != null">
+        #{viewId,jdbcType=CHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=CHAR},
+      </if>
+      <if test="countTransactionsInQueue != null">
+        #{countTransactionsInQueue,jdbcType=BIGINT},
+      </if>
+      <if test="countTransactionsChecked != null">
+        #{countTransactionsChecked,jdbcType=BIGINT},
+      </if>
+      <if test="countConflictsDetected != null">
+        #{countConflictsDetected,jdbcType=BIGINT},
+      </if>
+      <if test="countTransactionsRowsValidating != null">
+        #{countTransactionsRowsValidating,jdbcType=BIGINT},
+      </if>
+      <if test="transactionsCommittedAllMembers != null">
+        #{transactionsCommittedAllMembers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastConflictFreeTransaction != null">
+        #{lastConflictFreeTransaction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

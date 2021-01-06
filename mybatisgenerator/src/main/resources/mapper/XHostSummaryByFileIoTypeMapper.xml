@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XHostSummaryByFileIoTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XHostSummaryByFileIoType">
+    <result column="host" jdbcType="VARCHAR" property="host" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XHostSummaryByFileIoType">
+    insert into x$host_summary_by_file_io_type (host, event_name, total, 
+      total_latency, max_latency)
+    values (#{host,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{totalLatency,jdbcType=BIGINT}, #{maxLatency,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XHostSummaryByFileIoType">
+    insert into x$host_summary_by_file_io_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        host,
+      </if>
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

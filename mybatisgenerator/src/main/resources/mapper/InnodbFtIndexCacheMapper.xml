@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbFtIndexCacheMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbFtIndexCache">
+    <result column="WORD" jdbcType="VARCHAR" property="word" />
+    <result column="FIRST_DOC_ID" jdbcType="BIGINT" property="firstDocId" />
+    <result column="LAST_DOC_ID" jdbcType="BIGINT" property="lastDocId" />
+    <result column="DOC_COUNT" jdbcType="BIGINT" property="docCount" />
+    <result column="DOC_ID" jdbcType="BIGINT" property="docId" />
+    <result column="POSITION" jdbcType="BIGINT" property="position" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbFtIndexCache">
+    insert into INNODB_FT_INDEX_CACHE (WORD, FIRST_DOC_ID, LAST_DOC_ID, 
+      DOC_COUNT, DOC_ID, POSITION
+      )
+    values (#{word,jdbcType=VARCHAR}, #{firstDocId,jdbcType=BIGINT}, #{lastDocId,jdbcType=BIGINT}, 
+      #{docCount,jdbcType=BIGINT}, #{docId,jdbcType=BIGINT}, #{position,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbFtIndexCache">
+    insert into INNODB_FT_INDEX_CACHE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="word != null">
+        WORD,
+      </if>
+      <if test="firstDocId != null">
+        FIRST_DOC_ID,
+      </if>
+      <if test="lastDocId != null">
+        LAST_DOC_ID,
+      </if>
+      <if test="docCount != null">
+        DOC_COUNT,
+      </if>
+      <if test="docId != null">
+        DOC_ID,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="word != null">
+        #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="firstDocId != null">
+        #{firstDocId,jdbcType=BIGINT},
+      </if>
+      <if test="lastDocId != null">
+        #{lastDocId,jdbcType=BIGINT},
+      </if>
+      <if test="docCount != null">
+        #{docCount,jdbcType=BIGINT},
+      </if>
+      <if test="docId != null">
+        #{docId,jdbcType=BIGINT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

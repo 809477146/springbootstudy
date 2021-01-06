@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XUserSummaryByFileIoTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XUserSummaryByFileIoType">
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="latency" jdbcType="BIGINT" property="latency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XUserSummaryByFileIoType">
+    insert into x$user_summary_by_file_io_type (user, event_name, total, 
+      latency, max_latency)
+    values (#{user,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{latency,jdbcType=BIGINT}, #{maxLatency,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XUserSummaryByFileIoType">
+    insert into x$user_summary_by_file_io_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="latency != null">
+        latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="latency != null">
+        #{latency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SlaveMasterInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SlaveMasterInfo">
+    <id column="Channel_name" jdbcType="CHAR" property="channelName" />
+    <result column="Number_of_lines" jdbcType="INTEGER" property="numberOfLines" />
+    <result column="Master_log_pos" jdbcType="BIGINT" property="masterLogPos" />
+    <result column="Host" jdbcType="CHAR" property="host" />
+    <result column="Port" jdbcType="INTEGER" property="port" />
+    <result column="Connect_retry" jdbcType="INTEGER" property="connectRetry" />
+    <result column="Enabled_ssl" jdbcType="BIT" property="enabledSsl" />
+    <result column="Ssl_verify_server_cert" jdbcType="BIT" property="sslVerifyServerCert" />
+    <result column="Heartbeat" jdbcType="REAL" property="heartbeat" />
+    <result column="Retry_count" jdbcType="BIGINT" property="retryCount" />
+    <result column="Enabled_auto_position" jdbcType="BIT" property="enabledAutoPosition" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SlaveMasterInfoWithBLOBs">
+    <result column="Master_log_name" jdbcType="LONGVARCHAR" property="masterLogName" />
+    <result column="User_name" jdbcType="LONGVARCHAR" property="userName" />
+    <result column="User_password" jdbcType="LONGVARCHAR" property="userPassword" />
+    <result column="Ssl_ca" jdbcType="LONGVARCHAR" property="sslCa" />
+    <result column="Ssl_capath" jdbcType="LONGVARCHAR" property="sslCapath" />
+    <result column="Ssl_cert" jdbcType="LONGVARCHAR" property="sslCert" />
+    <result column="Ssl_cipher" jdbcType="LONGVARCHAR" property="sslCipher" />
+    <result column="Ssl_key" jdbcType="LONGVARCHAR" property="sslKey" />
+    <result column="Bind" jdbcType="LONGVARCHAR" property="bind" />
+    <result column="Ignored_server_ids" jdbcType="LONGVARCHAR" property="ignoredServerIds" />
+    <result column="Uuid" jdbcType="LONGVARCHAR" property="uuid" />
+    <result column="Ssl_crl" jdbcType="LONGVARCHAR" property="sslCrl" />
+    <result column="Ssl_crlpath" jdbcType="LONGVARCHAR" property="sslCrlpath" />
+    <result column="Tls_version" jdbcType="LONGVARCHAR" property="tlsVersion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Channel_name, Number_of_lines, Master_log_pos, Host, Port, Connect_retry, Enabled_ssl, 
+    Ssl_verify_server_cert, Heartbeat, Retry_count, Enabled_auto_position
+  </sql>
+  <sql id="Blob_Column_List">
+    Master_log_name, User_name, User_password, Ssl_ca, Ssl_capath, Ssl_cert, Ssl_cipher, 
+    Ssl_key, Bind, Ignored_server_ids, Uuid, Ssl_crl, Ssl_crlpath, Tls_version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from slave_master_info
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from slave_master_info
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.SlaveMasterInfoWithBLOBs">
+    insert into slave_master_info (Channel_name, Number_of_lines, Master_log_pos, 
+      Host, Port, Connect_retry, 
+      Enabled_ssl, Ssl_verify_server_cert, Heartbeat, 
+      Retry_count, Enabled_auto_position, Master_log_name, 
+      User_name, User_password, Ssl_ca, 
+      Ssl_capath, Ssl_cert, Ssl_cipher, 
+      Ssl_key, Bind, Ignored_server_ids, 
+      Uuid, Ssl_crl, Ssl_crlpath, 
+      Tls_version)
+    values (#{channelName,jdbcType=CHAR}, #{numberOfLines,jdbcType=INTEGER}, #{masterLogPos,jdbcType=BIGINT}, 
+      #{host,jdbcType=CHAR}, #{port,jdbcType=INTEGER}, #{connectRetry,jdbcType=INTEGER}, 
+      #{enabledSsl,jdbcType=BIT}, #{sslVerifyServerCert,jdbcType=BIT}, #{heartbeat,jdbcType=REAL}, 
+      #{retryCount,jdbcType=BIGINT}, #{enabledAutoPosition,jdbcType=BIT}, #{masterLogName,jdbcType=LONGVARCHAR}, 
+      #{userName,jdbcType=LONGVARCHAR}, #{userPassword,jdbcType=LONGVARCHAR}, #{sslCa,jdbcType=LONGVARCHAR}, 
+      #{sslCapath,jdbcType=LONGVARCHAR}, #{sslCert,jdbcType=LONGVARCHAR}, #{sslCipher,jdbcType=LONGVARCHAR}, 
+      #{sslKey,jdbcType=LONGVARCHAR}, #{bind,jdbcType=LONGVARCHAR}, #{ignoredServerIds,jdbcType=LONGVARCHAR}, 
+      #{uuid,jdbcType=LONGVARCHAR}, #{sslCrl,jdbcType=LONGVARCHAR}, #{sslCrlpath,jdbcType=LONGVARCHAR}, 
+      #{tlsVersion,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SlaveMasterInfoWithBLOBs">
+    insert into slave_master_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        Channel_name,
+      </if>
+      <if test="numberOfLines != null">
+        Number_of_lines,
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos,
+      </if>
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="port != null">
+        Port,
+      </if>
+      <if test="connectRetry != null">
+        Connect_retry,
+      </if>
+      <if test="enabledSsl != null">
+        Enabled_ssl,
+      </if>
+      <if test="sslVerifyServerCert != null">
+        Ssl_verify_server_cert,
+      </if>
+      <if test="heartbeat != null">
+        Heartbeat,
+      </if>
+      <if test="retryCount != null">
+        Retry_count,
+      </if>
+      <if test="enabledAutoPosition != null">
+        Enabled_auto_position,
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name,
+      </if>
+      <if test="userName != null">
+        User_name,
+      </if>
+      <if test="userPassword != null">
+        User_password,
+      </if>
+      <if test="sslCa != null">
+        Ssl_ca,
+      </if>
+      <if test="sslCapath != null">
+        Ssl_capath,
+      </if>
+      <if test="sslCert != null">
+        Ssl_cert,
+      </if>
+      <if test="sslCipher != null">
+        Ssl_cipher,
+      </if>
+      <if test="sslKey != null">
+        Ssl_key,
+      </if>
+      <if test="bind != null">
+        Bind,
+      </if>
+      <if test="ignoredServerIds != null">
+        Ignored_server_ids,
+      </if>
+      <if test="uuid != null">
+        Uuid,
+      </if>
+      <if test="sslCrl != null">
+        Ssl_crl,
+      </if>
+      <if test="sslCrlpath != null">
+        Ssl_crlpath,
+      </if>
+      <if test="tlsVersion != null">
+        Tls_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="numberOfLines != null">
+        #{numberOfLines,jdbcType=INTEGER},
+      </if>
+      <if test="masterLogPos != null">
+        #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="connectRetry != null">
+        #{connectRetry,jdbcType=INTEGER},
+      </if>
+      <if test="enabledSsl != null">
+        #{enabledSsl,jdbcType=BIT},
+      </if>
+      <if test="sslVerifyServerCert != null">
+        #{sslVerifyServerCert,jdbcType=BIT},
+      </if>
+      <if test="heartbeat != null">
+        #{heartbeat,jdbcType=REAL},
+      </if>
+      <if test="retryCount != null">
+        #{retryCount,jdbcType=BIGINT},
+      </if>
+      <if test="enabledAutoPosition != null">
+        #{enabledAutoPosition,jdbcType=BIT},
+      </if>
+      <if test="masterLogName != null">
+        #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCa != null">
+        #{sslCa,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCapath != null">
+        #{sslCapath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCert != null">
+        #{sslCert,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCipher != null">
+        #{sslCipher,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslKey != null">
+        #{sslKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bind != null">
+        #{bind,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ignoredServerIds != null">
+        #{ignoredServerIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCrl != null">
+        #{sslCrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCrlpath != null">
+        #{sslCrlpath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tlsVersion != null">
+        #{tlsVersion,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.SlaveMasterInfoWithBLOBs">
+    update slave_master_info
+    <set>
+      <if test="numberOfLines != null">
+        Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="host != null">
+        Host = #{host,jdbcType=CHAR},
+      </if>
+      <if test="port != null">
+        Port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="connectRetry != null">
+        Connect_retry = #{connectRetry,jdbcType=INTEGER},
+      </if>
+      <if test="enabledSsl != null">
+        Enabled_ssl = #{enabledSsl,jdbcType=BIT},
+      </if>
+      <if test="sslVerifyServerCert != null">
+        Ssl_verify_server_cert = #{sslVerifyServerCert,jdbcType=BIT},
+      </if>
+      <if test="heartbeat != null">
+        Heartbeat = #{heartbeat,jdbcType=REAL},
+      </if>
+      <if test="retryCount != null">
+        Retry_count = #{retryCount,jdbcType=BIGINT},
+      </if>
+      <if test="enabledAutoPosition != null">
+        Enabled_auto_position = #{enabledAutoPosition,jdbcType=BIT},
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name = #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userName != null">
+        User_name = #{userName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userPassword != null">
+        User_password = #{userPassword,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCa != null">
+        Ssl_ca = #{sslCa,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCapath != null">
+        Ssl_capath = #{sslCapath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCert != null">
+        Ssl_cert = #{sslCert,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCipher != null">
+        Ssl_cipher = #{sslCipher,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslKey != null">
+        Ssl_key = #{sslKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bind != null">
+        Bind = #{bind,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ignoredServerIds != null">
+        Ignored_server_ids = #{ignoredServerIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uuid != null">
+        Uuid = #{uuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCrl != null">
+        Ssl_crl = #{sslCrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sslCrlpath != null">
+        Ssl_crlpath = #{sslCrlpath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tlsVersion != null">
+        Tls_version = #{tlsVersion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sz.model.SlaveMasterInfoWithBLOBs">
+    update slave_master_info
+    set Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      Host = #{host,jdbcType=CHAR},
+      Port = #{port,jdbcType=INTEGER},
+      Connect_retry = #{connectRetry,jdbcType=INTEGER},
+      Enabled_ssl = #{enabledSsl,jdbcType=BIT},
+      Ssl_verify_server_cert = #{sslVerifyServerCert,jdbcType=BIT},
+      Heartbeat = #{heartbeat,jdbcType=REAL},
+      Retry_count = #{retryCount,jdbcType=BIGINT},
+      Enabled_auto_position = #{enabledAutoPosition,jdbcType=BIT},
+      Master_log_name = #{masterLogName,jdbcType=LONGVARCHAR},
+      User_name = #{userName,jdbcType=LONGVARCHAR},
+      User_password = #{userPassword,jdbcType=LONGVARCHAR},
+      Ssl_ca = #{sslCa,jdbcType=LONGVARCHAR},
+      Ssl_capath = #{sslCapath,jdbcType=LONGVARCHAR},
+      Ssl_cert = #{sslCert,jdbcType=LONGVARCHAR},
+      Ssl_cipher = #{sslCipher,jdbcType=LONGVARCHAR},
+      Ssl_key = #{sslKey,jdbcType=LONGVARCHAR},
+      Bind = #{bind,jdbcType=LONGVARCHAR},
+      Ignored_server_ids = #{ignoredServerIds,jdbcType=LONGVARCHAR},
+      Uuid = #{uuid,jdbcType=LONGVARCHAR},
+      Ssl_crl = #{sslCrl,jdbcType=LONGVARCHAR},
+      Ssl_crlpath = #{sslCrlpath,jdbcType=LONGVARCHAR},
+      Tls_version = #{tlsVersion,jdbcType=LONGVARCHAR}
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.SlaveMasterInfo">
+    update slave_master_info
+    set Number_of_lines = #{numberOfLines,jdbcType=INTEGER},
+      Master_log_pos = #{masterLogPos,jdbcType=BIGINT},
+      Host = #{host,jdbcType=CHAR},
+      Port = #{port,jdbcType=INTEGER},
+      Connect_retry = #{connectRetry,jdbcType=INTEGER},
+      Enabled_ssl = #{enabledSsl,jdbcType=BIT},
+      Ssl_verify_server_cert = #{sslVerifyServerCert,jdbcType=BIT},
+      Heartbeat = #{heartbeat,jdbcType=REAL},
+      Retry_count = #{retryCount,jdbcType=BIGINT},
+      Enabled_auto_position = #{enabledAutoPosition,jdbcType=BIT}
+    where Channel_name = #{channelName,jdbcType=CHAR}
+  </update>
+</mapper>

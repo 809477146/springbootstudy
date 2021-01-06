@@ -1,0 +1,13 @@
+package com.sz;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Pop3emailtestApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Pop3emailtestApplication.class, args);
+    }
+
+}

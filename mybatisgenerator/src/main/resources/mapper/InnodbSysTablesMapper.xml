@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbSysTablesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbSysTables">
+    <result column="TABLE_ID" jdbcType="BIGINT" property="tableId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="FLAG" jdbcType="INTEGER" property="flag" />
+    <result column="N_COLS" jdbcType="INTEGER" property="nCols" />
+    <result column="SPACE" jdbcType="INTEGER" property="space" />
+    <result column="FILE_FORMAT" jdbcType="VARCHAR" property="fileFormat" />
+    <result column="ROW_FORMAT" jdbcType="VARCHAR" property="rowFormat" />
+    <result column="ZIP_PAGE_SIZE" jdbcType="INTEGER" property="zipPageSize" />
+    <result column="SPACE_TYPE" jdbcType="VARCHAR" property="spaceType" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbSysTables">
+    insert into INNODB_SYS_TABLES (TABLE_ID, NAME, FLAG, 
+      N_COLS, SPACE, FILE_FORMAT, 
+      ROW_FORMAT, ZIP_PAGE_SIZE, SPACE_TYPE
+      )
+    values (#{tableId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{nCols,jdbcType=INTEGER}, #{space,jdbcType=INTEGER}, #{fileFormat,jdbcType=VARCHAR}, 
+      #{rowFormat,jdbcType=VARCHAR}, #{zipPageSize,jdbcType=INTEGER}, #{spaceType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbSysTables">
+    insert into INNODB_SYS_TABLES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="nCols != null">
+        N_COLS,
+      </if>
+      <if test="space != null">
+        SPACE,
+      </if>
+      <if test="fileFormat != null">
+        FILE_FORMAT,
+      </if>
+      <if test="rowFormat != null">
+        ROW_FORMAT,
+      </if>
+      <if test="zipPageSize != null">
+        ZIP_PAGE_SIZE,
+      </if>
+      <if test="spaceType != null">
+        SPACE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="nCols != null">
+        #{nCols,jdbcType=INTEGER},
+      </if>
+      <if test="space != null">
+        #{space,jdbcType=INTEGER},
+      </if>
+      <if test="fileFormat != null">
+        #{fileFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="rowFormat != null">
+        #{rowFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="zipPageSize != null">
+        #{zipPageSize,jdbcType=INTEGER},
+      </if>
+      <if test="spaceType != null">
+        #{spaceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

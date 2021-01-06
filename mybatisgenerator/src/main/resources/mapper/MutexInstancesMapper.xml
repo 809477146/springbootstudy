@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.MutexInstancesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.MutexInstances">
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="OBJECT_INSTANCE_BEGIN" jdbcType="BIGINT" property="objectInstanceBegin" />
+    <result column="LOCKED_BY_THREAD_ID" jdbcType="BIGINT" property="lockedByThreadId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.MutexInstances">
+    insert into mutex_instances (NAME, OBJECT_INSTANCE_BEGIN, LOCKED_BY_THREAD_ID
+      )
+    values (#{name,jdbcType=VARCHAR}, #{objectInstanceBegin,jdbcType=BIGINT}, #{lockedByThreadId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.MutexInstances">
+    insert into mutex_instances
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="objectInstanceBegin != null">
+        OBJECT_INSTANCE_BEGIN,
+      </if>
+      <if test="lockedByThreadId != null">
+        LOCKED_BY_THREAD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="objectInstanceBegin != null">
+        #{objectInstanceBegin,jdbcType=BIGINT},
+      </if>
+      <if test="lockedByThreadId != null">
+        #{lockedByThreadId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ReferentialConstraintsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ReferentialConstraints">
+    <result column="CONSTRAINT_CATALOG" jdbcType="VARCHAR" property="constraintCatalog" />
+    <result column="CONSTRAINT_SCHEMA" jdbcType="VARCHAR" property="constraintSchema" />
+    <result column="CONSTRAINT_NAME" jdbcType="VARCHAR" property="constraintName" />
+    <result column="UNIQUE_CONSTRAINT_CATALOG" jdbcType="VARCHAR" property="uniqueConstraintCatalog" />
+    <result column="UNIQUE_CONSTRAINT_SCHEMA" jdbcType="VARCHAR" property="uniqueConstraintSchema" />
+    <result column="UNIQUE_CONSTRAINT_NAME" jdbcType="VARCHAR" property="uniqueConstraintName" />
+    <result column="MATCH_OPTION" jdbcType="VARCHAR" property="matchOption" />
+    <result column="UPDATE_RULE" jdbcType="VARCHAR" property="updateRule" />
+    <result column="DELETE_RULE" jdbcType="VARCHAR" property="deleteRule" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="REFERENCED_TABLE_NAME" jdbcType="VARCHAR" property="referencedTableName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.ReferentialConstraints">
+    insert into REFERENTIAL_CONSTRAINTS (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME, UNIQUE_CONSTRAINT_CATALOG, 
+      UNIQUE_CONSTRAINT_SCHEMA, UNIQUE_CONSTRAINT_NAME, 
+      MATCH_OPTION, UPDATE_RULE, DELETE_RULE, 
+      TABLE_NAME, REFERENCED_TABLE_NAME)
+    values (#{constraintCatalog,jdbcType=VARCHAR}, #{constraintSchema,jdbcType=VARCHAR}, 
+      #{constraintName,jdbcType=VARCHAR}, #{uniqueConstraintCatalog,jdbcType=VARCHAR}, 
+      #{uniqueConstraintSchema,jdbcType=VARCHAR}, #{uniqueConstraintName,jdbcType=VARCHAR}, 
+      #{matchOption,jdbcType=VARCHAR}, #{updateRule,jdbcType=VARCHAR}, #{deleteRule,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{referencedTableName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ReferentialConstraints">
+    insert into REFERENTIAL_CONSTRAINTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null">
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null">
+        CONSTRAINT_NAME,
+      </if>
+      <if test="uniqueConstraintCatalog != null">
+        UNIQUE_CONSTRAINT_CATALOG,
+      </if>
+      <if test="uniqueConstraintSchema != null">
+        UNIQUE_CONSTRAINT_SCHEMA,
+      </if>
+      <if test="uniqueConstraintName != null">
+        UNIQUE_CONSTRAINT_NAME,
+      </if>
+      <if test="matchOption != null">
+        MATCH_OPTION,
+      </if>
+      <if test="updateRule != null">
+        UPDATE_RULE,
+      </if>
+      <if test="deleteRule != null">
+        DELETE_RULE,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="referencedTableName != null">
+        REFERENCED_TABLE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        #{constraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintSchema != null">
+        #{constraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintName != null">
+        #{constraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintCatalog != null">
+        #{uniqueConstraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintSchema != null">
+        #{uniqueConstraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintName != null">
+        #{uniqueConstraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="matchOption != null">
+        #{matchOption,jdbcType=VARCHAR},
+      </if>
+      <if test="updateRule != null">
+        #{updateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteRule != null">
+        #{deleteRule,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="referencedTableName != null">
+        #{referencedTableName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

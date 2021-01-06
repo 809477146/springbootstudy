@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.HostsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Hosts">
+    <result column="HOST" jdbcType="CHAR" property="host" />
+    <result column="CURRENT_CONNECTIONS" jdbcType="BIGINT" property="currentConnections" />
+    <result column="TOTAL_CONNECTIONS" jdbcType="BIGINT" property="totalConnections" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.Hosts">
+    insert into hosts (HOST, CURRENT_CONNECTIONS, TOTAL_CONNECTIONS
+      )
+    values (#{host,jdbcType=CHAR}, #{currentConnections,jdbcType=BIGINT}, #{totalConnections,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Hosts">
+    insert into hosts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="currentConnections != null">
+        CURRENT_CONNECTIONS,
+      </if>
+      <if test="totalConnections != null">
+        TOTAL_CONNECTIONS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="currentConnections != null">
+        #{currentConnections,jdbcType=BIGINT},
+      </if>
+      <if test="totalConnections != null">
+        #{totalConnections,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

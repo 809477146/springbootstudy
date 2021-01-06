@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.IoGlobalByFileByLatencyMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.IoGlobalByFileByLatency">
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+    <result column="count_misc" jdbcType="BIGINT" property="countMisc" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.IoGlobalByFileByLatencyWithBLOBs">
+    <result column="total_latency" jdbcType="LONGVARCHAR" property="totalLatency" />
+    <result column="read_latency" jdbcType="LONGVARCHAR" property="readLatency" />
+    <result column="write_latency" jdbcType="LONGVARCHAR" property="writeLatency" />
+    <result column="misc_latency" jdbcType="LONGVARCHAR" property="miscLatency" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    total_latency, read_latency, write_latency, misc_latency
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.IoGlobalByFileByLatencyWithBLOBs">
+    insert into io_global_by_file_by_latency (file, total, count_read, 
+      count_write, count_misc, total_latency, 
+      read_latency, write_latency, misc_latency
+      )
+    values (#{file,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, #{countRead,jdbcType=BIGINT}, 
+      #{countWrite,jdbcType=BIGINT}, #{countMisc,jdbcType=BIGINT}, #{totalLatency,jdbcType=LONGVARCHAR}, 
+      #{readLatency,jdbcType=LONGVARCHAR}, #{writeLatency,jdbcType=LONGVARCHAR}, #{miscLatency,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.IoGlobalByFileByLatencyWithBLOBs">
+    insert into io_global_by_file_by_latency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        file,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="countMisc != null">
+        count_misc,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="readLatency != null">
+        read_latency,
+      </if>
+      <if test="writeLatency != null">
+        write_latency,
+      </if>
+      <if test="miscLatency != null">
+        misc_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="countMisc != null">
+        #{countMisc,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="readLatency != null">
+        #{readLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="writeLatency != null">
+        #{writeLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="miscLatency != null">
+        #{miscLatency,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

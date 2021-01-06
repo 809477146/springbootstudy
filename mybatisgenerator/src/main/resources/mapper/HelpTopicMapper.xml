@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.HelpTopicMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.HelpTopic">
+    <id column="help_topic_id" jdbcType="INTEGER" property="helpTopicId" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="help_category_id" jdbcType="SMALLINT" property="helpCategoryId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.HelpTopicWithBLOBs">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="example" jdbcType="LONGVARCHAR" property="example" />
+    <result column="url" jdbcType="LONGVARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    help_topic_id, name, help_category_id
+  </sql>
+  <sql id="Blob_Column_List">
+    description, example, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from help_topic
+    where help_topic_id = #{helpTopicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from help_topic
+    where help_topic_id = #{helpTopicId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.HelpTopicWithBLOBs">
+    insert into help_topic (help_topic_id, name, help_category_id, 
+      description, example, url
+      )
+    values (#{helpTopicId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{helpCategoryId,jdbcType=SMALLINT}, 
+      #{description,jdbcType=LONGVARCHAR}, #{example,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.HelpTopicWithBLOBs">
+    insert into help_topic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="helpTopicId != null">
+        help_topic_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="helpCategoryId != null">
+        help_category_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="example != null">
+        example,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="helpTopicId != null">
+        #{helpTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="helpCategoryId != null">
+        #{helpCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="example != null">
+        #{example,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.HelpTopicWithBLOBs">
+    update help_topic
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="helpCategoryId != null">
+        help_category_id = #{helpCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="example != null">
+        example = #{example,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where help_topic_id = #{helpTopicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sz.model.HelpTopicWithBLOBs">
+    update help_topic
+    set name = #{name,jdbcType=CHAR},
+      help_category_id = #{helpCategoryId,jdbcType=SMALLINT},
+      description = #{description,jdbcType=LONGVARCHAR},
+      example = #{example,jdbcType=LONGVARCHAR},
+      url = #{url,jdbcType=LONGVARCHAR}
+    where help_topic_id = #{helpTopicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.HelpTopic">
+    update help_topic
+    set name = #{name,jdbcType=CHAR},
+      help_category_id = #{helpCategoryId,jdbcType=SMALLINT}
+    where help_topic_id = #{helpTopicId,jdbcType=INTEGER}
+  </update>
+</mapper>

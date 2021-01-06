@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ProcsPrivMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ProcsPriv">
+    <id column="Host" jdbcType="CHAR" property="host" />
+    <id column="Db" jdbcType="CHAR" property="db" />
+    <id column="User" jdbcType="CHAR" property="user" />
+    <id column="Routine_name" jdbcType="CHAR" property="routineName" />
+    <id column="Routine_type" jdbcType="CHAR" property="routineType" />
+    <result column="Grantor" jdbcType="CHAR" property="grantor" />
+    <result column="Proc_priv" jdbcType="CHAR" property="procPriv" />
+    <result column="Timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Host, Db, User, Routine_name, Routine_type, Grantor, Proc_priv, Timestamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.ProcsPrivKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from procs_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Routine_name = #{routineName,jdbcType=CHAR}
+      and Routine_type = #{routineType,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.ProcsPrivKey">
+    delete from procs_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Routine_name = #{routineName,jdbcType=CHAR}
+      and Routine_type = #{routineType,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.ProcsPriv">
+    insert into procs_priv (Host, Db, User, Routine_name, 
+      Routine_type, Grantor, Proc_priv, 
+      Timestamp)
+    values (#{host,jdbcType=CHAR}, #{db,jdbcType=CHAR}, #{user,jdbcType=CHAR}, #{routineName,jdbcType=CHAR}, 
+      #{routineType,jdbcType=CHAR}, #{grantor,jdbcType=CHAR}, #{procPriv,jdbcType=CHAR}, 
+      #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ProcsPriv">
+    insert into procs_priv
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="db != null">
+        Db,
+      </if>
+      <if test="user != null">
+        User,
+      </if>
+      <if test="routineName != null">
+        Routine_name,
+      </if>
+      <if test="routineType != null">
+        Routine_type,
+      </if>
+      <if test="grantor != null">
+        Grantor,
+      </if>
+      <if test="procPriv != null">
+        Proc_priv,
+      </if>
+      <if test="timestamp != null">
+        Timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="routineName != null">
+        #{routineName,jdbcType=CHAR},
+      </if>
+      <if test="routineType != null">
+        #{routineType,jdbcType=CHAR},
+      </if>
+      <if test="grantor != null">
+        #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="procPriv != null">
+        #{procPriv,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.ProcsPriv">
+    update procs_priv
+    <set>
+      <if test="grantor != null">
+        Grantor = #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="procPriv != null">
+        Proc_priv = #{procPriv,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Routine_name = #{routineName,jdbcType=CHAR}
+      and Routine_type = #{routineType,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.ProcsPriv">
+    update procs_priv
+    set Grantor = #{grantor,jdbcType=CHAR},
+      Proc_priv = #{procPriv,jdbcType=CHAR},
+      Timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Routine_name = #{routineName,jdbcType=CHAR}
+      and Routine_type = #{routineType,jdbcType=CHAR}
+  </update>
+</mapper>

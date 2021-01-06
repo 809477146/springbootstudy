@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.GtidExecutedMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.GtidExecuted">
+    <id column="source_uuid" jdbcType="CHAR" property="sourceUuid" />
+    <id column="interval_start" jdbcType="BIGINT" property="intervalStart" />
+    <result column="interval_end" jdbcType="BIGINT" property="intervalEnd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    source_uuid, interval_start, interval_end
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.GtidExecutedKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gtid_executed
+    where source_uuid = #{sourceUuid,jdbcType=CHAR}
+      and interval_start = #{intervalStart,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.GtidExecutedKey">
+    delete from gtid_executed
+    where source_uuid = #{sourceUuid,jdbcType=CHAR}
+      and interval_start = #{intervalStart,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.GtidExecuted">
+    insert into gtid_executed (source_uuid, interval_start, interval_end
+      )
+    values (#{sourceUuid,jdbcType=CHAR}, #{intervalStart,jdbcType=BIGINT}, #{intervalEnd,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.GtidExecuted">
+    insert into gtid_executed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sourceUuid != null">
+        source_uuid,
+      </if>
+      <if test="intervalStart != null">
+        interval_start,
+      </if>
+      <if test="intervalEnd != null">
+        interval_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sourceUuid != null">
+        #{sourceUuid,jdbcType=CHAR},
+      </if>
+      <if test="intervalStart != null">
+        #{intervalStart,jdbcType=BIGINT},
+      </if>
+      <if test="intervalEnd != null">
+        #{intervalEnd,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.GtidExecuted">
+    update gtid_executed
+    <set>
+      <if test="intervalEnd != null">
+        interval_end = #{intervalEnd,jdbcType=BIGINT},
+      </if>
+    </set>
+    where source_uuid = #{sourceUuid,jdbcType=CHAR}
+      and interval_start = #{intervalStart,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.GtidExecuted">
+    update gtid_executed
+    set interval_end = #{intervalEnd,jdbcType=BIGINT}
+    where source_uuid = #{sourceUuid,jdbcType=CHAR}
+      and interval_start = #{intervalStart,jdbcType=BIGINT}
+  </update>
+</mapper>

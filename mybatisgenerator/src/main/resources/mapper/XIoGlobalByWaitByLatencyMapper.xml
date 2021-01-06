@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XIoGlobalByWaitByLatencyMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XIoGlobalByWaitByLatency">
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="avg_latency" jdbcType="BIGINT" property="avgLatency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+    <result column="read_latency" jdbcType="BIGINT" property="readLatency" />
+    <result column="write_latency" jdbcType="BIGINT" property="writeLatency" />
+    <result column="misc_latency" jdbcType="BIGINT" property="miscLatency" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="total_read" jdbcType="BIGINT" property="totalRead" />
+    <result column="avg_read" jdbcType="DECIMAL" property="avgRead" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+    <result column="total_written" jdbcType="BIGINT" property="totalWritten" />
+    <result column="avg_written" jdbcType="DECIMAL" property="avgWritten" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XIoGlobalByWaitByLatency">
+    insert into x$io_global_by_wait_by_latency (event_name, total, total_latency, 
+      avg_latency, max_latency, read_latency, 
+      write_latency, misc_latency, count_read, 
+      total_read, avg_read, count_write, 
+      total_written, avg_written)
+    values (#{eventName,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, #{totalLatency,jdbcType=BIGINT}, 
+      #{avgLatency,jdbcType=BIGINT}, #{maxLatency,jdbcType=BIGINT}, #{readLatency,jdbcType=BIGINT}, 
+      #{writeLatency,jdbcType=BIGINT}, #{miscLatency,jdbcType=BIGINT}, #{countRead,jdbcType=BIGINT}, 
+      #{totalRead,jdbcType=BIGINT}, #{avgRead,jdbcType=DECIMAL}, #{countWrite,jdbcType=BIGINT}, 
+      #{totalWritten,jdbcType=BIGINT}, #{avgWritten,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XIoGlobalByWaitByLatency">
+    insert into x$io_global_by_wait_by_latency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="avgLatency != null">
+        avg_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="readLatency != null">
+        read_latency,
+      </if>
+      <if test="writeLatency != null">
+        write_latency,
+      </if>
+      <if test="miscLatency != null">
+        misc_latency,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="totalRead != null">
+        total_read,
+      </if>
+      <if test="avgRead != null">
+        avg_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="totalWritten != null">
+        total_written,
+      </if>
+      <if test="avgWritten != null">
+        avg_written,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="avgLatency != null">
+        #{avgLatency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+      <if test="readLatency != null">
+        #{readLatency,jdbcType=BIGINT},
+      </if>
+      <if test="writeLatency != null">
+        #{writeLatency,jdbcType=BIGINT},
+      </if>
+      <if test="miscLatency != null">
+        #{miscLatency,jdbcType=BIGINT},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="totalRead != null">
+        #{totalRead,jdbcType=BIGINT},
+      </if>
+      <if test="avgRead != null">
+        #{avgRead,jdbcType=DECIMAL},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="totalWritten != null">
+        #{totalWritten,jdbcType=BIGINT},
+      </if>
+      <if test="avgWritten != null">
+        #{avgWritten,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

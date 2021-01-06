@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.EventMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Event">
+    <id column="db" jdbcType="CHAR" property="db" />
+    <id column="name" jdbcType="CHAR" property="name" />
+    <result column="definer" jdbcType="CHAR" property="definer" />
+    <result column="execute_at" jdbcType="TIMESTAMP" property="executeAt" />
+    <result column="interval_value" jdbcType="INTEGER" property="intervalValue" />
+    <result column="interval_field" jdbcType="CHAR" property="intervalField" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="last_executed" jdbcType="TIMESTAMP" property="lastExecuted" />
+    <result column="starts" jdbcType="TIMESTAMP" property="starts" />
+    <result column="ends" jdbcType="TIMESTAMP" property="ends" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="on_completion" jdbcType="CHAR" property="onCompletion" />
+    <result column="sql_mode" jdbcType="CHAR" property="sqlMode" />
+    <result column="comment" jdbcType="CHAR" property="comment" />
+    <result column="originator" jdbcType="INTEGER" property="originator" />
+    <result column="time_zone" jdbcType="CHAR" property="timeZone" />
+    <result column="character_set_client" jdbcType="CHAR" property="characterSetClient" />
+    <result column="collation_connection" jdbcType="CHAR" property="collationConnection" />
+    <result column="db_collation" jdbcType="CHAR" property="dbCollation" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.EventWithBLOBs">
+    <result column="body" jdbcType="LONGVARBINARY" property="body" />
+    <result column="body_utf8" jdbcType="LONGVARBINARY" property="bodyUtf8" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    db, name, definer, execute_at, interval_value, interval_field, created, modified, 
+    last_executed, starts, ends, status, on_completion, sql_mode, comment, originator, 
+    time_zone, character_set_client, collation_connection, db_collation
+  </sql>
+  <sql id="Blob_Column_List">
+    body, body_utf8
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.EventKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from event
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.EventKey">
+    delete from event
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.EventWithBLOBs">
+    insert into event (db, name, definer, execute_at, 
+      interval_value, interval_field, created, 
+      modified, last_executed, starts, 
+      ends, status, on_completion, 
+      sql_mode, comment, originator, 
+      time_zone, character_set_client, collation_connection, 
+      db_collation, body, body_utf8
+      )
+    values (#{db,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{definer,jdbcType=CHAR}, #{executeAt,jdbcType=TIMESTAMP}, 
+      #{intervalValue,jdbcType=INTEGER}, #{intervalField,jdbcType=CHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP}, #{lastExecuted,jdbcType=TIMESTAMP}, #{starts,jdbcType=TIMESTAMP}, 
+      #{ends,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, #{onCompletion,jdbcType=CHAR}, 
+      #{sqlMode,jdbcType=CHAR}, #{comment,jdbcType=CHAR}, #{originator,jdbcType=INTEGER}, 
+      #{timeZone,jdbcType=CHAR}, #{characterSetClient,jdbcType=CHAR}, #{collationConnection,jdbcType=CHAR}, 
+      #{dbCollation,jdbcType=CHAR}, #{body,jdbcType=LONGVARBINARY}, #{bodyUtf8,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.EventWithBLOBs">
+    insert into event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        db,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="definer != null">
+        definer,
+      </if>
+      <if test="executeAt != null">
+        execute_at,
+      </if>
+      <if test="intervalValue != null">
+        interval_value,
+      </if>
+      <if test="intervalField != null">
+        interval_field,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="lastExecuted != null">
+        last_executed,
+      </if>
+      <if test="starts != null">
+        starts,
+      </if>
+      <if test="ends != null">
+        ends,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="onCompletion != null">
+        on_completion,
+      </if>
+      <if test="sqlMode != null">
+        sql_mode,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="originator != null">
+        originator,
+      </if>
+      <if test="timeZone != null">
+        time_zone,
+      </if>
+      <if test="characterSetClient != null">
+        character_set_client,
+      </if>
+      <if test="collationConnection != null">
+        collation_connection,
+      </if>
+      <if test="dbCollation != null">
+        db_collation,
+      </if>
+      <if test="body != null">
+        body,
+      </if>
+      <if test="bodyUtf8 != null">
+        body_utf8,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="definer != null">
+        #{definer,jdbcType=CHAR},
+      </if>
+      <if test="executeAt != null">
+        #{executeAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalValue != null">
+        #{intervalValue,jdbcType=INTEGER},
+      </if>
+      <if test="intervalField != null">
+        #{intervalField,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExecuted != null">
+        #{lastExecuted,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starts != null">
+        #{starts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ends != null">
+        #{ends,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="onCompletion != null">
+        #{onCompletion,jdbcType=CHAR},
+      </if>
+      <if test="sqlMode != null">
+        #{sqlMode,jdbcType=CHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=CHAR},
+      </if>
+      <if test="originator != null">
+        #{originator,jdbcType=INTEGER},
+      </if>
+      <if test="timeZone != null">
+        #{timeZone,jdbcType=CHAR},
+      </if>
+      <if test="characterSetClient != null">
+        #{characterSetClient,jdbcType=CHAR},
+      </if>
+      <if test="collationConnection != null">
+        #{collationConnection,jdbcType=CHAR},
+      </if>
+      <if test="dbCollation != null">
+        #{dbCollation,jdbcType=CHAR},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="bodyUtf8 != null">
+        #{bodyUtf8,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.EventWithBLOBs">
+    update event
+    <set>
+      <if test="definer != null">
+        definer = #{definer,jdbcType=CHAR},
+      </if>
+      <if test="executeAt != null">
+        execute_at = #{executeAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalValue != null">
+        interval_value = #{intervalValue,jdbcType=INTEGER},
+      </if>
+      <if test="intervalField != null">
+        interval_field = #{intervalField,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExecuted != null">
+        last_executed = #{lastExecuted,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starts != null">
+        starts = #{starts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ends != null">
+        ends = #{ends,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="onCompletion != null">
+        on_completion = #{onCompletion,jdbcType=CHAR},
+      </if>
+      <if test="sqlMode != null">
+        sql_mode = #{sqlMode,jdbcType=CHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=CHAR},
+      </if>
+      <if test="originator != null">
+        originator = #{originator,jdbcType=INTEGER},
+      </if>
+      <if test="timeZone != null">
+        time_zone = #{timeZone,jdbcType=CHAR},
+      </if>
+      <if test="characterSetClient != null">
+        character_set_client = #{characterSetClient,jdbcType=CHAR},
+      </if>
+      <if test="collationConnection != null">
+        collation_connection = #{collationConnection,jdbcType=CHAR},
+      </if>
+      <if test="dbCollation != null">
+        db_collation = #{dbCollation,jdbcType=CHAR},
+      </if>
+      <if test="body != null">
+        body = #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="bodyUtf8 != null">
+        body_utf8 = #{bodyUtf8,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sz.model.EventWithBLOBs">
+    update event
+    set definer = #{definer,jdbcType=CHAR},
+      execute_at = #{executeAt,jdbcType=TIMESTAMP},
+      interval_value = #{intervalValue,jdbcType=INTEGER},
+      interval_field = #{intervalField,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      last_executed = #{lastExecuted,jdbcType=TIMESTAMP},
+      starts = #{starts,jdbcType=TIMESTAMP},
+      ends = #{ends,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      on_completion = #{onCompletion,jdbcType=CHAR},
+      sql_mode = #{sqlMode,jdbcType=CHAR},
+      comment = #{comment,jdbcType=CHAR},
+      originator = #{originator,jdbcType=INTEGER},
+      time_zone = #{timeZone,jdbcType=CHAR},
+      character_set_client = #{characterSetClient,jdbcType=CHAR},
+      collation_connection = #{collationConnection,jdbcType=CHAR},
+      db_collation = #{dbCollation,jdbcType=CHAR},
+      body = #{body,jdbcType=LONGVARBINARY},
+      body_utf8 = #{bodyUtf8,jdbcType=LONGVARBINARY}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.Event">
+    update event
+    set definer = #{definer,jdbcType=CHAR},
+      execute_at = #{executeAt,jdbcType=TIMESTAMP},
+      interval_value = #{intervalValue,jdbcType=INTEGER},
+      interval_field = #{intervalField,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      last_executed = #{lastExecuted,jdbcType=TIMESTAMP},
+      starts = #{starts,jdbcType=TIMESTAMP},
+      ends = #{ends,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      on_completion = #{onCompletion,jdbcType=CHAR},
+      sql_mode = #{sqlMode,jdbcType=CHAR},
+      comment = #{comment,jdbcType=CHAR},
+      originator = #{originator,jdbcType=INTEGER},
+      time_zone = #{timeZone,jdbcType=CHAR},
+      character_set_client = #{characterSetClient,jdbcType=CHAR},
+      collation_connection = #{collationConnection,jdbcType=CHAR},
+      db_collation = #{dbCollation,jdbcType=CHAR}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+  </update>
+</mapper>

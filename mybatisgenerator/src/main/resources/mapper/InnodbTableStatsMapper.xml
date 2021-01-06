@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbTableStatsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbTableStats">
+    <id column="database_name" jdbcType="VARCHAR" property="databaseName" />
+    <id column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+    <result column="n_rows" jdbcType="BIGINT" property="nRows" />
+    <result column="clustered_index_size" jdbcType="BIGINT" property="clusteredIndexSize" />
+    <result column="sum_of_other_index_sizes" jdbcType="BIGINT" property="sumOfOtherIndexSizes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    database_name, table_name, last_update, n_rows, clustered_index_size, sum_of_other_index_sizes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.InnodbTableStatsKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from innodb_table_stats
+    where database_name = #{databaseName,jdbcType=VARCHAR}
+      and table_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.InnodbTableStatsKey">
+    delete from innodb_table_stats
+    where database_name = #{databaseName,jdbcType=VARCHAR}
+      and table_name = #{tableName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.InnodbTableStats">
+    insert into innodb_table_stats (database_name, table_name, last_update, 
+      n_rows, clustered_index_size, sum_of_other_index_sizes
+      )
+    values (#{databaseName,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP}, 
+      #{nRows,jdbcType=BIGINT}, #{clusteredIndexSize,jdbcType=BIGINT}, #{sumOfOtherIndexSizes,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbTableStats">
+    insert into innodb_table_stats
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="databaseName != null">
+        database_name,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="lastUpdate != null">
+        last_update,
+      </if>
+      <if test="nRows != null">
+        n_rows,
+      </if>
+      <if test="clusteredIndexSize != null">
+        clustered_index_size,
+      </if>
+      <if test="sumOfOtherIndexSizes != null">
+        sum_of_other_index_sizes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="databaseName != null">
+        #{databaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null">
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nRows != null">
+        #{nRows,jdbcType=BIGINT},
+      </if>
+      <if test="clusteredIndexSize != null">
+        #{clusteredIndexSize,jdbcType=BIGINT},
+      </if>
+      <if test="sumOfOtherIndexSizes != null">
+        #{sumOfOtherIndexSizes,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.InnodbTableStats">
+    update innodb_table_stats
+    <set>
+      <if test="lastUpdate != null">
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nRows != null">
+        n_rows = #{nRows,jdbcType=BIGINT},
+      </if>
+      <if test="clusteredIndexSize != null">
+        clustered_index_size = #{clusteredIndexSize,jdbcType=BIGINT},
+      </if>
+      <if test="sumOfOtherIndexSizes != null">
+        sum_of_other_index_sizes = #{sumOfOtherIndexSizes,jdbcType=BIGINT},
+      </if>
+    </set>
+    where database_name = #{databaseName,jdbcType=VARCHAR}
+      and table_name = #{tableName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.InnodbTableStats">
+    update innodb_table_stats
+    set last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      n_rows = #{nRows,jdbcType=BIGINT},
+      clustered_index_size = #{clusteredIndexSize,jdbcType=BIGINT},
+      sum_of_other_index_sizes = #{sumOfOtherIndexSizes,jdbcType=BIGINT}
+    where database_name = #{databaseName,jdbcType=VARCHAR}
+      and table_name = #{tableName,jdbcType=VARCHAR}
+  </update>
+</mapper>

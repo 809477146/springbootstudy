@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbBufferPoolStatsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbBufferPoolStats">
+    <result column="POOL_ID" jdbcType="BIGINT" property="poolId" />
+    <result column="POOL_SIZE" jdbcType="BIGINT" property="poolSize" />
+    <result column="FREE_BUFFERS" jdbcType="BIGINT" property="freeBuffers" />
+    <result column="DATABASE_PAGES" jdbcType="BIGINT" property="databasePages" />
+    <result column="OLD_DATABASE_PAGES" jdbcType="BIGINT" property="oldDatabasePages" />
+    <result column="MODIFIED_DATABASE_PAGES" jdbcType="BIGINT" property="modifiedDatabasePages" />
+    <result column="PENDING_DECOMPRESS" jdbcType="BIGINT" property="pendingDecompress" />
+    <result column="PENDING_READS" jdbcType="BIGINT" property="pendingReads" />
+    <result column="PENDING_FLUSH_LRU" jdbcType="BIGINT" property="pendingFlushLru" />
+    <result column="PENDING_FLUSH_LIST" jdbcType="BIGINT" property="pendingFlushList" />
+    <result column="PAGES_MADE_YOUNG" jdbcType="BIGINT" property="pagesMadeYoung" />
+    <result column="PAGES_NOT_MADE_YOUNG" jdbcType="BIGINT" property="pagesNotMadeYoung" />
+    <result column="PAGES_MADE_YOUNG_RATE" jdbcType="DOUBLE" property="pagesMadeYoungRate" />
+    <result column="PAGES_MADE_NOT_YOUNG_RATE" jdbcType="DOUBLE" property="pagesMadeNotYoungRate" />
+    <result column="NUMBER_PAGES_READ" jdbcType="BIGINT" property="numberPagesRead" />
+    <result column="NUMBER_PAGES_CREATED" jdbcType="BIGINT" property="numberPagesCreated" />
+    <result column="NUMBER_PAGES_WRITTEN" jdbcType="BIGINT" property="numberPagesWritten" />
+    <result column="PAGES_READ_RATE" jdbcType="DOUBLE" property="pagesReadRate" />
+    <result column="PAGES_CREATE_RATE" jdbcType="DOUBLE" property="pagesCreateRate" />
+    <result column="PAGES_WRITTEN_RATE" jdbcType="DOUBLE" property="pagesWrittenRate" />
+    <result column="NUMBER_PAGES_GET" jdbcType="BIGINT" property="numberPagesGet" />
+    <result column="HIT_RATE" jdbcType="BIGINT" property="hitRate" />
+    <result column="YOUNG_MAKE_PER_THOUSAND_GETS" jdbcType="BIGINT" property="youngMakePerThousandGets" />
+    <result column="NOT_YOUNG_MAKE_PER_THOUSAND_GETS" jdbcType="BIGINT" property="notYoungMakePerThousandGets" />
+    <result column="NUMBER_PAGES_READ_AHEAD" jdbcType="BIGINT" property="numberPagesReadAhead" />
+    <result column="NUMBER_READ_AHEAD_EVICTED" jdbcType="BIGINT" property="numberReadAheadEvicted" />
+    <result column="READ_AHEAD_RATE" jdbcType="DOUBLE" property="readAheadRate" />
+    <result column="READ_AHEAD_EVICTED_RATE" jdbcType="DOUBLE" property="readAheadEvictedRate" />
+    <result column="LRU_IO_TOTAL" jdbcType="BIGINT" property="lruIoTotal" />
+    <result column="LRU_IO_CURRENT" jdbcType="BIGINT" property="lruIoCurrent" />
+    <result column="UNCOMPRESS_TOTAL" jdbcType="BIGINT" property="uncompressTotal" />
+    <result column="UNCOMPRESS_CURRENT" jdbcType="BIGINT" property="uncompressCurrent" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbBufferPoolStats">
+    insert into INNODB_BUFFER_POOL_STATS (POOL_ID, POOL_SIZE, FREE_BUFFERS, 
+      DATABASE_PAGES, OLD_DATABASE_PAGES, MODIFIED_DATABASE_PAGES, 
+      PENDING_DECOMPRESS, PENDING_READS, PENDING_FLUSH_LRU, 
+      PENDING_FLUSH_LIST, PAGES_MADE_YOUNG, PAGES_NOT_MADE_YOUNG, 
+      PAGES_MADE_YOUNG_RATE, PAGES_MADE_NOT_YOUNG_RATE, 
+      NUMBER_PAGES_READ, NUMBER_PAGES_CREATED, NUMBER_PAGES_WRITTEN, 
+      PAGES_READ_RATE, PAGES_CREATE_RATE, PAGES_WRITTEN_RATE, 
+      NUMBER_PAGES_GET, HIT_RATE, YOUNG_MAKE_PER_THOUSAND_GETS, 
+      NOT_YOUNG_MAKE_PER_THOUSAND_GETS, NUMBER_PAGES_READ_AHEAD, 
+      NUMBER_READ_AHEAD_EVICTED, READ_AHEAD_RATE, READ_AHEAD_EVICTED_RATE, 
+      LRU_IO_TOTAL, LRU_IO_CURRENT, UNCOMPRESS_TOTAL, 
+      UNCOMPRESS_CURRENT)
+    values (#{poolId,jdbcType=BIGINT}, #{poolSize,jdbcType=BIGINT}, #{freeBuffers,jdbcType=BIGINT}, 
+      #{databasePages,jdbcType=BIGINT}, #{oldDatabasePages,jdbcType=BIGINT}, #{modifiedDatabasePages,jdbcType=BIGINT}, 
+      #{pendingDecompress,jdbcType=BIGINT}, #{pendingReads,jdbcType=BIGINT}, #{pendingFlushLru,jdbcType=BIGINT}, 
+      #{pendingFlushList,jdbcType=BIGINT}, #{pagesMadeYoung,jdbcType=BIGINT}, #{pagesNotMadeYoung,jdbcType=BIGINT}, 
+      #{pagesMadeYoungRate,jdbcType=DOUBLE}, #{pagesMadeNotYoungRate,jdbcType=DOUBLE}, 
+      #{numberPagesRead,jdbcType=BIGINT}, #{numberPagesCreated,jdbcType=BIGINT}, #{numberPagesWritten,jdbcType=BIGINT}, 
+      #{pagesReadRate,jdbcType=DOUBLE}, #{pagesCreateRate,jdbcType=DOUBLE}, #{pagesWrittenRate,jdbcType=DOUBLE}, 
+      #{numberPagesGet,jdbcType=BIGINT}, #{hitRate,jdbcType=BIGINT}, #{youngMakePerThousandGets,jdbcType=BIGINT}, 
+      #{notYoungMakePerThousandGets,jdbcType=BIGINT}, #{numberPagesReadAhead,jdbcType=BIGINT}, 
+      #{numberReadAheadEvicted,jdbcType=BIGINT}, #{readAheadRate,jdbcType=DOUBLE}, #{readAheadEvictedRate,jdbcType=DOUBLE}, 
+      #{lruIoTotal,jdbcType=BIGINT}, #{lruIoCurrent,jdbcType=BIGINT}, #{uncompressTotal,jdbcType=BIGINT}, 
+      #{uncompressCurrent,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbBufferPoolStats">
+    insert into INNODB_BUFFER_POOL_STATS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="poolId != null">
+        POOL_ID,
+      </if>
+      <if test="poolSize != null">
+        POOL_SIZE,
+      </if>
+      <if test="freeBuffers != null">
+        FREE_BUFFERS,
+      </if>
+      <if test="databasePages != null">
+        DATABASE_PAGES,
+      </if>
+      <if test="oldDatabasePages != null">
+        OLD_DATABASE_PAGES,
+      </if>
+      <if test="modifiedDatabasePages != null">
+        MODIFIED_DATABASE_PAGES,
+      </if>
+      <if test="pendingDecompress != null">
+        PENDING_DECOMPRESS,
+      </if>
+      <if test="pendingReads != null">
+        PENDING_READS,
+      </if>
+      <if test="pendingFlushLru != null">
+        PENDING_FLUSH_LRU,
+      </if>
+      <if test="pendingFlushList != null">
+        PENDING_FLUSH_LIST,
+      </if>
+      <if test="pagesMadeYoung != null">
+        PAGES_MADE_YOUNG,
+      </if>
+      <if test="pagesNotMadeYoung != null">
+        PAGES_NOT_MADE_YOUNG,
+      </if>
+      <if test="pagesMadeYoungRate != null">
+        PAGES_MADE_YOUNG_RATE,
+      </if>
+      <if test="pagesMadeNotYoungRate != null">
+        PAGES_MADE_NOT_YOUNG_RATE,
+      </if>
+      <if test="numberPagesRead != null">
+        NUMBER_PAGES_READ,
+      </if>
+      <if test="numberPagesCreated != null">
+        NUMBER_PAGES_CREATED,
+      </if>
+      <if test="numberPagesWritten != null">
+        NUMBER_PAGES_WRITTEN,
+      </if>
+      <if test="pagesReadRate != null">
+        PAGES_READ_RATE,
+      </if>
+      <if test="pagesCreateRate != null">
+        PAGES_CREATE_RATE,
+      </if>
+      <if test="pagesWrittenRate != null">
+        PAGES_WRITTEN_RATE,
+      </if>
+      <if test="numberPagesGet != null">
+        NUMBER_PAGES_GET,
+      </if>
+      <if test="hitRate != null">
+        HIT_RATE,
+      </if>
+      <if test="youngMakePerThousandGets != null">
+        YOUNG_MAKE_PER_THOUSAND_GETS,
+      </if>
+      <if test="notYoungMakePerThousandGets != null">
+        NOT_YOUNG_MAKE_PER_THOUSAND_GETS,
+      </if>
+      <if test="numberPagesReadAhead != null">
+        NUMBER_PAGES_READ_AHEAD,
+      </if>
+      <if test="numberReadAheadEvicted != null">
+        NUMBER_READ_AHEAD_EVICTED,
+      </if>
+      <if test="readAheadRate != null">
+        READ_AHEAD_RATE,
+      </if>
+      <if test="readAheadEvictedRate != null">
+        READ_AHEAD_EVICTED_RATE,
+      </if>
+      <if test="lruIoTotal != null">
+        LRU_IO_TOTAL,
+      </if>
+      <if test="lruIoCurrent != null">
+        LRU_IO_CURRENT,
+      </if>
+      <if test="uncompressTotal != null">
+        UNCOMPRESS_TOTAL,
+      </if>
+      <if test="uncompressCurrent != null">
+        UNCOMPRESS_CURRENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="poolId != null">
+        #{poolId,jdbcType=BIGINT},
+      </if>
+      <if test="poolSize != null">
+        #{poolSize,jdbcType=BIGINT},
+      </if>
+      <if test="freeBuffers != null">
+        #{freeBuffers,jdbcType=BIGINT},
+      </if>
+      <if test="databasePages != null">
+        #{databasePages,jdbcType=BIGINT},
+      </if>
+      <if test="oldDatabasePages != null">
+        #{oldDatabasePages,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedDatabasePages != null">
+        #{modifiedDatabasePages,jdbcType=BIGINT},
+      </if>
+      <if test="pendingDecompress != null">
+        #{pendingDecompress,jdbcType=BIGINT},
+      </if>
+      <if test="pendingReads != null">
+        #{pendingReads,jdbcType=BIGINT},
+      </if>
+      <if test="pendingFlushLru != null">
+        #{pendingFlushLru,jdbcType=BIGINT},
+      </if>
+      <if test="pendingFlushList != null">
+        #{pendingFlushList,jdbcType=BIGINT},
+      </if>
+      <if test="pagesMadeYoung != null">
+        #{pagesMadeYoung,jdbcType=BIGINT},
+      </if>
+      <if test="pagesNotMadeYoung != null">
+        #{pagesNotMadeYoung,jdbcType=BIGINT},
+      </if>
+      <if test="pagesMadeYoungRate != null">
+        #{pagesMadeYoungRate,jdbcType=DOUBLE},
+      </if>
+      <if test="pagesMadeNotYoungRate != null">
+        #{pagesMadeNotYoungRate,jdbcType=DOUBLE},
+      </if>
+      <if test="numberPagesRead != null">
+        #{numberPagesRead,jdbcType=BIGINT},
+      </if>
+      <if test="numberPagesCreated != null">
+        #{numberPagesCreated,jdbcType=BIGINT},
+      </if>
+      <if test="numberPagesWritten != null">
+        #{numberPagesWritten,jdbcType=BIGINT},
+      </if>
+      <if test="pagesReadRate != null">
+        #{pagesReadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="pagesCreateRate != null">
+        #{pagesCreateRate,jdbcType=DOUBLE},
+      </if>
+      <if test="pagesWrittenRate != null">
+        #{pagesWrittenRate,jdbcType=DOUBLE},
+      </if>
+      <if test="numberPagesGet != null">
+        #{numberPagesGet,jdbcType=BIGINT},
+      </if>
+      <if test="hitRate != null">
+        #{hitRate,jdbcType=BIGINT},
+      </if>
+      <if test="youngMakePerThousandGets != null">
+        #{youngMakePerThousandGets,jdbcType=BIGINT},
+      </if>
+      <if test="notYoungMakePerThousandGets != null">
+        #{notYoungMakePerThousandGets,jdbcType=BIGINT},
+      </if>
+      <if test="numberPagesReadAhead != null">
+        #{numberPagesReadAhead,jdbcType=BIGINT},
+      </if>
+      <if test="numberReadAheadEvicted != null">
+        #{numberReadAheadEvicted,jdbcType=BIGINT},
+      </if>
+      <if test="readAheadRate != null">
+        #{readAheadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="readAheadEvictedRate != null">
+        #{readAheadEvictedRate,jdbcType=DOUBLE},
+      </if>
+      <if test="lruIoTotal != null">
+        #{lruIoTotal,jdbcType=BIGINT},
+      </if>
+      <if test="lruIoCurrent != null">
+        #{lruIoCurrent,jdbcType=BIGINT},
+      </if>
+      <if test="uncompressTotal != null">
+        #{uncompressTotal,jdbcType=BIGINT},
+      </if>
+      <if test="uncompressCurrent != null">
+        #{uncompressCurrent,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

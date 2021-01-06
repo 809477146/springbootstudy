@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.EventsTransactionsSummaryByUserByEventNameMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.EventsTransactionsSummaryByUserByEventName">
+    <result column="USER" jdbcType="CHAR" property="user" />
+    <result column="EVENT_NAME" jdbcType="VARCHAR" property="eventName" />
+    <result column="COUNT_STAR" jdbcType="BIGINT" property="countStar" />
+    <result column="SUM_TIMER_WAIT" jdbcType="BIGINT" property="sumTimerWait" />
+    <result column="MIN_TIMER_WAIT" jdbcType="BIGINT" property="minTimerWait" />
+    <result column="AVG_TIMER_WAIT" jdbcType="BIGINT" property="avgTimerWait" />
+    <result column="MAX_TIMER_WAIT" jdbcType="BIGINT" property="maxTimerWait" />
+    <result column="COUNT_READ_WRITE" jdbcType="BIGINT" property="countReadWrite" />
+    <result column="SUM_TIMER_READ_WRITE" jdbcType="BIGINT" property="sumTimerReadWrite" />
+    <result column="MIN_TIMER_READ_WRITE" jdbcType="BIGINT" property="minTimerReadWrite" />
+    <result column="AVG_TIMER_READ_WRITE" jdbcType="BIGINT" property="avgTimerReadWrite" />
+    <result column="MAX_TIMER_READ_WRITE" jdbcType="BIGINT" property="maxTimerReadWrite" />
+    <result column="COUNT_READ_ONLY" jdbcType="BIGINT" property="countReadOnly" />
+    <result column="SUM_TIMER_READ_ONLY" jdbcType="BIGINT" property="sumTimerReadOnly" />
+    <result column="MIN_TIMER_READ_ONLY" jdbcType="BIGINT" property="minTimerReadOnly" />
+    <result column="AVG_TIMER_READ_ONLY" jdbcType="BIGINT" property="avgTimerReadOnly" />
+    <result column="MAX_TIMER_READ_ONLY" jdbcType="BIGINT" property="maxTimerReadOnly" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.EventsTransactionsSummaryByUserByEventName">
+    insert into events_transactions_summary_by_user_by_event_name (USER, EVENT_NAME, COUNT_STAR, 
+      SUM_TIMER_WAIT, MIN_TIMER_WAIT, AVG_TIMER_WAIT, 
+      MAX_TIMER_WAIT, COUNT_READ_WRITE, SUM_TIMER_READ_WRITE, 
+      MIN_TIMER_READ_WRITE, AVG_TIMER_READ_WRITE, MAX_TIMER_READ_WRITE, 
+      COUNT_READ_ONLY, SUM_TIMER_READ_ONLY, MIN_TIMER_READ_ONLY, 
+      AVG_TIMER_READ_ONLY, MAX_TIMER_READ_ONLY)
+    values (#{user,jdbcType=CHAR}, #{eventName,jdbcType=VARCHAR}, #{countStar,jdbcType=BIGINT}, 
+      #{sumTimerWait,jdbcType=BIGINT}, #{minTimerWait,jdbcType=BIGINT}, #{avgTimerWait,jdbcType=BIGINT}, 
+      #{maxTimerWait,jdbcType=BIGINT}, #{countReadWrite,jdbcType=BIGINT}, #{sumTimerReadWrite,jdbcType=BIGINT}, 
+      #{minTimerReadWrite,jdbcType=BIGINT}, #{avgTimerReadWrite,jdbcType=BIGINT}, #{maxTimerReadWrite,jdbcType=BIGINT}, 
+      #{countReadOnly,jdbcType=BIGINT}, #{sumTimerReadOnly,jdbcType=BIGINT}, #{minTimerReadOnly,jdbcType=BIGINT}, 
+      #{avgTimerReadOnly,jdbcType=BIGINT}, #{maxTimerReadOnly,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.EventsTransactionsSummaryByUserByEventName">
+    insert into events_transactions_summary_by_user_by_event_name
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        USER,
+      </if>
+      <if test="eventName != null">
+        EVENT_NAME,
+      </if>
+      <if test="countStar != null">
+        COUNT_STAR,
+      </if>
+      <if test="sumTimerWait != null">
+        SUM_TIMER_WAIT,
+      </if>
+      <if test="minTimerWait != null">
+        MIN_TIMER_WAIT,
+      </if>
+      <if test="avgTimerWait != null">
+        AVG_TIMER_WAIT,
+      </if>
+      <if test="maxTimerWait != null">
+        MAX_TIMER_WAIT,
+      </if>
+      <if test="countReadWrite != null">
+        COUNT_READ_WRITE,
+      </if>
+      <if test="sumTimerReadWrite != null">
+        SUM_TIMER_READ_WRITE,
+      </if>
+      <if test="minTimerReadWrite != null">
+        MIN_TIMER_READ_WRITE,
+      </if>
+      <if test="avgTimerReadWrite != null">
+        AVG_TIMER_READ_WRITE,
+      </if>
+      <if test="maxTimerReadWrite != null">
+        MAX_TIMER_READ_WRITE,
+      </if>
+      <if test="countReadOnly != null">
+        COUNT_READ_ONLY,
+      </if>
+      <if test="sumTimerReadOnly != null">
+        SUM_TIMER_READ_ONLY,
+      </if>
+      <if test="minTimerReadOnly != null">
+        MIN_TIMER_READ_ONLY,
+      </if>
+      <if test="avgTimerReadOnly != null">
+        AVG_TIMER_READ_ONLY,
+      </if>
+      <if test="maxTimerReadOnly != null">
+        MAX_TIMER_READ_ONLY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="countStar != null">
+        #{countStar,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerWait != null">
+        #{sumTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerWait != null">
+        #{minTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerWait != null">
+        #{avgTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerWait != null">
+        #{maxTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="countReadWrite != null">
+        #{countReadWrite,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerReadWrite != null">
+        #{sumTimerReadWrite,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerReadWrite != null">
+        #{minTimerReadWrite,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerReadWrite != null">
+        #{avgTimerReadWrite,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerReadWrite != null">
+        #{maxTimerReadWrite,jdbcType=BIGINT},
+      </if>
+      <if test="countReadOnly != null">
+        #{countReadOnly,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerReadOnly != null">
+        #{sumTimerReadOnly,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerReadOnly != null">
+        #{minTimerReadOnly,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerReadOnly != null">
+        #{avgTimerReadOnly,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerReadOnly != null">
+        #{maxTimerReadOnly,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

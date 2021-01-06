@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XPsDigestAvgLatencyDistributionMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XPsDigestAvgLatencyDistribution">
+    <result column="cnt" jdbcType="BIGINT" property="cnt" />
+    <result column="avg_us" jdbcType="DECIMAL" property="avgUs" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XPsDigestAvgLatencyDistribution">
+    insert into x$ps_digest_avg_latency_distribution (cnt, avg_us)
+    values (#{cnt,jdbcType=BIGINT}, #{avgUs,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XPsDigestAvgLatencyDistribution">
+    insert into x$ps_digest_avg_latency_distribution
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cnt != null">
+        cnt,
+      </if>
+      <if test="avgUs != null">
+        avg_us,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cnt != null">
+        #{cnt,jdbcType=BIGINT},
+      </if>
+      <if test="avgUs != null">
+        #{avgUs,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

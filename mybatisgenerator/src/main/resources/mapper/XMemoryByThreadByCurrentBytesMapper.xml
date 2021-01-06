@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XMemoryByThreadByCurrentBytesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XMemoryByThreadByCurrentBytes">
+    <result column="thread_id" jdbcType="BIGINT" property="threadId" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="current_count_used" jdbcType="DECIMAL" property="currentCountUsed" />
+    <result column="current_allocated" jdbcType="DECIMAL" property="currentAllocated" />
+    <result column="current_avg_alloc" jdbcType="DECIMAL" property="currentAvgAlloc" />
+    <result column="current_max_alloc" jdbcType="BIGINT" property="currentMaxAlloc" />
+    <result column="total_allocated" jdbcType="DECIMAL" property="totalAllocated" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XMemoryByThreadByCurrentBytes">
+    insert into x$memory_by_thread_by_current_bytes (thread_id, user, current_count_used, 
+      current_allocated, current_avg_alloc, current_max_alloc, 
+      total_allocated)
+    values (#{threadId,jdbcType=BIGINT}, #{user,jdbcType=VARCHAR}, #{currentCountUsed,jdbcType=DECIMAL}, 
+      #{currentAllocated,jdbcType=DECIMAL}, #{currentAvgAlloc,jdbcType=DECIMAL}, #{currentMaxAlloc,jdbcType=BIGINT}, 
+      #{totalAllocated,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XMemoryByThreadByCurrentBytes">
+    insert into x$memory_by_thread_by_current_bytes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="threadId != null">
+        thread_id,
+      </if>
+      <if test="user != null">
+        user,
+      </if>
+      <if test="currentCountUsed != null">
+        current_count_used,
+      </if>
+      <if test="currentAllocated != null">
+        current_allocated,
+      </if>
+      <if test="currentAvgAlloc != null">
+        current_avg_alloc,
+      </if>
+      <if test="currentMaxAlloc != null">
+        current_max_alloc,
+      </if>
+      <if test="totalAllocated != null">
+        total_allocated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="threadId != null">
+        #{threadId,jdbcType=BIGINT},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCountUsed != null">
+        #{currentCountUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAllocated != null">
+        #{currentAllocated,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAvgAlloc != null">
+        #{currentAvgAlloc,jdbcType=DECIMAL},
+      </if>
+      <if test="currentMaxAlloc != null">
+        #{currentMaxAlloc,jdbcType=BIGINT},
+      </if>
+      <if test="totalAllocated != null">
+        #{totalAllocated,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

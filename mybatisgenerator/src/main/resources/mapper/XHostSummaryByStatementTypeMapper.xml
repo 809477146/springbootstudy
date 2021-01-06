@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XHostSummaryByStatementTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XHostSummaryByStatementType">
+    <result column="host" jdbcType="VARCHAR" property="host" />
+    <result column="statement" jdbcType="VARCHAR" property="statement" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+    <result column="lock_latency" jdbcType="BIGINT" property="lockLatency" />
+    <result column="rows_sent" jdbcType="BIGINT" property="rowsSent" />
+    <result column="rows_examined" jdbcType="BIGINT" property="rowsExamined" />
+    <result column="rows_affected" jdbcType="BIGINT" property="rowsAffected" />
+    <result column="full_scans" jdbcType="BIGINT" property="fullScans" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XHostSummaryByStatementType">
+    insert into x$host_summary_by_statement_type (host, statement, total, 
+      total_latency, max_latency, lock_latency, 
+      rows_sent, rows_examined, rows_affected, 
+      full_scans)
+    values (#{host,jdbcType=VARCHAR}, #{statement,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{totalLatency,jdbcType=BIGINT}, #{maxLatency,jdbcType=BIGINT}, #{lockLatency,jdbcType=BIGINT}, 
+      #{rowsSent,jdbcType=BIGINT}, #{rowsExamined,jdbcType=BIGINT}, #{rowsAffected,jdbcType=BIGINT}, 
+      #{fullScans,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XHostSummaryByStatementType">
+    insert into x$host_summary_by_statement_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        host,
+      </if>
+      <if test="statement != null">
+        statement,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="lockLatency != null">
+        lock_latency,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsAffected != null">
+        rows_affected,
+      </if>
+      <if test="fullScans != null">
+        full_scans,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="statement != null">
+        #{statement,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+      <if test="lockLatency != null">
+        #{lockLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=BIGINT},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsAffected != null">
+        #{rowsAffected,jdbcType=BIGINT},
+      </if>
+      <if test="fullScans != null">
+        #{fullScans,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

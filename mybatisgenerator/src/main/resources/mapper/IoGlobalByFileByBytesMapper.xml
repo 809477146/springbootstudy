@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.IoGlobalByFileByBytesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.IoGlobalByFileByBytes">
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+    <result column="write_pct" jdbcType="DECIMAL" property="writePct" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.IoGlobalByFileByBytesWithBLOBs">
+    <result column="total_read" jdbcType="LONGVARCHAR" property="totalRead" />
+    <result column="avg_read" jdbcType="LONGVARCHAR" property="avgRead" />
+    <result column="total_written" jdbcType="LONGVARCHAR" property="totalWritten" />
+    <result column="avg_write" jdbcType="LONGVARCHAR" property="avgWrite" />
+    <result column="total" jdbcType="LONGVARCHAR" property="total" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    total_read, avg_read, total_written, avg_write, total
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.IoGlobalByFileByBytesWithBLOBs">
+    insert into io_global_by_file_by_bytes (file, count_read, count_write, 
+      write_pct, total_read, avg_read, 
+      total_written, avg_write, total
+      )
+    values (#{file,jdbcType=VARCHAR}, #{countRead,jdbcType=BIGINT}, #{countWrite,jdbcType=BIGINT}, 
+      #{writePct,jdbcType=DECIMAL}, #{totalRead,jdbcType=LONGVARCHAR}, #{avgRead,jdbcType=LONGVARCHAR}, 
+      #{totalWritten,jdbcType=LONGVARCHAR}, #{avgWrite,jdbcType=LONGVARCHAR}, #{total,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.IoGlobalByFileByBytesWithBLOBs">
+    insert into io_global_by_file_by_bytes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        file,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="writePct != null">
+        write_pct,
+      </if>
+      <if test="totalRead != null">
+        total_read,
+      </if>
+      <if test="avgRead != null">
+        avg_read,
+      </if>
+      <if test="totalWritten != null">
+        total_written,
+      </if>
+      <if test="avgWrite != null">
+        avg_write,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="writePct != null">
+        #{writePct,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRead != null">
+        #{totalRead,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgRead != null">
+        #{avgRead,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalWritten != null">
+        #{totalWritten,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgWrite != null">
+        #{avgWrite,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

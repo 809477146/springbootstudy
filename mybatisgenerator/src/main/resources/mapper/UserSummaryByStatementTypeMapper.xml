@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.UserSummaryByStatementTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.UserSummaryByStatementType">
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="statement" jdbcType="VARCHAR" property="statement" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="rows_sent" jdbcType="BIGINT" property="rowsSent" />
+    <result column="rows_examined" jdbcType="BIGINT" property="rowsExamined" />
+    <result column="rows_affected" jdbcType="BIGINT" property="rowsAffected" />
+    <result column="full_scans" jdbcType="BIGINT" property="fullScans" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.UserSummaryByStatementTypeWithBLOBs">
+    <result column="total_latency" jdbcType="LONGVARCHAR" property="totalLatency" />
+    <result column="max_latency" jdbcType="LONGVARCHAR" property="maxLatency" />
+    <result column="lock_latency" jdbcType="LONGVARCHAR" property="lockLatency" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    total_latency, max_latency, lock_latency
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.UserSummaryByStatementTypeWithBLOBs">
+    insert into user_summary_by_statement_type (user, statement, total, 
+      rows_sent, rows_examined, rows_affected, 
+      full_scans, total_latency, max_latency, 
+      lock_latency)
+    values (#{user,jdbcType=VARCHAR}, #{statement,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{rowsSent,jdbcType=BIGINT}, #{rowsExamined,jdbcType=BIGINT}, #{rowsAffected,jdbcType=BIGINT}, 
+      #{fullScans,jdbcType=BIGINT}, #{totalLatency,jdbcType=LONGVARCHAR}, #{maxLatency,jdbcType=LONGVARCHAR}, 
+      #{lockLatency,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.UserSummaryByStatementTypeWithBLOBs">
+    insert into user_summary_by_statement_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="statement != null">
+        statement,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsAffected != null">
+        rows_affected,
+      </if>
+      <if test="fullScans != null">
+        full_scans,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="lockLatency != null">
+        lock_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="statement != null">
+        #{statement,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=BIGINT},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsAffected != null">
+        #{rowsAffected,jdbcType=BIGINT},
+      </if>
+      <if test="fullScans != null">
+        #{fullScans,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lockLatency != null">
+        #{lockLatency,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

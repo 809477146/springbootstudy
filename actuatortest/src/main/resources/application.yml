@@ -1,0 +1,75 @@
+info:
+  app:
+    # @ @表示引用maven中的定义
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+  author:
+    name: hcniu
+    email: 809477146@qq.com
+
+management:
+  health:
+    defaults:
+      # 表示关闭所有的HealthIndicators
+      enabled: true
+    status:
+      order: FATAL,DOWN,OUT_OF_SERVICE,UP,UNKNOWN
+      http-mapping:
+        # 自定义响应状态的响应码
+        FATAL: 503
+  endpoints:
+    web:
+      exposure:
+        #include: mappings,metrics
+        #暴露所有端点
+        include: "*"
+      #默认情况下，所有端点都暴露在"/actuator"路径下，例如health端点的访问路径是"/actuator/health"
+      #base-path表示将"/actuator"修改为"/"
+      base-path: /
+      path-mapping:
+        # health表示将 "/health"修改为"/healthcheck"
+        health: healthcheck
+      #开启跨域  以下配置表示允许端点处理来自http://localhost:8081地址的请求，允许请求方法为GET,POST
+      cors:
+        allowed-origins: http://localhost:8081
+        allowed-methods: GET,POST
+    # 关闭默认的配置（即关闭所有端点），手动指定需要开启哪些端点
+    #enabled-by-default: false
+  endpoint:
+    #端点大部分都是默认开启的，只有shutdown端点默认未开启，如果需要开启，则配置为true
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    #配置beans端点的缓存时间为100s，如果要配置其他端点，只需将beans修改为其他端点名称即可。
+    #注意，如果端点添加了spring security保护，此时Principal会被视为端点的输入，因此端点响应将不被缓存
+    beans:
+      cache:
+        time-to-live: 100s
+    health:
+      #默认情况下detail信息默认不显示，可通过show-details来配置信息的显示策略
+      #never 即不显示details信息，默认为此配置
+      #when_authorized details信息只展示给认证用户，即用户登录后可以查看details信息，未登录则不能查看
+      #always 将details信息展示给所有用户
+      show-details: when_authorized
+      #与show-details: when_authorized合起来使用 表示认证的用户必须具有ADMIN角色才能查看details信息
+      roles: ADMIN
+spring:
+  security:
+    user:
+      name: sang
+      password: 123
+      roles: ADMIN
+#  redis:
+#    database: 0
+#    host: 106.52.36.74
+#    port: 6379
+#    password: 123@456
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-idle: 8
+#        max-wait: -1ms
+#        min-idle: 0

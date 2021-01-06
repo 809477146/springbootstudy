@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ReplicationGroupMembersMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ReplicationGroupMembers">
+    <result column="CHANNEL_NAME" jdbcType="CHAR" property="channelName" />
+    <result column="MEMBER_ID" jdbcType="CHAR" property="memberId" />
+    <result column="MEMBER_HOST" jdbcType="CHAR" property="memberHost" />
+    <result column="MEMBER_PORT" jdbcType="INTEGER" property="memberPort" />
+    <result column="MEMBER_STATE" jdbcType="CHAR" property="memberState" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.ReplicationGroupMembers">
+    insert into replication_group_members (CHANNEL_NAME, MEMBER_ID, MEMBER_HOST, 
+      MEMBER_PORT, MEMBER_STATE)
+    values (#{channelName,jdbcType=CHAR}, #{memberId,jdbcType=CHAR}, #{memberHost,jdbcType=CHAR}, 
+      #{memberPort,jdbcType=INTEGER}, #{memberState,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ReplicationGroupMembers">
+    insert into replication_group_members
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        CHANNEL_NAME,
+      </if>
+      <if test="memberId != null">
+        MEMBER_ID,
+      </if>
+      <if test="memberHost != null">
+        MEMBER_HOST,
+      </if>
+      <if test="memberPort != null">
+        MEMBER_PORT,
+      </if>
+      <if test="memberState != null">
+        MEMBER_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=CHAR},
+      </if>
+      <if test="memberHost != null">
+        #{memberHost,jdbcType=CHAR},
+      </if>
+      <if test="memberPort != null">
+        #{memberPort,jdbcType=INTEGER},
+      </if>
+      <if test="memberState != null">
+        #{memberState,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

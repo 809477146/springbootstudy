@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SchemaRedundantIndexesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SchemaRedundantIndexes">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="redundant_index_name" jdbcType="VARCHAR" property="redundantIndexName" />
+    <result column="redundant_index_non_unique" jdbcType="BIGINT" property="redundantIndexNonUnique" />
+    <result column="dominant_index_name" jdbcType="VARCHAR" property="dominantIndexName" />
+    <result column="dominant_index_non_unique" jdbcType="BIGINT" property="dominantIndexNonUnique" />
+    <result column="subpart_exists" jdbcType="INTEGER" property="subpartExists" />
+    <result column="sql_drop_index" jdbcType="VARCHAR" property="sqlDropIndex" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SchemaRedundantIndexesWithBLOBs">
+    <result column="redundant_index_columns" jdbcType="LONGVARCHAR" property="redundantIndexColumns" />
+    <result column="dominant_index_columns" jdbcType="LONGVARCHAR" property="dominantIndexColumns" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    redundant_index_columns, dominant_index_columns
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.SchemaRedundantIndexesWithBLOBs">
+    insert into schema_redundant_indexes (table_schema, table_name, redundant_index_name, 
+      redundant_index_non_unique, dominant_index_name, 
+      dominant_index_non_unique, subpart_exists, sql_drop_index, 
+      redundant_index_columns, dominant_index_columns
+      )
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{redundantIndexName,jdbcType=VARCHAR}, 
+      #{redundantIndexNonUnique,jdbcType=BIGINT}, #{dominantIndexName,jdbcType=VARCHAR}, 
+      #{dominantIndexNonUnique,jdbcType=BIGINT}, #{subpartExists,jdbcType=INTEGER}, #{sqlDropIndex,jdbcType=VARCHAR}, 
+      #{redundantIndexColumns,jdbcType=LONGVARCHAR}, #{dominantIndexColumns,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SchemaRedundantIndexesWithBLOBs">
+    insert into schema_redundant_indexes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="redundantIndexName != null">
+        redundant_index_name,
+      </if>
+      <if test="redundantIndexNonUnique != null">
+        redundant_index_non_unique,
+      </if>
+      <if test="dominantIndexName != null">
+        dominant_index_name,
+      </if>
+      <if test="dominantIndexNonUnique != null">
+        dominant_index_non_unique,
+      </if>
+      <if test="subpartExists != null">
+        subpart_exists,
+      </if>
+      <if test="sqlDropIndex != null">
+        sql_drop_index,
+      </if>
+      <if test="redundantIndexColumns != null">
+        redundant_index_columns,
+      </if>
+      <if test="dominantIndexColumns != null">
+        dominant_index_columns,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="redundantIndexName != null">
+        #{redundantIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="redundantIndexNonUnique != null">
+        #{redundantIndexNonUnique,jdbcType=BIGINT},
+      </if>
+      <if test="dominantIndexName != null">
+        #{dominantIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="dominantIndexNonUnique != null">
+        #{dominantIndexNonUnique,jdbcType=BIGINT},
+      </if>
+      <if test="subpartExists != null">
+        #{subpartExists,jdbcType=INTEGER},
+      </if>
+      <if test="sqlDropIndex != null">
+        #{sqlDropIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="redundantIndexColumns != null">
+        #{redundantIndexColumns,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dominantIndexColumns != null">
+        #{dominantIndexColumns,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

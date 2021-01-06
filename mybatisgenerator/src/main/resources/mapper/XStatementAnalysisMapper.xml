@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XStatementAnalysisMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XStatementAnalysis">
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="full_scan" jdbcType="VARCHAR" property="fullScan" />
+    <result column="exec_count" jdbcType="BIGINT" property="execCount" />
+    <result column="err_count" jdbcType="BIGINT" property="errCount" />
+    <result column="warn_count" jdbcType="BIGINT" property="warnCount" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+    <result column="avg_latency" jdbcType="BIGINT" property="avgLatency" />
+    <result column="lock_latency" jdbcType="BIGINT" property="lockLatency" />
+    <result column="rows_sent" jdbcType="BIGINT" property="rowsSent" />
+    <result column="rows_sent_avg" jdbcType="DECIMAL" property="rowsSentAvg" />
+    <result column="rows_examined" jdbcType="BIGINT" property="rowsExamined" />
+    <result column="rows_examined_avg" jdbcType="DECIMAL" property="rowsExaminedAvg" />
+    <result column="rows_affected" jdbcType="BIGINT" property="rowsAffected" />
+    <result column="rows_affected_avg" jdbcType="DECIMAL" property="rowsAffectedAvg" />
+    <result column="tmp_tables" jdbcType="BIGINT" property="tmpTables" />
+    <result column="tmp_disk_tables" jdbcType="BIGINT" property="tmpDiskTables" />
+    <result column="rows_sorted" jdbcType="BIGINT" property="rowsSorted" />
+    <result column="sort_merge_passes" jdbcType="BIGINT" property="sortMergePasses" />
+    <result column="digest" jdbcType="VARCHAR" property="digest" />
+    <result column="first_seen" jdbcType="TIMESTAMP" property="firstSeen" />
+    <result column="last_seen" jdbcType="TIMESTAMP" property="lastSeen" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.XStatementAnalysis">
+    <result column="query" jdbcType="LONGVARCHAR" property="query" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    query
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.XStatementAnalysis">
+    insert into x$statement_analysis (db, full_scan, exec_count, 
+      err_count, warn_count, total_latency, 
+      max_latency, avg_latency, lock_latency, 
+      rows_sent, rows_sent_avg, rows_examined, 
+      rows_examined_avg, rows_affected, rows_affected_avg, 
+      tmp_tables, tmp_disk_tables, rows_sorted, 
+      sort_merge_passes, digest, first_seen, 
+      last_seen, query)
+    values (#{db,jdbcType=VARCHAR}, #{fullScan,jdbcType=VARCHAR}, #{execCount,jdbcType=BIGINT}, 
+      #{errCount,jdbcType=BIGINT}, #{warnCount,jdbcType=BIGINT}, #{totalLatency,jdbcType=BIGINT}, 
+      #{maxLatency,jdbcType=BIGINT}, #{avgLatency,jdbcType=BIGINT}, #{lockLatency,jdbcType=BIGINT}, 
+      #{rowsSent,jdbcType=BIGINT}, #{rowsSentAvg,jdbcType=DECIMAL}, #{rowsExamined,jdbcType=BIGINT}, 
+      #{rowsExaminedAvg,jdbcType=DECIMAL}, #{rowsAffected,jdbcType=BIGINT}, #{rowsAffectedAvg,jdbcType=DECIMAL}, 
+      #{tmpTables,jdbcType=BIGINT}, #{tmpDiskTables,jdbcType=BIGINT}, #{rowsSorted,jdbcType=BIGINT}, 
+      #{sortMergePasses,jdbcType=BIGINT}, #{digest,jdbcType=VARCHAR}, #{firstSeen,jdbcType=TIMESTAMP}, 
+      #{lastSeen,jdbcType=TIMESTAMP}, #{query,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XStatementAnalysis">
+    insert into x$statement_analysis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        db,
+      </if>
+      <if test="fullScan != null">
+        full_scan,
+      </if>
+      <if test="execCount != null">
+        exec_count,
+      </if>
+      <if test="errCount != null">
+        err_count,
+      </if>
+      <if test="warnCount != null">
+        warn_count,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="avgLatency != null">
+        avg_latency,
+      </if>
+      <if test="lockLatency != null">
+        lock_latency,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsSentAvg != null">
+        rows_sent_avg,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsExaminedAvg != null">
+        rows_examined_avg,
+      </if>
+      <if test="rowsAffected != null">
+        rows_affected,
+      </if>
+      <if test="rowsAffectedAvg != null">
+        rows_affected_avg,
+      </if>
+      <if test="tmpTables != null">
+        tmp_tables,
+      </if>
+      <if test="tmpDiskTables != null">
+        tmp_disk_tables,
+      </if>
+      <if test="rowsSorted != null">
+        rows_sorted,
+      </if>
+      <if test="sortMergePasses != null">
+        sort_merge_passes,
+      </if>
+      <if test="digest != null">
+        digest,
+      </if>
+      <if test="firstSeen != null">
+        first_seen,
+      </if>
+      <if test="lastSeen != null">
+        last_seen,
+      </if>
+      <if test="query != null">
+        query,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="fullScan != null">
+        #{fullScan,jdbcType=VARCHAR},
+      </if>
+      <if test="execCount != null">
+        #{execCount,jdbcType=BIGINT},
+      </if>
+      <if test="errCount != null">
+        #{errCount,jdbcType=BIGINT},
+      </if>
+      <if test="warnCount != null">
+        #{warnCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+      <if test="avgLatency != null">
+        #{avgLatency,jdbcType=BIGINT},
+      </if>
+      <if test="lockLatency != null">
+        #{lockLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSentAvg != null">
+        #{rowsSentAvg,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsExaminedAvg != null">
+        #{rowsExaminedAvg,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsAffected != null">
+        #{rowsAffected,jdbcType=BIGINT},
+      </if>
+      <if test="rowsAffectedAvg != null">
+        #{rowsAffectedAvg,jdbcType=DECIMAL},
+      </if>
+      <if test="tmpTables != null">
+        #{tmpTables,jdbcType=BIGINT},
+      </if>
+      <if test="tmpDiskTables != null">
+        #{tmpDiskTables,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSorted != null">
+        #{rowsSorted,jdbcType=BIGINT},
+      </if>
+      <if test="sortMergePasses != null">
+        #{sortMergePasses,jdbcType=BIGINT},
+      </if>
+      <if test="digest != null">
+        #{digest,jdbcType=VARCHAR},
+      </if>
+      <if test="firstSeen != null">
+        #{firstSeen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSeen != null">
+        #{lastSeen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="query != null">
+        #{query,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

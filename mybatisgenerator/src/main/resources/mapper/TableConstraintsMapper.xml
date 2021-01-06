@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TableConstraintsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TableConstraints">
+    <result column="CONSTRAINT_CATALOG" jdbcType="VARCHAR" property="constraintCatalog" />
+    <result column="CONSTRAINT_SCHEMA" jdbcType="VARCHAR" property="constraintSchema" />
+    <result column="CONSTRAINT_NAME" jdbcType="VARCHAR" property="constraintName" />
+    <result column="TABLE_SCHEMA" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="CONSTRAINT_TYPE" jdbcType="VARCHAR" property="constraintType" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.TableConstraints">
+    insert into TABLE_CONSTRAINTS (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME, TABLE_SCHEMA, TABLE_NAME, 
+      CONSTRAINT_TYPE)
+    values (#{constraintCatalog,jdbcType=VARCHAR}, #{constraintSchema,jdbcType=VARCHAR}, 
+      #{constraintName,jdbcType=VARCHAR}, #{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{constraintType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TableConstraints">
+    insert into TABLE_CONSTRAINTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null">
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null">
+        CONSTRAINT_NAME,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="constraintType != null">
+        CONSTRAINT_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        #{constraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintSchema != null">
+        #{constraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintName != null">
+        #{constraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintType != null">
+        #{constraintType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ParametersMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Parameters">
+    <result column="SPECIFIC_CATALOG" jdbcType="VARCHAR" property="specificCatalog" />
+    <result column="SPECIFIC_SCHEMA" jdbcType="VARCHAR" property="specificSchema" />
+    <result column="SPECIFIC_NAME" jdbcType="VARCHAR" property="specificName" />
+    <result column="ORDINAL_POSITION" jdbcType="INTEGER" property="ordinalPosition" />
+    <result column="PARAMETER_MODE" jdbcType="VARCHAR" property="parameterMode" />
+    <result column="PARAMETER_NAME" jdbcType="VARCHAR" property="parameterName" />
+    <result column="DATA_TYPE" jdbcType="VARCHAR" property="dataType" />
+    <result column="CHARACTER_MAXIMUM_LENGTH" jdbcType="INTEGER" property="characterMaximumLength" />
+    <result column="CHARACTER_OCTET_LENGTH" jdbcType="INTEGER" property="characterOctetLength" />
+    <result column="NUMERIC_PRECISION" jdbcType="BIGINT" property="numericPrecision" />
+    <result column="NUMERIC_SCALE" jdbcType="INTEGER" property="numericScale" />
+    <result column="DATETIME_PRECISION" jdbcType="BIGINT" property="datetimePrecision" />
+    <result column="CHARACTER_SET_NAME" jdbcType="VARCHAR" property="characterSetName" />
+    <result column="COLLATION_NAME" jdbcType="VARCHAR" property="collationName" />
+    <result column="ROUTINE_TYPE" jdbcType="VARCHAR" property="routineType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.Parameters">
+    <result column="DTD_IDENTIFIER" jdbcType="LONGVARCHAR" property="dtdIdentifier" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    DTD_IDENTIFIER
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.Parameters">
+    insert into PARAMETERS (SPECIFIC_CATALOG, SPECIFIC_SCHEMA, 
+      SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_MODE, 
+      PARAMETER_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, 
+      CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION, 
+      NUMERIC_SCALE, DATETIME_PRECISION, CHARACTER_SET_NAME, 
+      COLLATION_NAME, ROUTINE_TYPE, DTD_IDENTIFIER
+      )
+    values (#{specificCatalog,jdbcType=VARCHAR}, #{specificSchema,jdbcType=VARCHAR}, 
+      #{specificName,jdbcType=VARCHAR}, #{ordinalPosition,jdbcType=INTEGER}, #{parameterMode,jdbcType=VARCHAR}, 
+      #{parameterName,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, #{characterMaximumLength,jdbcType=INTEGER}, 
+      #{characterOctetLength,jdbcType=INTEGER}, #{numericPrecision,jdbcType=BIGINT}, 
+      #{numericScale,jdbcType=INTEGER}, #{datetimePrecision,jdbcType=BIGINT}, #{characterSetName,jdbcType=VARCHAR}, 
+      #{collationName,jdbcType=VARCHAR}, #{routineType,jdbcType=VARCHAR}, #{dtdIdentifier,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Parameters">
+    insert into PARAMETERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specificCatalog != null">
+        SPECIFIC_CATALOG,
+      </if>
+      <if test="specificSchema != null">
+        SPECIFIC_SCHEMA,
+      </if>
+      <if test="specificName != null">
+        SPECIFIC_NAME,
+      </if>
+      <if test="ordinalPosition != null">
+        ORDINAL_POSITION,
+      </if>
+      <if test="parameterMode != null">
+        PARAMETER_MODE,
+      </if>
+      <if test="parameterName != null">
+        PARAMETER_NAME,
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE,
+      </if>
+      <if test="characterMaximumLength != null">
+        CHARACTER_MAXIMUM_LENGTH,
+      </if>
+      <if test="characterOctetLength != null">
+        CHARACTER_OCTET_LENGTH,
+      </if>
+      <if test="numericPrecision != null">
+        NUMERIC_PRECISION,
+      </if>
+      <if test="numericScale != null">
+        NUMERIC_SCALE,
+      </if>
+      <if test="datetimePrecision != null">
+        DATETIME_PRECISION,
+      </if>
+      <if test="characterSetName != null">
+        CHARACTER_SET_NAME,
+      </if>
+      <if test="collationName != null">
+        COLLATION_NAME,
+      </if>
+      <if test="routineType != null">
+        ROUTINE_TYPE,
+      </if>
+      <if test="dtdIdentifier != null">
+        DTD_IDENTIFIER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specificCatalog != null">
+        #{specificCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="specificSchema != null">
+        #{specificSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="specificName != null">
+        #{specificName,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinalPosition != null">
+        #{ordinalPosition,jdbcType=INTEGER},
+      </if>
+      <if test="parameterMode != null">
+        #{parameterMode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null">
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="characterMaximumLength != null">
+        #{characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="characterOctetLength != null">
+        #{characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="numericPrecision != null">
+        #{numericPrecision,jdbcType=BIGINT},
+      </if>
+      <if test="numericScale != null">
+        #{numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="datetimePrecision != null">
+        #{datetimePrecision,jdbcType=BIGINT},
+      </if>
+      <if test="characterSetName != null">
+        #{characterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="collationName != null">
+        #{collationName,jdbcType=VARCHAR},
+      </if>
+      <if test="routineType != null">
+        #{routineType,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdIdentifier != null">
+        #{dtdIdentifier,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

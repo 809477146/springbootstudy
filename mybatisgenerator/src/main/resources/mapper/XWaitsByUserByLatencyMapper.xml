@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XWaitsByUserByLatencyMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XWaitsByUserByLatency">
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="event" jdbcType="VARCHAR" property="event" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="avg_latency" jdbcType="BIGINT" property="avgLatency" />
+    <result column="max_latency" jdbcType="BIGINT" property="maxLatency" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XWaitsByUserByLatency">
+    insert into x$waits_by_user_by_latency (user, event, total, 
+      total_latency, avg_latency, max_latency
+      )
+    values (#{user,jdbcType=VARCHAR}, #{event,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, 
+      #{totalLatency,jdbcType=BIGINT}, #{avgLatency,jdbcType=BIGINT}, #{maxLatency,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XWaitsByUserByLatency">
+    insert into x$waits_by_user_by_latency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="event != null">
+        event,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="avgLatency != null">
+        avg_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="event != null">
+        #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="avgLatency != null">
+        #{avgLatency,jdbcType=BIGINT},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

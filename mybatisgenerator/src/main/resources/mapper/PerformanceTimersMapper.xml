@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.PerformanceTimersMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.PerformanceTimers">
+    <result column="TIMER_NAME" jdbcType="CHAR" property="timerName" />
+    <result column="TIMER_FREQUENCY" jdbcType="BIGINT" property="timerFrequency" />
+    <result column="TIMER_RESOLUTION" jdbcType="BIGINT" property="timerResolution" />
+    <result column="TIMER_OVERHEAD" jdbcType="BIGINT" property="timerOverhead" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.PerformanceTimers">
+    insert into performance_timers (TIMER_NAME, TIMER_FREQUENCY, TIMER_RESOLUTION, 
+      TIMER_OVERHEAD)
+    values (#{timerName,jdbcType=CHAR}, #{timerFrequency,jdbcType=BIGINT}, #{timerResolution,jdbcType=BIGINT}, 
+      #{timerOverhead,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.PerformanceTimers">
+    insert into performance_timers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timerName != null">
+        TIMER_NAME,
+      </if>
+      <if test="timerFrequency != null">
+        TIMER_FREQUENCY,
+      </if>
+      <if test="timerResolution != null">
+        TIMER_RESOLUTION,
+      </if>
+      <if test="timerOverhead != null">
+        TIMER_OVERHEAD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timerName != null">
+        #{timerName,jdbcType=CHAR},
+      </if>
+      <if test="timerFrequency != null">
+        #{timerFrequency,jdbcType=BIGINT},
+      </if>
+      <if test="timerResolution != null">
+        #{timerResolution,jdbcType=BIGINT},
+      </if>
+      <if test="timerOverhead != null">
+        #{timerOverhead,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

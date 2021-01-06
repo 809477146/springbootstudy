@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.IoGlobalByWaitByBytesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.IoGlobalByWaitByBytes">
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.IoGlobalByWaitByBytesWithBLOBs">
+    <result column="total_latency" jdbcType="LONGVARCHAR" property="totalLatency" />
+    <result column="min_latency" jdbcType="LONGVARCHAR" property="minLatency" />
+    <result column="avg_latency" jdbcType="LONGVARCHAR" property="avgLatency" />
+    <result column="max_latency" jdbcType="LONGVARCHAR" property="maxLatency" />
+    <result column="total_read" jdbcType="LONGVARCHAR" property="totalRead" />
+    <result column="avg_read" jdbcType="LONGVARCHAR" property="avgRead" />
+    <result column="total_written" jdbcType="LONGVARCHAR" property="totalWritten" />
+    <result column="avg_written" jdbcType="LONGVARCHAR" property="avgWritten" />
+    <result column="total_requested" jdbcType="LONGVARCHAR" property="totalRequested" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    total_latency, min_latency, avg_latency, max_latency, total_read, avg_read, total_written, 
+    avg_written, total_requested
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.IoGlobalByWaitByBytesWithBLOBs">
+    insert into io_global_by_wait_by_bytes (event_name, total, count_read, 
+      count_write, total_latency, min_latency, 
+      avg_latency, max_latency, total_read, 
+      avg_read, total_written, avg_written, 
+      total_requested)
+    values (#{eventName,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, #{countRead,jdbcType=BIGINT}, 
+      #{countWrite,jdbcType=BIGINT}, #{totalLatency,jdbcType=LONGVARCHAR}, #{minLatency,jdbcType=LONGVARCHAR}, 
+      #{avgLatency,jdbcType=LONGVARCHAR}, #{maxLatency,jdbcType=LONGVARCHAR}, #{totalRead,jdbcType=LONGVARCHAR}, 
+      #{avgRead,jdbcType=LONGVARCHAR}, #{totalWritten,jdbcType=LONGVARCHAR}, #{avgWritten,jdbcType=LONGVARCHAR}, 
+      #{totalRequested,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.IoGlobalByWaitByBytesWithBLOBs">
+    insert into io_global_by_wait_by_bytes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="minLatency != null">
+        min_latency,
+      </if>
+      <if test="avgLatency != null">
+        avg_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="totalRead != null">
+        total_read,
+      </if>
+      <if test="avgRead != null">
+        avg_read,
+      </if>
+      <if test="totalWritten != null">
+        total_written,
+      </if>
+      <if test="avgWritten != null">
+        avg_written,
+      </if>
+      <if test="totalRequested != null">
+        total_requested,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="minLatency != null">
+        #{minLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgLatency != null">
+        #{avgLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalRead != null">
+        #{totalRead,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgRead != null">
+        #{avgRead,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalWritten != null">
+        #{totalWritten,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="avgWritten != null">
+        #{avgWritten,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalRequested != null">
+        #{totalRequested,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

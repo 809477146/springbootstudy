@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SocketInstancesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SocketInstances">
+    <result column="EVENT_NAME" jdbcType="VARCHAR" property="eventName" />
+    <result column="OBJECT_INSTANCE_BEGIN" jdbcType="BIGINT" property="objectInstanceBegin" />
+    <result column="THREAD_ID" jdbcType="BIGINT" property="threadId" />
+    <result column="SOCKET_ID" jdbcType="INTEGER" property="socketId" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="PORT" jdbcType="INTEGER" property="port" />
+    <result column="STATE" jdbcType="CHAR" property="state" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SocketInstances">
+    insert into socket_instances (EVENT_NAME, OBJECT_INSTANCE_BEGIN, THREAD_ID, 
+      SOCKET_ID, IP, PORT, 
+      STATE)
+    values (#{eventName,jdbcType=VARCHAR}, #{objectInstanceBegin,jdbcType=BIGINT}, #{threadId,jdbcType=BIGINT}, 
+      #{socketId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SocketInstances">
+    insert into socket_instances
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        EVENT_NAME,
+      </if>
+      <if test="objectInstanceBegin != null">
+        OBJECT_INSTANCE_BEGIN,
+      </if>
+      <if test="threadId != null">
+        THREAD_ID,
+      </if>
+      <if test="socketId != null">
+        SOCKET_ID,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="port != null">
+        PORT,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectInstanceBegin != null">
+        #{objectInstanceBegin,jdbcType=BIGINT},
+      </if>
+      <if test="threadId != null">
+        #{threadId,jdbcType=BIGINT},
+      </if>
+      <if test="socketId != null">
+        #{socketId,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

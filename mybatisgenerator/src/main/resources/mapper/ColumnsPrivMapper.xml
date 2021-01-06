@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ColumnsPrivMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ColumnsPriv">
+    <id column="Host" jdbcType="CHAR" property="host" />
+    <id column="Db" jdbcType="CHAR" property="db" />
+    <id column="User" jdbcType="CHAR" property="user" />
+    <id column="Table_name" jdbcType="CHAR" property="tableName" />
+    <id column="Column_name" jdbcType="CHAR" property="columnName" />
+    <result column="Timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="Column_priv" jdbcType="CHAR" property="columnPriv" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Host, Db, User, Table_name, Column_name, Timestamp, Column_priv
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.ColumnsPrivKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from columns_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+      and Column_name = #{columnName,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.ColumnsPrivKey">
+    delete from columns_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+      and Column_name = #{columnName,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.ColumnsPriv">
+    insert into columns_priv (Host, Db, User, Table_name, 
+      Column_name, Timestamp, Column_priv
+      )
+    values (#{host,jdbcType=CHAR}, #{db,jdbcType=CHAR}, #{user,jdbcType=CHAR}, #{tableName,jdbcType=CHAR}, 
+      #{columnName,jdbcType=CHAR}, #{timestamp,jdbcType=TIMESTAMP}, #{columnPriv,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ColumnsPriv">
+    insert into columns_priv
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="db != null">
+        Db,
+      </if>
+      <if test="user != null">
+        User,
+      </if>
+      <if test="tableName != null">
+        Table_name,
+      </if>
+      <if test="columnName != null">
+        Column_name,
+      </if>
+      <if test="timestamp != null">
+        Timestamp,
+      </if>
+      <if test="columnPriv != null">
+        Column_priv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=CHAR},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="columnPriv != null">
+        #{columnPriv,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.ColumnsPriv">
+    update columns_priv
+    <set>
+      <if test="timestamp != null">
+        Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="columnPriv != null">
+        Column_priv = #{columnPriv,jdbcType=CHAR},
+      </if>
+    </set>
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+      and Column_name = #{columnName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.ColumnsPriv">
+    update columns_priv
+    set Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      Column_priv = #{columnPriv,jdbcType=CHAR}
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+      and Column_name = #{columnName,jdbcType=CHAR}
+  </update>
+</mapper>

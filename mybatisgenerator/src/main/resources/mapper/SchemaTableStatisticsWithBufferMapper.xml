@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SchemaTableStatisticsWithBufferMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SchemaTableStatisticsWithBuffer">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="rows_fetched" jdbcType="BIGINT" property="rowsFetched" />
+    <result column="rows_inserted" jdbcType="BIGINT" property="rowsInserted" />
+    <result column="rows_updated" jdbcType="BIGINT" property="rowsUpdated" />
+    <result column="rows_deleted" jdbcType="BIGINT" property="rowsDeleted" />
+    <result column="io_read_requests" jdbcType="DECIMAL" property="ioReadRequests" />
+    <result column="io_write_requests" jdbcType="DECIMAL" property="ioWriteRequests" />
+    <result column="io_misc_requests" jdbcType="DECIMAL" property="ioMiscRequests" />
+    <result column="innodb_buffer_pages" jdbcType="BIGINT" property="innodbBufferPages" />
+    <result column="innodb_buffer_pages_hashed" jdbcType="BIGINT" property="innodbBufferPagesHashed" />
+    <result column="innodb_buffer_pages_old" jdbcType="BIGINT" property="innodbBufferPagesOld" />
+    <result column="innodb_buffer_rows_cached" jdbcType="DECIMAL" property="innodbBufferRowsCached" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SchemaTableStatisticsWithBufferWithBLOBs">
+    <result column="fetch_latency" jdbcType="LONGVARCHAR" property="fetchLatency" />
+    <result column="insert_latency" jdbcType="LONGVARCHAR" property="insertLatency" />
+    <result column="update_latency" jdbcType="LONGVARCHAR" property="updateLatency" />
+    <result column="delete_latency" jdbcType="LONGVARCHAR" property="deleteLatency" />
+    <result column="io_read" jdbcType="LONGVARCHAR" property="ioRead" />
+    <result column="io_read_latency" jdbcType="LONGVARCHAR" property="ioReadLatency" />
+    <result column="io_write" jdbcType="LONGVARCHAR" property="ioWrite" />
+    <result column="io_write_latency" jdbcType="LONGVARCHAR" property="ioWriteLatency" />
+    <result column="io_misc_latency" jdbcType="LONGVARCHAR" property="ioMiscLatency" />
+    <result column="innodb_buffer_allocated" jdbcType="LONGVARCHAR" property="innodbBufferAllocated" />
+    <result column="innodb_buffer_data" jdbcType="LONGVARCHAR" property="innodbBufferData" />
+    <result column="innodb_buffer_free" jdbcType="LONGVARCHAR" property="innodbBufferFree" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    fetch_latency, insert_latency, update_latency, delete_latency, io_read, io_read_latency, 
+    io_write, io_write_latency, io_misc_latency, innodb_buffer_allocated, innodb_buffer_data, 
+    innodb_buffer_free
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.SchemaTableStatisticsWithBufferWithBLOBs">
+    insert into schema_table_statistics_with_buffer (table_schema, table_name, rows_fetched, 
+      rows_inserted, rows_updated, rows_deleted, 
+      io_read_requests, io_write_requests, io_misc_requests, 
+      innodb_buffer_pages, innodb_buffer_pages_hashed, 
+      innodb_buffer_pages_old, innodb_buffer_rows_cached, 
+      fetch_latency, insert_latency, update_latency, 
+      delete_latency, io_read, io_read_latency, 
+      io_write, io_write_latency, io_misc_latency, 
+      innodb_buffer_allocated, innodb_buffer_data, 
+      innodb_buffer_free)
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{rowsFetched,jdbcType=BIGINT}, 
+      #{rowsInserted,jdbcType=BIGINT}, #{rowsUpdated,jdbcType=BIGINT}, #{rowsDeleted,jdbcType=BIGINT}, 
+      #{ioReadRequests,jdbcType=DECIMAL}, #{ioWriteRequests,jdbcType=DECIMAL}, #{ioMiscRequests,jdbcType=DECIMAL}, 
+      #{innodbBufferPages,jdbcType=BIGINT}, #{innodbBufferPagesHashed,jdbcType=BIGINT}, 
+      #{innodbBufferPagesOld,jdbcType=BIGINT}, #{innodbBufferRowsCached,jdbcType=DECIMAL}, 
+      #{fetchLatency,jdbcType=LONGVARCHAR}, #{insertLatency,jdbcType=LONGVARCHAR}, #{updateLatency,jdbcType=LONGVARCHAR}, 
+      #{deleteLatency,jdbcType=LONGVARCHAR}, #{ioRead,jdbcType=LONGVARCHAR}, #{ioReadLatency,jdbcType=LONGVARCHAR}, 
+      #{ioWrite,jdbcType=LONGVARCHAR}, #{ioWriteLatency,jdbcType=LONGVARCHAR}, #{ioMiscLatency,jdbcType=LONGVARCHAR}, 
+      #{innodbBufferAllocated,jdbcType=LONGVARCHAR}, #{innodbBufferData,jdbcType=LONGVARCHAR}, 
+      #{innodbBufferFree,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SchemaTableStatisticsWithBufferWithBLOBs">
+    insert into schema_table_statistics_with_buffer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="rowsFetched != null">
+        rows_fetched,
+      </if>
+      <if test="rowsInserted != null">
+        rows_inserted,
+      </if>
+      <if test="rowsUpdated != null">
+        rows_updated,
+      </if>
+      <if test="rowsDeleted != null">
+        rows_deleted,
+      </if>
+      <if test="ioReadRequests != null">
+        io_read_requests,
+      </if>
+      <if test="ioWriteRequests != null">
+        io_write_requests,
+      </if>
+      <if test="ioMiscRequests != null">
+        io_misc_requests,
+      </if>
+      <if test="innodbBufferPages != null">
+        innodb_buffer_pages,
+      </if>
+      <if test="innodbBufferPagesHashed != null">
+        innodb_buffer_pages_hashed,
+      </if>
+      <if test="innodbBufferPagesOld != null">
+        innodb_buffer_pages_old,
+      </if>
+      <if test="innodbBufferRowsCached != null">
+        innodb_buffer_rows_cached,
+      </if>
+      <if test="fetchLatency != null">
+        fetch_latency,
+      </if>
+      <if test="insertLatency != null">
+        insert_latency,
+      </if>
+      <if test="updateLatency != null">
+        update_latency,
+      </if>
+      <if test="deleteLatency != null">
+        delete_latency,
+      </if>
+      <if test="ioRead != null">
+        io_read,
+      </if>
+      <if test="ioReadLatency != null">
+        io_read_latency,
+      </if>
+      <if test="ioWrite != null">
+        io_write,
+      </if>
+      <if test="ioWriteLatency != null">
+        io_write_latency,
+      </if>
+      <if test="ioMiscLatency != null">
+        io_misc_latency,
+      </if>
+      <if test="innodbBufferAllocated != null">
+        innodb_buffer_allocated,
+      </if>
+      <if test="innodbBufferData != null">
+        innodb_buffer_data,
+      </if>
+      <if test="innodbBufferFree != null">
+        innodb_buffer_free,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="rowsFetched != null">
+        #{rowsFetched,jdbcType=BIGINT},
+      </if>
+      <if test="rowsInserted != null">
+        #{rowsInserted,jdbcType=BIGINT},
+      </if>
+      <if test="rowsUpdated != null">
+        #{rowsUpdated,jdbcType=BIGINT},
+      </if>
+      <if test="rowsDeleted != null">
+        #{rowsDeleted,jdbcType=BIGINT},
+      </if>
+      <if test="ioReadRequests != null">
+        #{ioReadRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="ioWriteRequests != null">
+        #{ioWriteRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="ioMiscRequests != null">
+        #{ioMiscRequests,jdbcType=DECIMAL},
+      </if>
+      <if test="innodbBufferPages != null">
+        #{innodbBufferPages,jdbcType=BIGINT},
+      </if>
+      <if test="innodbBufferPagesHashed != null">
+        #{innodbBufferPagesHashed,jdbcType=BIGINT},
+      </if>
+      <if test="innodbBufferPagesOld != null">
+        #{innodbBufferPagesOld,jdbcType=BIGINT},
+      </if>
+      <if test="innodbBufferRowsCached != null">
+        #{innodbBufferRowsCached,jdbcType=DECIMAL},
+      </if>
+      <if test="fetchLatency != null">
+        #{fetchLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insertLatency != null">
+        #{insertLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="updateLatency != null">
+        #{updateLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deleteLatency != null">
+        #{deleteLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ioRead != null">
+        #{ioRead,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ioReadLatency != null">
+        #{ioReadLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ioWrite != null">
+        #{ioWrite,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ioWriteLatency != null">
+        #{ioWriteLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ioMiscLatency != null">
+        #{ioMiscLatency,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="innodbBufferAllocated != null">
+        #{innodbBufferAllocated,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="innodbBufferData != null">
+        #{innodbBufferData,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="innodbBufferFree != null">
+        #{innodbBufferFree,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

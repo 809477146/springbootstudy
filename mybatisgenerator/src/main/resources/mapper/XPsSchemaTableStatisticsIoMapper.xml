@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XPsSchemaTableStatisticsIoMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XPsSchemaTableStatisticsIo">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="count_read" jdbcType="DECIMAL" property="countRead" />
+    <result column="sum_number_of_bytes_read" jdbcType="DECIMAL" property="sumNumberOfBytesRead" />
+    <result column="sum_timer_read" jdbcType="DECIMAL" property="sumTimerRead" />
+    <result column="count_write" jdbcType="DECIMAL" property="countWrite" />
+    <result column="sum_number_of_bytes_write" jdbcType="DECIMAL" property="sumNumberOfBytesWrite" />
+    <result column="sum_timer_write" jdbcType="DECIMAL" property="sumTimerWrite" />
+    <result column="count_misc" jdbcType="DECIMAL" property="countMisc" />
+    <result column="sum_timer_misc" jdbcType="DECIMAL" property="sumTimerMisc" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XPsSchemaTableStatisticsIo">
+    insert into x$ps_schema_table_statistics_io (table_schema, table_name, count_read, 
+      sum_number_of_bytes_read, sum_timer_read, count_write, 
+      sum_number_of_bytes_write, sum_timer_write, count_misc, 
+      sum_timer_misc)
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{countRead,jdbcType=DECIMAL}, 
+      #{sumNumberOfBytesRead,jdbcType=DECIMAL}, #{sumTimerRead,jdbcType=DECIMAL}, #{countWrite,jdbcType=DECIMAL}, 
+      #{sumNumberOfBytesWrite,jdbcType=DECIMAL}, #{sumTimerWrite,jdbcType=DECIMAL}, #{countMisc,jdbcType=DECIMAL}, 
+      #{sumTimerMisc,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XPsSchemaTableStatisticsIo">
+    insert into x$ps_schema_table_statistics_io
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="sumNumberOfBytesRead != null">
+        sum_number_of_bytes_read,
+      </if>
+      <if test="sumTimerRead != null">
+        sum_timer_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="sumNumberOfBytesWrite != null">
+        sum_number_of_bytes_write,
+      </if>
+      <if test="sumTimerWrite != null">
+        sum_timer_write,
+      </if>
+      <if test="countMisc != null">
+        count_misc,
+      </if>
+      <if test="sumTimerMisc != null">
+        sum_timer_misc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=DECIMAL},
+      </if>
+      <if test="sumNumberOfBytesRead != null">
+        #{sumNumberOfBytesRead,jdbcType=DECIMAL},
+      </if>
+      <if test="sumTimerRead != null">
+        #{sumTimerRead,jdbcType=DECIMAL},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=DECIMAL},
+      </if>
+      <if test="sumNumberOfBytesWrite != null">
+        #{sumNumberOfBytesWrite,jdbcType=DECIMAL},
+      </if>
+      <if test="sumTimerWrite != null">
+        #{sumTimerWrite,jdbcType=DECIMAL},
+      </if>
+      <if test="countMisc != null">
+        #{countMisc,jdbcType=DECIMAL},
+      </if>
+      <if test="sumTimerMisc != null">
+        #{sumTimerMisc,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

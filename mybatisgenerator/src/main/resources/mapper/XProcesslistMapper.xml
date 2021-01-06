@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XProcesslistMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XProcesslist">
+    <result column="thd_id" jdbcType="BIGINT" property="thdId" />
+    <result column="conn_id" jdbcType="BIGINT" property="connId" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="command" jdbcType="VARCHAR" property="command" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+    <result column="statement_latency" jdbcType="BIGINT" property="statementLatency" />
+    <result column="progress" jdbcType="DECIMAL" property="progress" />
+    <result column="lock_latency" jdbcType="BIGINT" property="lockLatency" />
+    <result column="rows_examined" jdbcType="BIGINT" property="rowsExamined" />
+    <result column="rows_sent" jdbcType="BIGINT" property="rowsSent" />
+    <result column="rows_affected" jdbcType="BIGINT" property="rowsAffected" />
+    <result column="tmp_tables" jdbcType="BIGINT" property="tmpTables" />
+    <result column="tmp_disk_tables" jdbcType="BIGINT" property="tmpDiskTables" />
+    <result column="full_scan" jdbcType="VARCHAR" property="fullScan" />
+    <result column="last_statement_latency" jdbcType="BIGINT" property="lastStatementLatency" />
+    <result column="current_memory" jdbcType="DECIMAL" property="currentMemory" />
+    <result column="last_wait" jdbcType="VARCHAR" property="lastWait" />
+    <result column="last_wait_latency" jdbcType="VARCHAR" property="lastWaitLatency" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="trx_latency" jdbcType="BIGINT" property="trxLatency" />
+    <result column="trx_state" jdbcType="CHAR" property="trxState" />
+    <result column="trx_autocommit" jdbcType="CHAR" property="trxAutocommit" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="program_name" jdbcType="VARCHAR" property="programName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.XProcesslistWithBLOBs">
+    <result column="current_statement" jdbcType="LONGVARCHAR" property="currentStatement" />
+    <result column="last_statement" jdbcType="LONGVARCHAR" property="lastStatement" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    current_statement, last_statement
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.XProcesslistWithBLOBs">
+    insert into x$processlist (thd_id, conn_id, user, 
+      db, command, state, 
+      time, statement_latency, progress, 
+      lock_latency, rows_examined, rows_sent, 
+      rows_affected, tmp_tables, tmp_disk_tables, 
+      full_scan, last_statement_latency, current_memory, 
+      last_wait, last_wait_latency, source, 
+      trx_latency, trx_state, trx_autocommit, 
+      pid, program_name, current_statement, 
+      last_statement)
+    values (#{thdId,jdbcType=BIGINT}, #{connId,jdbcType=BIGINT}, #{user,jdbcType=VARCHAR}, 
+      #{db,jdbcType=VARCHAR}, #{command,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{time,jdbcType=BIGINT}, #{statementLatency,jdbcType=BIGINT}, #{progress,jdbcType=DECIMAL}, 
+      #{lockLatency,jdbcType=BIGINT}, #{rowsExamined,jdbcType=BIGINT}, #{rowsSent,jdbcType=BIGINT}, 
+      #{rowsAffected,jdbcType=BIGINT}, #{tmpTables,jdbcType=BIGINT}, #{tmpDiskTables,jdbcType=BIGINT}, 
+      #{fullScan,jdbcType=VARCHAR}, #{lastStatementLatency,jdbcType=BIGINT}, #{currentMemory,jdbcType=DECIMAL}, 
+      #{lastWait,jdbcType=VARCHAR}, #{lastWaitLatency,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{trxLatency,jdbcType=BIGINT}, #{trxState,jdbcType=CHAR}, #{trxAutocommit,jdbcType=CHAR}, 
+      #{pid,jdbcType=VARCHAR}, #{programName,jdbcType=VARCHAR}, #{currentStatement,jdbcType=LONGVARCHAR}, 
+      #{lastStatement,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XProcesslistWithBLOBs">
+    insert into x$processlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="thdId != null">
+        thd_id,
+      </if>
+      <if test="connId != null">
+        conn_id,
+      </if>
+      <if test="user != null">
+        user,
+      </if>
+      <if test="db != null">
+        db,
+      </if>
+      <if test="command != null">
+        command,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="statementLatency != null">
+        statement_latency,
+      </if>
+      <if test="progress != null">
+        progress,
+      </if>
+      <if test="lockLatency != null">
+        lock_latency,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsAffected != null">
+        rows_affected,
+      </if>
+      <if test="tmpTables != null">
+        tmp_tables,
+      </if>
+      <if test="tmpDiskTables != null">
+        tmp_disk_tables,
+      </if>
+      <if test="fullScan != null">
+        full_scan,
+      </if>
+      <if test="lastStatementLatency != null">
+        last_statement_latency,
+      </if>
+      <if test="currentMemory != null">
+        current_memory,
+      </if>
+      <if test="lastWait != null">
+        last_wait,
+      </if>
+      <if test="lastWaitLatency != null">
+        last_wait_latency,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="trxLatency != null">
+        trx_latency,
+      </if>
+      <if test="trxState != null">
+        trx_state,
+      </if>
+      <if test="trxAutocommit != null">
+        trx_autocommit,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="programName != null">
+        program_name,
+      </if>
+      <if test="currentStatement != null">
+        current_statement,
+      </if>
+      <if test="lastStatement != null">
+        last_statement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="thdId != null">
+        #{thdId,jdbcType=BIGINT},
+      </if>
+      <if test="connId != null">
+        #{connId,jdbcType=BIGINT},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="command != null">
+        #{command,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="statementLatency != null">
+        #{statementLatency,jdbcType=BIGINT},
+      </if>
+      <if test="progress != null">
+        #{progress,jdbcType=DECIMAL},
+      </if>
+      <if test="lockLatency != null">
+        #{lockLatency,jdbcType=BIGINT},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=BIGINT},
+      </if>
+      <if test="rowsAffected != null">
+        #{rowsAffected,jdbcType=BIGINT},
+      </if>
+      <if test="tmpTables != null">
+        #{tmpTables,jdbcType=BIGINT},
+      </if>
+      <if test="tmpDiskTables != null">
+        #{tmpDiskTables,jdbcType=BIGINT},
+      </if>
+      <if test="fullScan != null">
+        #{fullScan,jdbcType=VARCHAR},
+      </if>
+      <if test="lastStatementLatency != null">
+        #{lastStatementLatency,jdbcType=BIGINT},
+      </if>
+      <if test="currentMemory != null">
+        #{currentMemory,jdbcType=DECIMAL},
+      </if>
+      <if test="lastWait != null">
+        #{lastWait,jdbcType=VARCHAR},
+      </if>
+      <if test="lastWaitLatency != null">
+        #{lastWaitLatency,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="trxLatency != null">
+        #{trxLatency,jdbcType=BIGINT},
+      </if>
+      <if test="trxState != null">
+        #{trxState,jdbcType=CHAR},
+      </if>
+      <if test="trxAutocommit != null">
+        #{trxAutocommit,jdbcType=CHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="programName != null">
+        #{programName,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStatement != null">
+        #{currentStatement,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastStatement != null">
+        #{lastStatement,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

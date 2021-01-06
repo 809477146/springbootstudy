@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/springbatch?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&serverTimezone=UTC
+    username: root
+    password: 123456
+    # 项目启动时创建数据表的sql脚本，该脚本由spring batch提供
+    schema: classpath:/org/springframework/batch/core/schema-mysql.sql
+  batch:
+    # 在项目启动时执行建表SQL
+    initialize-schema: always
+    job:
+      # 禁止Spring Batch自动执行
+      enabled: false

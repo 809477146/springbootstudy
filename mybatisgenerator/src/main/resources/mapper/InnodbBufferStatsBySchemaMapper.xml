@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbBufferStatsBySchemaMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbBufferStatsBySchema">
+    <result column="pages" jdbcType="BIGINT" property="pages" />
+    <result column="pages_hashed" jdbcType="BIGINT" property="pagesHashed" />
+    <result column="pages_old" jdbcType="BIGINT" property="pagesOld" />
+    <result column="rows_cached" jdbcType="DECIMAL" property="rowsCached" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.InnodbBufferStatsBySchemaWithBLOBs">
+    <result column="object_schema" jdbcType="LONGVARCHAR" property="objectSchema" />
+    <result column="allocated" jdbcType="LONGVARCHAR" property="allocated" />
+    <result column="data" jdbcType="LONGVARCHAR" property="data" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    object_schema, allocated, data
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.InnodbBufferStatsBySchemaWithBLOBs">
+    insert into innodb_buffer_stats_by_schema (pages, pages_hashed, pages_old, 
+      rows_cached, object_schema, allocated, 
+      data)
+    values (#{pages,jdbcType=BIGINT}, #{pagesHashed,jdbcType=BIGINT}, #{pagesOld,jdbcType=BIGINT}, 
+      #{rowsCached,jdbcType=DECIMAL}, #{objectSchema,jdbcType=LONGVARCHAR}, #{allocated,jdbcType=LONGVARCHAR}, 
+      #{data,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbBufferStatsBySchemaWithBLOBs">
+    insert into innodb_buffer_stats_by_schema
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pages != null">
+        pages,
+      </if>
+      <if test="pagesHashed != null">
+        pages_hashed,
+      </if>
+      <if test="pagesOld != null">
+        pages_old,
+      </if>
+      <if test="rowsCached != null">
+        rows_cached,
+      </if>
+      <if test="objectSchema != null">
+        object_schema,
+      </if>
+      <if test="allocated != null">
+        allocated,
+      </if>
+      <if test="data != null">
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pages != null">
+        #{pages,jdbcType=BIGINT},
+      </if>
+      <if test="pagesHashed != null">
+        #{pagesHashed,jdbcType=BIGINT},
+      </if>
+      <if test="pagesOld != null">
+        #{pagesOld,jdbcType=BIGINT},
+      </if>
+      <if test="rowsCached != null">
+        #{rowsCached,jdbcType=DECIMAL},
+      </if>
+      <if test="objectSchema != null">
+        #{objectSchema,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allocated != null">
+        #{allocated,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

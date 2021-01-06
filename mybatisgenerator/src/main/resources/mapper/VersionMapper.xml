@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.VersionMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Version">
+    <result column="sys_version" jdbcType="VARCHAR" property="sysVersion" />
+    <result column="mysql_version" jdbcType="VARCHAR" property="mysqlVersion" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.Version">
+    insert into version (sys_version, mysql_version)
+    values (#{sysVersion,jdbcType=VARCHAR}, #{mysqlVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Version">
+    insert into version
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysVersion != null">
+        sys_version,
+      </if>
+      <if test="mysqlVersion != null">
+        mysql_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysVersion != null">
+        #{sysVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="mysqlVersion != null">
+        #{mysqlVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SetupObjectsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SetupObjects">
+    <result column="OBJECT_TYPE" jdbcType="CHAR" property="objectType" />
+    <result column="OBJECT_SCHEMA" jdbcType="VARCHAR" property="objectSchema" />
+    <result column="OBJECT_NAME" jdbcType="VARCHAR" property="objectName" />
+    <result column="ENABLED" jdbcType="CHAR" property="enabled" />
+    <result column="TIMED" jdbcType="CHAR" property="timed" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SetupObjects">
+    insert into setup_objects (OBJECT_TYPE, OBJECT_SCHEMA, OBJECT_NAME, 
+      ENABLED, TIMED)
+    values (#{objectType,jdbcType=CHAR}, #{objectSchema,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=CHAR}, #{timed,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SetupObjects">
+    insert into setup_objects
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        OBJECT_TYPE,
+      </if>
+      <if test="objectSchema != null">
+        OBJECT_SCHEMA,
+      </if>
+      <if test="objectName != null">
+        OBJECT_NAME,
+      </if>
+      <if test="enabled != null">
+        ENABLED,
+      </if>
+      <if test="timed != null">
+        TIMED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        #{objectType,jdbcType=CHAR},
+      </if>
+      <if test="objectSchema != null">
+        #{objectSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="timed != null">
+        #{timed,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

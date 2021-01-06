@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ServersMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Servers">
+    <id column="Server_name" jdbcType="CHAR" property="serverName" />
+    <result column="Host" jdbcType="CHAR" property="host" />
+    <result column="Db" jdbcType="CHAR" property="db" />
+    <result column="Username" jdbcType="CHAR" property="username" />
+    <result column="Password" jdbcType="CHAR" property="password" />
+    <result column="Port" jdbcType="INTEGER" property="port" />
+    <result column="Socket" jdbcType="CHAR" property="socket" />
+    <result column="Wrapper" jdbcType="CHAR" property="wrapper" />
+    <result column="Owner" jdbcType="CHAR" property="owner" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Server_name, Host, Db, Username, Password, Port, Socket, Wrapper, Owner
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from servers
+    where Server_name = #{serverName,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from servers
+    where Server_name = #{serverName,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.Servers">
+    insert into servers (Server_name, Host, Db, 
+      Username, Password, Port, 
+      Socket, Wrapper, Owner)
+    values (#{serverName,jdbcType=CHAR}, #{host,jdbcType=CHAR}, #{db,jdbcType=CHAR}, 
+      #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{port,jdbcType=INTEGER}, 
+      #{socket,jdbcType=CHAR}, #{wrapper,jdbcType=CHAR}, #{owner,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Servers">
+    insert into servers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serverName != null">
+        Server_name,
+      </if>
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="db != null">
+        Db,
+      </if>
+      <if test="username != null">
+        Username,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="port != null">
+        Port,
+      </if>
+      <if test="socket != null">
+        Socket,
+      </if>
+      <if test="wrapper != null">
+        Wrapper,
+      </if>
+      <if test="owner != null">
+        Owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serverName != null">
+        #{serverName,jdbcType=CHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="socket != null">
+        #{socket,jdbcType=CHAR},
+      </if>
+      <if test="wrapper != null">
+        #{wrapper,jdbcType=CHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.Servers">
+    update servers
+    <set>
+      <if test="host != null">
+        Host = #{host,jdbcType=CHAR},
+      </if>
+      <if test="db != null">
+        Db = #{db,jdbcType=CHAR},
+      </if>
+      <if test="username != null">
+        Username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="port != null">
+        Port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="socket != null">
+        Socket = #{socket,jdbcType=CHAR},
+      </if>
+      <if test="wrapper != null">
+        Wrapper = #{wrapper,jdbcType=CHAR},
+      </if>
+      <if test="owner != null">
+        Owner = #{owner,jdbcType=CHAR},
+      </if>
+    </set>
+    where Server_name = #{serverName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.Servers">
+    update servers
+    set Host = #{host,jdbcType=CHAR},
+      Db = #{db,jdbcType=CHAR},
+      Username = #{username,jdbcType=CHAR},
+      Password = #{password,jdbcType=CHAR},
+      Port = #{port,jdbcType=INTEGER},
+      Socket = #{socket,jdbcType=CHAR},
+      Wrapper = #{wrapper,jdbcType=CHAR},
+      Owner = #{owner,jdbcType=CHAR}
+    where Server_name = #{serverName,jdbcType=CHAR}
+  </update>
+</mapper>

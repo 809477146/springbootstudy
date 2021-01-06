@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TablesPrivMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TablesPriv">
+    <id column="Host" jdbcType="CHAR" property="host" />
+    <id column="Db" jdbcType="CHAR" property="db" />
+    <id column="User" jdbcType="CHAR" property="user" />
+    <id column="Table_name" jdbcType="CHAR" property="tableName" />
+    <result column="Grantor" jdbcType="CHAR" property="grantor" />
+    <result column="Timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="Table_priv" jdbcType="CHAR" property="tablePriv" />
+    <result column="Column_priv" jdbcType="CHAR" property="columnPriv" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.TablesPrivKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tables_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.TablesPrivKey">
+    delete from tables_priv
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.TablesPriv">
+    insert into tables_priv (Host, Db, User, Table_name, 
+      Grantor, Timestamp, Table_priv, 
+      Column_priv)
+    values (#{host,jdbcType=CHAR}, #{db,jdbcType=CHAR}, #{user,jdbcType=CHAR}, #{tableName,jdbcType=CHAR}, 
+      #{grantor,jdbcType=CHAR}, #{timestamp,jdbcType=TIMESTAMP}, #{tablePriv,jdbcType=CHAR}, 
+      #{columnPriv,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TablesPriv">
+    insert into tables_priv
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="db != null">
+        Db,
+      </if>
+      <if test="user != null">
+        User,
+      </if>
+      <if test="tableName != null">
+        Table_name,
+      </if>
+      <if test="grantor != null">
+        Grantor,
+      </if>
+      <if test="timestamp != null">
+        Timestamp,
+      </if>
+      <if test="tablePriv != null">
+        Table_priv,
+      </if>
+      <if test="columnPriv != null">
+        Column_priv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=CHAR},
+      </if>
+      <if test="grantor != null">
+        #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tablePriv != null">
+        #{tablePriv,jdbcType=CHAR},
+      </if>
+      <if test="columnPriv != null">
+        #{columnPriv,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.TablesPriv">
+    update tables_priv
+    <set>
+      <if test="grantor != null">
+        Grantor = #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tablePriv != null">
+        Table_priv = #{tablePriv,jdbcType=CHAR},
+      </if>
+      <if test="columnPriv != null">
+        Column_priv = #{columnPriv,jdbcType=CHAR},
+      </if>
+    </set>
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.TablesPriv">
+    update tables_priv
+    set Grantor = #{grantor,jdbcType=CHAR},
+      Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      Table_priv = #{tablePriv,jdbcType=CHAR},
+      Column_priv = #{columnPriv,jdbcType=CHAR}
+    where Host = #{host,jdbcType=CHAR}
+      and Db = #{db,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Table_name = #{tableName,jdbcType=CHAR}
+  </update>
+</mapper>

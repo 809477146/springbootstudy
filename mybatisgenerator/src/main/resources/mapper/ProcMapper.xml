@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ProcMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Proc">
+    <id column="db" jdbcType="CHAR" property="db" />
+    <id column="name" jdbcType="CHAR" property="name" />
+    <id column="type" jdbcType="CHAR" property="type" />
+    <result column="specific_name" jdbcType="CHAR" property="specificName" />
+    <result column="language" jdbcType="CHAR" property="language" />
+    <result column="sql_data_access" jdbcType="CHAR" property="sqlDataAccess" />
+    <result column="is_deterministic" jdbcType="CHAR" property="isDeterministic" />
+    <result column="security_type" jdbcType="CHAR" property="securityType" />
+    <result column="definer" jdbcType="CHAR" property="definer" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="sql_mode" jdbcType="CHAR" property="sqlMode" />
+    <result column="character_set_client" jdbcType="CHAR" property="characterSetClient" />
+    <result column="collation_connection" jdbcType="CHAR" property="collationConnection" />
+    <result column="db_collation" jdbcType="CHAR" property="dbCollation" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.ProcWithBLOBs">
+    <result column="param_list" jdbcType="LONGVARBINARY" property="paramList" />
+    <result column="returns" jdbcType="LONGVARBINARY" property="returns" />
+    <result column="body" jdbcType="LONGVARBINARY" property="body" />
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    <result column="body_utf8" jdbcType="LONGVARBINARY" property="bodyUtf8" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    db, name, type, specific_name, language, sql_data_access, is_deterministic, security_type, 
+    definer, created, modified, sql_mode, character_set_client, collation_connection, 
+    db_collation
+  </sql>
+  <sql id="Blob_Column_List">
+    param_list, returns, body, comment, body_utf8
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.ProcKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from proc
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.ProcKey">
+    delete from proc
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.ProcWithBLOBs">
+    insert into proc (db, name, type, specific_name, 
+      language, sql_data_access, is_deterministic, 
+      security_type, definer, created, 
+      modified, sql_mode, character_set_client, 
+      collation_connection, db_collation, param_list, 
+      returns, body, comment, 
+      body_utf8)
+    values (#{db,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{specificName,jdbcType=CHAR}, 
+      #{language,jdbcType=CHAR}, #{sqlDataAccess,jdbcType=CHAR}, #{isDeterministic,jdbcType=CHAR}, 
+      #{securityType,jdbcType=CHAR}, #{definer,jdbcType=CHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP}, #{sqlMode,jdbcType=CHAR}, #{characterSetClient,jdbcType=CHAR}, 
+      #{collationConnection,jdbcType=CHAR}, #{dbCollation,jdbcType=CHAR}, #{paramList,jdbcType=LONGVARBINARY}, 
+      #{returns,jdbcType=LONGVARBINARY}, #{body,jdbcType=LONGVARBINARY}, #{comment,jdbcType=LONGVARCHAR}, 
+      #{bodyUtf8,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ProcWithBLOBs">
+    insert into proc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        db,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="specificName != null">
+        specific_name,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="sqlDataAccess != null">
+        sql_data_access,
+      </if>
+      <if test="isDeterministic != null">
+        is_deterministic,
+      </if>
+      <if test="securityType != null">
+        security_type,
+      </if>
+      <if test="definer != null">
+        definer,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="sqlMode != null">
+        sql_mode,
+      </if>
+      <if test="characterSetClient != null">
+        character_set_client,
+      </if>
+      <if test="collationConnection != null">
+        collation_connection,
+      </if>
+      <if test="dbCollation != null">
+        db_collation,
+      </if>
+      <if test="paramList != null">
+        param_list,
+      </if>
+      <if test="returns != null">
+        returns,
+      </if>
+      <if test="body != null">
+        body,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="bodyUtf8 != null">
+        body_utf8,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="specificName != null">
+        #{specificName,jdbcType=CHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=CHAR},
+      </if>
+      <if test="sqlDataAccess != null">
+        #{sqlDataAccess,jdbcType=CHAR},
+      </if>
+      <if test="isDeterministic != null">
+        #{isDeterministic,jdbcType=CHAR},
+      </if>
+      <if test="securityType != null">
+        #{securityType,jdbcType=CHAR},
+      </if>
+      <if test="definer != null">
+        #{definer,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqlMode != null">
+        #{sqlMode,jdbcType=CHAR},
+      </if>
+      <if test="characterSetClient != null">
+        #{characterSetClient,jdbcType=CHAR},
+      </if>
+      <if test="collationConnection != null">
+        #{collationConnection,jdbcType=CHAR},
+      </if>
+      <if test="dbCollation != null">
+        #{dbCollation,jdbcType=CHAR},
+      </if>
+      <if test="paramList != null">
+        #{paramList,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="returns != null">
+        #{returns,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bodyUtf8 != null">
+        #{bodyUtf8,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.ProcWithBLOBs">
+    update proc
+    <set>
+      <if test="specificName != null">
+        specific_name = #{specificName,jdbcType=CHAR},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=CHAR},
+      </if>
+      <if test="sqlDataAccess != null">
+        sql_data_access = #{sqlDataAccess,jdbcType=CHAR},
+      </if>
+      <if test="isDeterministic != null">
+        is_deterministic = #{isDeterministic,jdbcType=CHAR},
+      </if>
+      <if test="securityType != null">
+        security_type = #{securityType,jdbcType=CHAR},
+      </if>
+      <if test="definer != null">
+        definer = #{definer,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqlMode != null">
+        sql_mode = #{sqlMode,jdbcType=CHAR},
+      </if>
+      <if test="characterSetClient != null">
+        character_set_client = #{characterSetClient,jdbcType=CHAR},
+      </if>
+      <if test="collationConnection != null">
+        collation_connection = #{collationConnection,jdbcType=CHAR},
+      </if>
+      <if test="dbCollation != null">
+        db_collation = #{dbCollation,jdbcType=CHAR},
+      </if>
+      <if test="paramList != null">
+        param_list = #{paramList,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="returns != null">
+        returns = #{returns,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="body != null">
+        body = #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bodyUtf8 != null">
+        body_utf8 = #{bodyUtf8,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sz.model.ProcWithBLOBs">
+    update proc
+    set specific_name = #{specificName,jdbcType=CHAR},
+      language = #{language,jdbcType=CHAR},
+      sql_data_access = #{sqlDataAccess,jdbcType=CHAR},
+      is_deterministic = #{isDeterministic,jdbcType=CHAR},
+      security_type = #{securityType,jdbcType=CHAR},
+      definer = #{definer,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      sql_mode = #{sqlMode,jdbcType=CHAR},
+      character_set_client = #{characterSetClient,jdbcType=CHAR},
+      collation_connection = #{collationConnection,jdbcType=CHAR},
+      db_collation = #{dbCollation,jdbcType=CHAR},
+      param_list = #{paramList,jdbcType=LONGVARBINARY},
+      returns = #{returns,jdbcType=LONGVARBINARY},
+      body = #{body,jdbcType=LONGVARBINARY},
+      comment = #{comment,jdbcType=LONGVARCHAR},
+      body_utf8 = #{bodyUtf8,jdbcType=LONGVARBINARY}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.Proc">
+    update proc
+    set specific_name = #{specificName,jdbcType=CHAR},
+      language = #{language,jdbcType=CHAR},
+      sql_data_access = #{sqlDataAccess,jdbcType=CHAR},
+      is_deterministic = #{isDeterministic,jdbcType=CHAR},
+      security_type = #{securityType,jdbcType=CHAR},
+      definer = #{definer,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      sql_mode = #{sqlMode,jdbcType=CHAR},
+      character_set_client = #{characterSetClient,jdbcType=CHAR},
+      collation_connection = #{collationConnection,jdbcType=CHAR},
+      db_collation = #{dbCollation,jdbcType=CHAR}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+</mapper>

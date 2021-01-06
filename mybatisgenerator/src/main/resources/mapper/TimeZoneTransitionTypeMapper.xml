@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TimeZoneTransitionTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TimeZoneTransitionType">
+    <id column="Time_zone_id" jdbcType="INTEGER" property="timeZoneId" />
+    <id column="Transition_type_id" jdbcType="INTEGER" property="transitionTypeId" />
+    <result column="Offset" jdbcType="INTEGER" property="offset" />
+    <result column="Is_DST" jdbcType="TINYINT" property="isDst" />
+    <result column="Abbreviation" jdbcType="CHAR" property="abbreviation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Time_zone_id, Transition_type_id, Offset, Is_DST, Abbreviation
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.TimeZoneTransitionTypeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from time_zone_transition_type
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_type_id = #{transitionTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.TimeZoneTransitionTypeKey">
+    delete from time_zone_transition_type
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_type_id = #{transitionTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.TimeZoneTransitionType">
+    insert into time_zone_transition_type (Time_zone_id, Transition_type_id, Offset, 
+      Is_DST, Abbreviation)
+    values (#{timeZoneId,jdbcType=INTEGER}, #{transitionTypeId,jdbcType=INTEGER}, #{offset,jdbcType=INTEGER}, 
+      #{isDst,jdbcType=TINYINT}, #{abbreviation,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TimeZoneTransitionType">
+    insert into time_zone_transition_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        Time_zone_id,
+      </if>
+      <if test="transitionTypeId != null">
+        Transition_type_id,
+      </if>
+      <if test="offset != null">
+        Offset,
+      </if>
+      <if test="isDst != null">
+        Is_DST,
+      </if>
+      <if test="abbreviation != null">
+        Abbreviation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        #{timeZoneId,jdbcType=INTEGER},
+      </if>
+      <if test="transitionTypeId != null">
+        #{transitionTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="offset != null">
+        #{offset,jdbcType=INTEGER},
+      </if>
+      <if test="isDst != null">
+        #{isDst,jdbcType=TINYINT},
+      </if>
+      <if test="abbreviation != null">
+        #{abbreviation,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.TimeZoneTransitionType">
+    update time_zone_transition_type
+    <set>
+      <if test="offset != null">
+        Offset = #{offset,jdbcType=INTEGER},
+      </if>
+      <if test="isDst != null">
+        Is_DST = #{isDst,jdbcType=TINYINT},
+      </if>
+      <if test="abbreviation != null">
+        Abbreviation = #{abbreviation,jdbcType=CHAR},
+      </if>
+    </set>
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_type_id = #{transitionTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.TimeZoneTransitionType">
+    update time_zone_transition_type
+    set Offset = #{offset,jdbcType=INTEGER},
+      Is_DST = #{isDst,jdbcType=TINYINT},
+      Abbreviation = #{abbreviation,jdbcType=CHAR}
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_type_id = #{transitionTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

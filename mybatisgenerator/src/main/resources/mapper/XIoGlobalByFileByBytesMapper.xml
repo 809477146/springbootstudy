@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XIoGlobalByFileByBytesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XIoGlobalByFileByBytes">
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="total_read" jdbcType="BIGINT" property="totalRead" />
+    <result column="avg_read" jdbcType="DECIMAL" property="avgRead" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+    <result column="total_written" jdbcType="BIGINT" property="totalWritten" />
+    <result column="avg_write" jdbcType="DECIMAL" property="avgWrite" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="write_pct" jdbcType="DECIMAL" property="writePct" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XIoGlobalByFileByBytes">
+    insert into x$io_global_by_file_by_bytes (file, count_read, total_read, 
+      avg_read, count_write, total_written, 
+      avg_write, total, write_pct
+      )
+    values (#{file,jdbcType=VARCHAR}, #{countRead,jdbcType=BIGINT}, #{totalRead,jdbcType=BIGINT}, 
+      #{avgRead,jdbcType=DECIMAL}, #{countWrite,jdbcType=BIGINT}, #{totalWritten,jdbcType=BIGINT}, 
+      #{avgWrite,jdbcType=DECIMAL}, #{total,jdbcType=BIGINT}, #{writePct,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XIoGlobalByFileByBytes">
+    insert into x$io_global_by_file_by_bytes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        file,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="totalRead != null">
+        total_read,
+      </if>
+      <if test="avgRead != null">
+        avg_read,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="totalWritten != null">
+        total_written,
+      </if>
+      <if test="avgWrite != null">
+        avg_write,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="writePct != null">
+        write_pct,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="totalRead != null">
+        #{totalRead,jdbcType=BIGINT},
+      </if>
+      <if test="avgRead != null">
+        #{avgRead,jdbcType=DECIMAL},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="totalWritten != null">
+        #{totalWritten,jdbcType=BIGINT},
+      </if>
+      <if test="avgWrite != null">
+        #{avgWrite,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="writePct != null">
+        #{writePct,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

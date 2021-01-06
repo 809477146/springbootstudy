@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SessionSslStatusMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SessionSslStatus">
+    <result column="thread_id" jdbcType="BIGINT" property="threadId" />
+    <result column="ssl_version" jdbcType="VARCHAR" property="sslVersion" />
+    <result column="ssl_cipher" jdbcType="VARCHAR" property="sslCipher" />
+    <result column="ssl_sessions_reused" jdbcType="VARCHAR" property="sslSessionsReused" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SessionSslStatus">
+    insert into session_ssl_status (thread_id, ssl_version, ssl_cipher, 
+      ssl_sessions_reused)
+    values (#{threadId,jdbcType=BIGINT}, #{sslVersion,jdbcType=VARCHAR}, #{sslCipher,jdbcType=VARCHAR}, 
+      #{sslSessionsReused,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SessionSslStatus">
+    insert into session_ssl_status
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="threadId != null">
+        thread_id,
+      </if>
+      <if test="sslVersion != null">
+        ssl_version,
+      </if>
+      <if test="sslCipher != null">
+        ssl_cipher,
+      </if>
+      <if test="sslSessionsReused != null">
+        ssl_sessions_reused,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="threadId != null">
+        #{threadId,jdbcType=BIGINT},
+      </if>
+      <if test="sslVersion != null">
+        #{sslVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="sslCipher != null">
+        #{sslCipher,jdbcType=VARCHAR},
+      </if>
+      <if test="sslSessionsReused != null">
+        #{sslSessionsReused,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

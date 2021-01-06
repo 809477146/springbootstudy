@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- index.html 是登录成功后的首页，首先展示当前登录用户的用户名，然后展示一个“注销登录” 链接，
+若当前登录用户具备“admin ”角色，则展示一个“管理员页面”的超链接；
+若用户具备“admin ” 或者“user ”角色，则展示一个“普通用户页面”的超链接。
+注意这里导入的名称空间是xmlns:shiro=http://www.pollix.at/thymeleaf/shiro，和 JSP 中导入的 Shiro 名称空间不一致。 -->
+<body>
+<h3>Hello,<shiro:principal/></h3>
+<h3><a href="/logout">注销登录</a> </h3>
+<h3><a shiro:hasRole="admin" href="/admin">管理员页面</a> </h3>
+<h3><a shiro:hasAnyRoles="admin,user" href="/user">普通用户页面</a> </h3>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbSysFieldsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbSysFields">
+    <result column="INDEX_ID" jdbcType="BIGINT" property="indexId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="POS" jdbcType="INTEGER" property="pos" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbSysFields">
+    insert into INNODB_SYS_FIELDS (INDEX_ID, NAME, POS
+      )
+    values (#{indexId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pos,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbSysFields">
+    insert into INNODB_SYS_FIELDS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indexId != null">
+        INDEX_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="pos != null">
+        POS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indexId != null">
+        #{indexId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null">
+        #{pos,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

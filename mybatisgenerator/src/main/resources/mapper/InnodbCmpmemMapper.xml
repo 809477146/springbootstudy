@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbCmpmemMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbCmpmem">
+    <result column="page_size" jdbcType="INTEGER" property="pageSize" />
+    <result column="buffer_pool_instance" jdbcType="INTEGER" property="bufferPoolInstance" />
+    <result column="pages_used" jdbcType="INTEGER" property="pagesUsed" />
+    <result column="pages_free" jdbcType="INTEGER" property="pagesFree" />
+    <result column="relocation_ops" jdbcType="BIGINT" property="relocationOps" />
+    <result column="relocation_time" jdbcType="INTEGER" property="relocationTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbCmpmem">
+    insert into INNODB_CMPMEM (page_size, buffer_pool_instance, pages_used, 
+      pages_free, relocation_ops, relocation_time
+      )
+    values (#{pageSize,jdbcType=INTEGER}, #{bufferPoolInstance,jdbcType=INTEGER}, #{pagesUsed,jdbcType=INTEGER}, 
+      #{pagesFree,jdbcType=INTEGER}, #{relocationOps,jdbcType=BIGINT}, #{relocationTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbCmpmem">
+    insert into INNODB_CMPMEM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pageSize != null">
+        page_size,
+      </if>
+      <if test="bufferPoolInstance != null">
+        buffer_pool_instance,
+      </if>
+      <if test="pagesUsed != null">
+        pages_used,
+      </if>
+      <if test="pagesFree != null">
+        pages_free,
+      </if>
+      <if test="relocationOps != null">
+        relocation_ops,
+      </if>
+      <if test="relocationTime != null">
+        relocation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pageSize != null">
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="bufferPoolInstance != null">
+        #{bufferPoolInstance,jdbcType=INTEGER},
+      </if>
+      <if test="pagesUsed != null">
+        #{pagesUsed,jdbcType=INTEGER},
+      </if>
+      <if test="pagesFree != null">
+        #{pagesFree,jdbcType=INTEGER},
+      </if>
+      <if test="relocationOps != null">
+        #{relocationOps,jdbcType=BIGINT},
+      </if>
+      <if test="relocationTime != null">
+        #{relocationTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

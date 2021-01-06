@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XIoGlobalByFileByLatencyMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XIoGlobalByFileByLatency">
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="total" jdbcType="BIGINT" property="total" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="count_read" jdbcType="BIGINT" property="countRead" />
+    <result column="read_latency" jdbcType="BIGINT" property="readLatency" />
+    <result column="count_write" jdbcType="BIGINT" property="countWrite" />
+    <result column="write_latency" jdbcType="BIGINT" property="writeLatency" />
+    <result column="count_misc" jdbcType="BIGINT" property="countMisc" />
+    <result column="misc_latency" jdbcType="BIGINT" property="miscLatency" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XIoGlobalByFileByLatency">
+    insert into x$io_global_by_file_by_latency (file, total, total_latency, 
+      count_read, read_latency, count_write, 
+      write_latency, count_misc, misc_latency
+      )
+    values (#{file,jdbcType=VARCHAR}, #{total,jdbcType=BIGINT}, #{totalLatency,jdbcType=BIGINT}, 
+      #{countRead,jdbcType=BIGINT}, #{readLatency,jdbcType=BIGINT}, #{countWrite,jdbcType=BIGINT}, 
+      #{writeLatency,jdbcType=BIGINT}, #{countMisc,jdbcType=BIGINT}, #{miscLatency,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XIoGlobalByFileByLatency">
+    insert into x$io_global_by_file_by_latency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        file,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="countRead != null">
+        count_read,
+      </if>
+      <if test="readLatency != null">
+        read_latency,
+      </if>
+      <if test="countWrite != null">
+        count_write,
+      </if>
+      <if test="writeLatency != null">
+        write_latency,
+      </if>
+      <if test="countMisc != null">
+        count_misc,
+      </if>
+      <if test="miscLatency != null">
+        misc_latency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="readLatency != null">
+        #{readLatency,jdbcType=BIGINT},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="writeLatency != null">
+        #{writeLatency,jdbcType=BIGINT},
+      </if>
+      <if test="countMisc != null">
+        #{countMisc,jdbcType=BIGINT},
+      </if>
+      <if test="miscLatency != null">
+        #{miscLatency,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

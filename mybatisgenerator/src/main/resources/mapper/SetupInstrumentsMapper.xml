@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SetupInstrumentsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SetupInstruments">
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ENABLED" jdbcType="CHAR" property="enabled" />
+    <result column="TIMED" jdbcType="CHAR" property="timed" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SetupInstruments">
+    insert into setup_instruments (NAME, ENABLED, TIMED
+      )
+    values (#{name,jdbcType=VARCHAR}, #{enabled,jdbcType=CHAR}, #{timed,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SetupInstruments">
+    insert into setup_instruments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="enabled != null">
+        ENABLED,
+      </if>
+      <if test="timed != null">
+        TIMED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="timed != null">
+        #{timed,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

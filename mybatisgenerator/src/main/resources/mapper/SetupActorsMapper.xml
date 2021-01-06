@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SetupActorsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SetupActors">
+    <result column="HOST" jdbcType="CHAR" property="host" />
+    <result column="USER" jdbcType="CHAR" property="user" />
+    <result column="ROLE" jdbcType="CHAR" property="role" />
+    <result column="ENABLED" jdbcType="CHAR" property="enabled" />
+    <result column="HISTORY" jdbcType="CHAR" property="history" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SetupActors">
+    insert into setup_actors (HOST, USER, ROLE, ENABLED, 
+      HISTORY)
+    values (#{host,jdbcType=CHAR}, #{user,jdbcType=CHAR}, #{role,jdbcType=CHAR}, #{enabled,jdbcType=CHAR}, 
+      #{history,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SetupActors">
+    insert into setup_actors
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="user != null">
+        USER,
+      </if>
+      <if test="role != null">
+        ROLE,
+      </if>
+      <if test="enabled != null">
+        ENABLED,
+      </if>
+      <if test="history != null">
+        HISTORY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=CHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="history != null">
+        #{history,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

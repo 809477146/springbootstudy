@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbMetricsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbMetrics">
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SUBSYSTEM" jdbcType="VARCHAR" property="subsystem" />
+    <result column="COUNT" jdbcType="BIGINT" property="count" />
+    <result column="MAX_COUNT" jdbcType="BIGINT" property="maxCount" />
+    <result column="MIN_COUNT" jdbcType="BIGINT" property="minCount" />
+    <result column="AVG_COUNT" jdbcType="DOUBLE" property="avgCount" />
+    <result column="COUNT_RESET" jdbcType="BIGINT" property="countReset" />
+    <result column="MAX_COUNT_RESET" jdbcType="BIGINT" property="maxCountReset" />
+    <result column="MIN_COUNT_RESET" jdbcType="BIGINT" property="minCountReset" />
+    <result column="AVG_COUNT_RESET" jdbcType="DOUBLE" property="avgCountReset" />
+    <result column="TIME_ENABLED" jdbcType="TIMESTAMP" property="timeEnabled" />
+    <result column="TIME_DISABLED" jdbcType="TIMESTAMP" property="timeDisabled" />
+    <result column="TIME_ELAPSED" jdbcType="BIGINT" property="timeElapsed" />
+    <result column="TIME_RESET" jdbcType="TIMESTAMP" property="timeReset" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="COMMENT" jdbcType="VARCHAR" property="comment" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbMetrics">
+    insert into INNODB_METRICS (NAME, SUBSYSTEM, COUNT, 
+      MAX_COUNT, MIN_COUNT, AVG_COUNT, 
+      COUNT_RESET, MAX_COUNT_RESET, MIN_COUNT_RESET, 
+      AVG_COUNT_RESET, TIME_ENABLED, TIME_DISABLED, 
+      TIME_ELAPSED, TIME_RESET, STATUS, 
+      TYPE, COMMENT)
+    values (#{name,jdbcType=VARCHAR}, #{subsystem,jdbcType=VARCHAR}, #{count,jdbcType=BIGINT}, 
+      #{maxCount,jdbcType=BIGINT}, #{minCount,jdbcType=BIGINT}, #{avgCount,jdbcType=DOUBLE}, 
+      #{countReset,jdbcType=BIGINT}, #{maxCountReset,jdbcType=BIGINT}, #{minCountReset,jdbcType=BIGINT}, 
+      #{avgCountReset,jdbcType=DOUBLE}, #{timeEnabled,jdbcType=TIMESTAMP}, #{timeDisabled,jdbcType=TIMESTAMP}, 
+      #{timeElapsed,jdbcType=BIGINT}, #{timeReset,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbMetrics">
+    insert into INNODB_METRICS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="subsystem != null">
+        SUBSYSTEM,
+      </if>
+      <if test="count != null">
+        COUNT,
+      </if>
+      <if test="maxCount != null">
+        MAX_COUNT,
+      </if>
+      <if test="minCount != null">
+        MIN_COUNT,
+      </if>
+      <if test="avgCount != null">
+        AVG_COUNT,
+      </if>
+      <if test="countReset != null">
+        COUNT_RESET,
+      </if>
+      <if test="maxCountReset != null">
+        MAX_COUNT_RESET,
+      </if>
+      <if test="minCountReset != null">
+        MIN_COUNT_RESET,
+      </if>
+      <if test="avgCountReset != null">
+        AVG_COUNT_RESET,
+      </if>
+      <if test="timeEnabled != null">
+        TIME_ENABLED,
+      </if>
+      <if test="timeDisabled != null">
+        TIME_DISABLED,
+      </if>
+      <if test="timeElapsed != null">
+        TIME_ELAPSED,
+      </if>
+      <if test="timeReset != null">
+        TIME_RESET,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="comment != null">
+        COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subsystem != null">
+        #{subsystem,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=BIGINT},
+      </if>
+      <if test="maxCount != null">
+        #{maxCount,jdbcType=BIGINT},
+      </if>
+      <if test="minCount != null">
+        #{minCount,jdbcType=BIGINT},
+      </if>
+      <if test="avgCount != null">
+        #{avgCount,jdbcType=DOUBLE},
+      </if>
+      <if test="countReset != null">
+        #{countReset,jdbcType=BIGINT},
+      </if>
+      <if test="maxCountReset != null">
+        #{maxCountReset,jdbcType=BIGINT},
+      </if>
+      <if test="minCountReset != null">
+        #{minCountReset,jdbcType=BIGINT},
+      </if>
+      <if test="avgCountReset != null">
+        #{avgCountReset,jdbcType=DOUBLE},
+      </if>
+      <if test="timeEnabled != null">
+        #{timeEnabled,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeDisabled != null">
+        #{timeDisabled,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeElapsed != null">
+        #{timeElapsed,jdbcType=BIGINT},
+      </if>
+      <if test="timeReset != null">
+        #{timeReset,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

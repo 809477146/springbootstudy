@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XUserSummaryByStatementLatencyMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XUserSummaryByStatementLatency">
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="total_latency" jdbcType="DECIMAL" property="totalLatency" />
+    <result column="max_latency" jdbcType="DECIMAL" property="maxLatency" />
+    <result column="lock_latency" jdbcType="DECIMAL" property="lockLatency" />
+    <result column="rows_sent" jdbcType="DECIMAL" property="rowsSent" />
+    <result column="rows_examined" jdbcType="DECIMAL" property="rowsExamined" />
+    <result column="rows_affected" jdbcType="DECIMAL" property="rowsAffected" />
+    <result column="full_scans" jdbcType="DECIMAL" property="fullScans" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XUserSummaryByStatementLatency">
+    insert into x$user_summary_by_statement_latency (user, total, total_latency, 
+      max_latency, lock_latency, rows_sent, 
+      rows_examined, rows_affected, full_scans
+      )
+    values (#{user,jdbcType=VARCHAR}, #{total,jdbcType=DECIMAL}, #{totalLatency,jdbcType=DECIMAL}, 
+      #{maxLatency,jdbcType=DECIMAL}, #{lockLatency,jdbcType=DECIMAL}, #{rowsSent,jdbcType=DECIMAL}, 
+      #{rowsExamined,jdbcType=DECIMAL}, #{rowsAffected,jdbcType=DECIMAL}, #{fullScans,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XUserSummaryByStatementLatency">
+    insert into x$user_summary_by_statement_latency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="maxLatency != null">
+        max_latency,
+      </if>
+      <if test="lockLatency != null">
+        lock_latency,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsAffected != null">
+        rows_affected,
+      </if>
+      <if test="fullScans != null">
+        full_scans,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="maxLatency != null">
+        #{maxLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="lockLatency != null">
+        #{lockLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsAffected != null">
+        #{rowsAffected,jdbcType=DECIMAL},
+      </if>
+      <if test="fullScans != null">
+        #{fullScans,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

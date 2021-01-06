@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XMemoryGlobalByCurrentBytesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XMemoryGlobalByCurrentBytes">
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="current_count" jdbcType="BIGINT" property="currentCount" />
+    <result column="current_alloc" jdbcType="BIGINT" property="currentAlloc" />
+    <result column="current_avg_alloc" jdbcType="DECIMAL" property="currentAvgAlloc" />
+    <result column="high_count" jdbcType="BIGINT" property="highCount" />
+    <result column="high_alloc" jdbcType="BIGINT" property="highAlloc" />
+    <result column="high_avg_alloc" jdbcType="DECIMAL" property="highAvgAlloc" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XMemoryGlobalByCurrentBytes">
+    insert into x$memory_global_by_current_bytes (event_name, current_count, current_alloc, 
+      current_avg_alloc, high_count, high_alloc, 
+      high_avg_alloc)
+    values (#{eventName,jdbcType=VARCHAR}, #{currentCount,jdbcType=BIGINT}, #{currentAlloc,jdbcType=BIGINT}, 
+      #{currentAvgAlloc,jdbcType=DECIMAL}, #{highCount,jdbcType=BIGINT}, #{highAlloc,jdbcType=BIGINT}, 
+      #{highAvgAlloc,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XMemoryGlobalByCurrentBytes">
+    insert into x$memory_global_by_current_bytes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="currentCount != null">
+        current_count,
+      </if>
+      <if test="currentAlloc != null">
+        current_alloc,
+      </if>
+      <if test="currentAvgAlloc != null">
+        current_avg_alloc,
+      </if>
+      <if test="highCount != null">
+        high_count,
+      </if>
+      <if test="highAlloc != null">
+        high_alloc,
+      </if>
+      <if test="highAvgAlloc != null">
+        high_avg_alloc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCount != null">
+        #{currentCount,jdbcType=BIGINT},
+      </if>
+      <if test="currentAlloc != null">
+        #{currentAlloc,jdbcType=BIGINT},
+      </if>
+      <if test="currentAvgAlloc != null">
+        #{currentAvgAlloc,jdbcType=DECIMAL},
+      </if>
+      <if test="highCount != null">
+        #{highCount,jdbcType=BIGINT},
+      </if>
+      <if test="highAlloc != null">
+        #{highAlloc,jdbcType=BIGINT},
+      </if>
+      <if test="highAvgAlloc != null">
+        #{highAvgAlloc,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

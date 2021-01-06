@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SessionConnectAttrsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SessionConnectAttrs">
+    <result column="PROCESSLIST_ID" jdbcType="INTEGER" property="processlistId" />
+    <result column="ATTR_NAME" jdbcType="VARCHAR" property="attrName" />
+    <result column="ATTR_VALUE" jdbcType="VARCHAR" property="attrValue" />
+    <result column="ORDINAL_POSITION" jdbcType="INTEGER" property="ordinalPosition" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.SessionConnectAttrs">
+    insert into session_connect_attrs (PROCESSLIST_ID, ATTR_NAME, ATTR_VALUE, 
+      ORDINAL_POSITION)
+    values (#{processlistId,jdbcType=INTEGER}, #{attrName,jdbcType=VARCHAR}, #{attrValue,jdbcType=VARCHAR}, 
+      #{ordinalPosition,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SessionConnectAttrs">
+    insert into session_connect_attrs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="processlistId != null">
+        PROCESSLIST_ID,
+      </if>
+      <if test="attrName != null">
+        ATTR_NAME,
+      </if>
+      <if test="attrValue != null">
+        ATTR_VALUE,
+      </if>
+      <if test="ordinalPosition != null">
+        ORDINAL_POSITION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="processlistId != null">
+        #{processlistId,jdbcType=INTEGER},
+      </if>
+      <if test="attrName != null">
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinalPosition != null">
+        #{ordinalPosition,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

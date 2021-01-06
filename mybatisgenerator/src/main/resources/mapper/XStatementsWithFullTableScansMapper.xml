@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XStatementsWithFullTableScansMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XStatementsWithFullTableScans">
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="exec_count" jdbcType="BIGINT" property="execCount" />
+    <result column="total_latency" jdbcType="BIGINT" property="totalLatency" />
+    <result column="no_index_used_count" jdbcType="BIGINT" property="noIndexUsedCount" />
+    <result column="no_good_index_used_count" jdbcType="BIGINT" property="noGoodIndexUsedCount" />
+    <result column="no_index_used_pct" jdbcType="DECIMAL" property="noIndexUsedPct" />
+    <result column="rows_sent" jdbcType="BIGINT" property="rowsSent" />
+    <result column="rows_examined" jdbcType="BIGINT" property="rowsExamined" />
+    <result column="rows_sent_avg" jdbcType="DECIMAL" property="rowsSentAvg" />
+    <result column="rows_examined_avg" jdbcType="DECIMAL" property="rowsExaminedAvg" />
+    <result column="first_seen" jdbcType="TIMESTAMP" property="firstSeen" />
+    <result column="last_seen" jdbcType="TIMESTAMP" property="lastSeen" />
+    <result column="digest" jdbcType="VARCHAR" property="digest" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.XStatementsWithFullTableScans">
+    <result column="query" jdbcType="LONGVARCHAR" property="query" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    query
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.XStatementsWithFullTableScans">
+    insert into x$statements_with_full_table_scans (db, exec_count, total_latency, 
+      no_index_used_count, no_good_index_used_count, no_index_used_pct, 
+      rows_sent, rows_examined, rows_sent_avg, 
+      rows_examined_avg, first_seen, last_seen, 
+      digest, query)
+    values (#{db,jdbcType=VARCHAR}, #{execCount,jdbcType=BIGINT}, #{totalLatency,jdbcType=BIGINT}, 
+      #{noIndexUsedCount,jdbcType=BIGINT}, #{noGoodIndexUsedCount,jdbcType=BIGINT}, #{noIndexUsedPct,jdbcType=DECIMAL}, 
+      #{rowsSent,jdbcType=BIGINT}, #{rowsExamined,jdbcType=BIGINT}, #{rowsSentAvg,jdbcType=DECIMAL}, 
+      #{rowsExaminedAvg,jdbcType=DECIMAL}, #{firstSeen,jdbcType=TIMESTAMP}, #{lastSeen,jdbcType=TIMESTAMP}, 
+      #{digest,jdbcType=VARCHAR}, #{query,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XStatementsWithFullTableScans">
+    insert into x$statements_with_full_table_scans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        db,
+      </if>
+      <if test="execCount != null">
+        exec_count,
+      </if>
+      <if test="totalLatency != null">
+        total_latency,
+      </if>
+      <if test="noIndexUsedCount != null">
+        no_index_used_count,
+      </if>
+      <if test="noGoodIndexUsedCount != null">
+        no_good_index_used_count,
+      </if>
+      <if test="noIndexUsedPct != null">
+        no_index_used_pct,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="rowsSentAvg != null">
+        rows_sent_avg,
+      </if>
+      <if test="rowsExaminedAvg != null">
+        rows_examined_avg,
+      </if>
+      <if test="firstSeen != null">
+        first_seen,
+      </if>
+      <if test="lastSeen != null">
+        last_seen,
+      </if>
+      <if test="digest != null">
+        digest,
+      </if>
+      <if test="query != null">
+        query,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="execCount != null">
+        #{execCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalLatency != null">
+        #{totalLatency,jdbcType=BIGINT},
+      </if>
+      <if test="noIndexUsedCount != null">
+        #{noIndexUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="noGoodIndexUsedCount != null">
+        #{noGoodIndexUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="noIndexUsedPct != null">
+        #{noIndexUsedPct,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=BIGINT},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSentAvg != null">
+        #{rowsSentAvg,jdbcType=DECIMAL},
+      </if>
+      <if test="rowsExaminedAvg != null">
+        #{rowsExaminedAvg,jdbcType=DECIMAL},
+      </if>
+      <if test="firstSeen != null">
+        #{firstSeen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSeen != null">
+        #{lastSeen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="digest != null">
+        #{digest,jdbcType=VARCHAR},
+      </if>
+      <if test="query != null">
+        #{query,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

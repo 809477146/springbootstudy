@@ -1,0 +1,15 @@
+spring:
+  mail:
+    #发送邮件服务器
+    host: smtp.qq.com
+    port: 465
+    username: 809477146@qq.com
+    #授权码
+    password: giknbnzirzydbdji
+    default-encoding: UTF-8
+    properties:
+      mail:
+        debug: true
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory

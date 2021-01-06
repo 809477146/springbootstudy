@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbFtDefaultStopwordMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbFtDefaultStopword">
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbFtDefaultStopword">
+    insert into INNODB_FT_DEFAULT_STOPWORD (value)
+    values (#{value,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbFtDefaultStopword">
+    insert into INNODB_FT_DEFAULT_STOPWORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="value != null">
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

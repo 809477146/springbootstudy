@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.NdbBinlogIndexMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.NdbBinlogIndex">
+    <id column="epoch" jdbcType="BIGINT" property="epoch" />
+    <id column="orig_server_id" jdbcType="INTEGER" property="origServerId" />
+    <id column="orig_epoch" jdbcType="BIGINT" property="origEpoch" />
+    <result column="Position" jdbcType="BIGINT" property="position" />
+    <result column="File" jdbcType="VARCHAR" property="file" />
+    <result column="inserts" jdbcType="INTEGER" property="inserts" />
+    <result column="updates" jdbcType="INTEGER" property="updates" />
+    <result column="deletes" jdbcType="INTEGER" property="deletes" />
+    <result column="schemaops" jdbcType="INTEGER" property="schemaops" />
+    <result column="gci" jdbcType="INTEGER" property="gci" />
+    <result column="next_position" jdbcType="BIGINT" property="nextPosition" />
+    <result column="next_file" jdbcType="VARCHAR" property="nextFile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    epoch, orig_server_id, orig_epoch, Position, File, inserts, updates, deletes, schemaops, 
+    gci, next_position, next_file
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.NdbBinlogIndexKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ndb_binlog_index
+    where epoch = #{epoch,jdbcType=BIGINT}
+      and orig_server_id = #{origServerId,jdbcType=INTEGER}
+      and orig_epoch = #{origEpoch,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.NdbBinlogIndexKey">
+    delete from ndb_binlog_index
+    where epoch = #{epoch,jdbcType=BIGINT}
+      and orig_server_id = #{origServerId,jdbcType=INTEGER}
+      and orig_epoch = #{origEpoch,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.NdbBinlogIndex">
+    insert into ndb_binlog_index (epoch, orig_server_id, orig_epoch, 
+      Position, File, inserts, 
+      updates, deletes, schemaops, 
+      gci, next_position, next_file
+      )
+    values (#{epoch,jdbcType=BIGINT}, #{origServerId,jdbcType=INTEGER}, #{origEpoch,jdbcType=BIGINT}, 
+      #{position,jdbcType=BIGINT}, #{file,jdbcType=VARCHAR}, #{inserts,jdbcType=INTEGER}, 
+      #{updates,jdbcType=INTEGER}, #{deletes,jdbcType=INTEGER}, #{schemaops,jdbcType=INTEGER}, 
+      #{gci,jdbcType=INTEGER}, #{nextPosition,jdbcType=BIGINT}, #{nextFile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.NdbBinlogIndex">
+    insert into ndb_binlog_index
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="epoch != null">
+        epoch,
+      </if>
+      <if test="origServerId != null">
+        orig_server_id,
+      </if>
+      <if test="origEpoch != null">
+        orig_epoch,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="file != null">
+        File,
+      </if>
+      <if test="inserts != null">
+        inserts,
+      </if>
+      <if test="updates != null">
+        updates,
+      </if>
+      <if test="deletes != null">
+        deletes,
+      </if>
+      <if test="schemaops != null">
+        schemaops,
+      </if>
+      <if test="gci != null">
+        gci,
+      </if>
+      <if test="nextPosition != null">
+        next_position,
+      </if>
+      <if test="nextFile != null">
+        next_file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="epoch != null">
+        #{epoch,jdbcType=BIGINT},
+      </if>
+      <if test="origServerId != null">
+        #{origServerId,jdbcType=INTEGER},
+      </if>
+      <if test="origEpoch != null">
+        #{origEpoch,jdbcType=BIGINT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=BIGINT},
+      </if>
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="inserts != null">
+        #{inserts,jdbcType=INTEGER},
+      </if>
+      <if test="updates != null">
+        #{updates,jdbcType=INTEGER},
+      </if>
+      <if test="deletes != null">
+        #{deletes,jdbcType=INTEGER},
+      </if>
+      <if test="schemaops != null">
+        #{schemaops,jdbcType=INTEGER},
+      </if>
+      <if test="gci != null">
+        #{gci,jdbcType=INTEGER},
+      </if>
+      <if test="nextPosition != null">
+        #{nextPosition,jdbcType=BIGINT},
+      </if>
+      <if test="nextFile != null">
+        #{nextFile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.NdbBinlogIndex">
+    update ndb_binlog_index
+    <set>
+      <if test="position != null">
+        Position = #{position,jdbcType=BIGINT},
+      </if>
+      <if test="file != null">
+        File = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="inserts != null">
+        inserts = #{inserts,jdbcType=INTEGER},
+      </if>
+      <if test="updates != null">
+        updates = #{updates,jdbcType=INTEGER},
+      </if>
+      <if test="deletes != null">
+        deletes = #{deletes,jdbcType=INTEGER},
+      </if>
+      <if test="schemaops != null">
+        schemaops = #{schemaops,jdbcType=INTEGER},
+      </if>
+      <if test="gci != null">
+        gci = #{gci,jdbcType=INTEGER},
+      </if>
+      <if test="nextPosition != null">
+        next_position = #{nextPosition,jdbcType=BIGINT},
+      </if>
+      <if test="nextFile != null">
+        next_file = #{nextFile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where epoch = #{epoch,jdbcType=BIGINT}
+      and orig_server_id = #{origServerId,jdbcType=INTEGER}
+      and orig_epoch = #{origEpoch,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.NdbBinlogIndex">
+    update ndb_binlog_index
+    set Position = #{position,jdbcType=BIGINT},
+      File = #{file,jdbcType=VARCHAR},
+      inserts = #{inserts,jdbcType=INTEGER},
+      updates = #{updates,jdbcType=INTEGER},
+      deletes = #{deletes,jdbcType=INTEGER},
+      schemaops = #{schemaops,jdbcType=INTEGER},
+      gci = #{gci,jdbcType=INTEGER},
+      next_position = #{nextPosition,jdbcType=BIGINT},
+      next_file = #{nextFile,jdbcType=VARCHAR}
+    where epoch = #{epoch,jdbcType=BIGINT}
+      and orig_server_id = #{origServerId,jdbcType=INTEGER}
+      and orig_epoch = #{origEpoch,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ProxiesPrivMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ProxiesPriv">
+    <id column="Host" jdbcType="CHAR" property="host" />
+    <id column="User" jdbcType="CHAR" property="user" />
+    <id column="Proxied_host" jdbcType="CHAR" property="proxiedHost" />
+    <id column="Proxied_user" jdbcType="CHAR" property="proxiedUser" />
+    <result column="With_grant" jdbcType="BIT" property="withGrant" />
+    <result column="Grantor" jdbcType="CHAR" property="grantor" />
+    <result column="Timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Host, User, Proxied_host, Proxied_user, With_grant, Grantor, Timestamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.ProxiesPrivKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from proxies_priv
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Proxied_host = #{proxiedHost,jdbcType=CHAR}
+      and Proxied_user = #{proxiedUser,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.ProxiesPrivKey">
+    delete from proxies_priv
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Proxied_host = #{proxiedHost,jdbcType=CHAR}
+      and Proxied_user = #{proxiedUser,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.ProxiesPriv">
+    insert into proxies_priv (Host, User, Proxied_host, 
+      Proxied_user, With_grant, Grantor, 
+      Timestamp)
+    values (#{host,jdbcType=CHAR}, #{user,jdbcType=CHAR}, #{proxiedHost,jdbcType=CHAR}, 
+      #{proxiedUser,jdbcType=CHAR}, #{withGrant,jdbcType=BIT}, #{grantor,jdbcType=CHAR}, 
+      #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ProxiesPriv">
+    insert into proxies_priv
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        Host,
+      </if>
+      <if test="user != null">
+        User,
+      </if>
+      <if test="proxiedHost != null">
+        Proxied_host,
+      </if>
+      <if test="proxiedUser != null">
+        Proxied_user,
+      </if>
+      <if test="withGrant != null">
+        With_grant,
+      </if>
+      <if test="grantor != null">
+        Grantor,
+      </if>
+      <if test="timestamp != null">
+        Timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="proxiedHost != null">
+        #{proxiedHost,jdbcType=CHAR},
+      </if>
+      <if test="proxiedUser != null">
+        #{proxiedUser,jdbcType=CHAR},
+      </if>
+      <if test="withGrant != null">
+        #{withGrant,jdbcType=BIT},
+      </if>
+      <if test="grantor != null">
+        #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.ProxiesPriv">
+    update proxies_priv
+    <set>
+      <if test="withGrant != null">
+        With_grant = #{withGrant,jdbcType=BIT},
+      </if>
+      <if test="grantor != null">
+        Grantor = #{grantor,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        Timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Proxied_host = #{proxiedHost,jdbcType=CHAR}
+      and Proxied_user = #{proxiedUser,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.ProxiesPriv">
+    update proxies_priv
+    set With_grant = #{withGrant,jdbcType=BIT},
+      Grantor = #{grantor,jdbcType=CHAR},
+      Timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+      and Proxied_host = #{proxiedHost,jdbcType=CHAR}
+      and Proxied_user = #{proxiedUser,jdbcType=CHAR}
+  </update>
+</mapper>

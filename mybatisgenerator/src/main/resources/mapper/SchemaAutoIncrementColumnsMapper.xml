@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SchemaAutoIncrementColumnsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SchemaAutoIncrementColumns">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="column_name" jdbcType="VARCHAR" property="columnName" />
+    <result column="data_type" jdbcType="VARCHAR" property="dataType" />
+    <result column="is_signed" jdbcType="INTEGER" property="isSigned" />
+    <result column="is_unsigned" jdbcType="INTEGER" property="isUnsigned" />
+    <result column="max_value" jdbcType="BIGINT" property="maxValue" />
+    <result column="auto_increment" jdbcType="BIGINT" property="autoIncrement" />
+    <result column="auto_increment_ratio" jdbcType="DECIMAL" property="autoIncrementRatio" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SchemaAutoIncrementColumns">
+    <result column="column_type" jdbcType="LONGVARCHAR" property="columnType" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    column_type
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.SchemaAutoIncrementColumns">
+    insert into schema_auto_increment_columns (table_schema, table_name, column_name, 
+      data_type, is_signed, is_unsigned, 
+      max_value, auto_increment, auto_increment_ratio, 
+      column_type)
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, 
+      #{dataType,jdbcType=VARCHAR}, #{isSigned,jdbcType=INTEGER}, #{isUnsigned,jdbcType=INTEGER}, 
+      #{maxValue,jdbcType=BIGINT}, #{autoIncrement,jdbcType=BIGINT}, #{autoIncrementRatio,jdbcType=DECIMAL}, 
+      #{columnType,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SchemaAutoIncrementColumns">
+    insert into schema_auto_increment_columns
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="columnName != null">
+        column_name,
+      </if>
+      <if test="dataType != null">
+        data_type,
+      </if>
+      <if test="isSigned != null">
+        is_signed,
+      </if>
+      <if test="isUnsigned != null">
+        is_unsigned,
+      </if>
+      <if test="maxValue != null">
+        max_value,
+      </if>
+      <if test="autoIncrement != null">
+        auto_increment,
+      </if>
+      <if test="autoIncrementRatio != null">
+        auto_increment_ratio,
+      </if>
+      <if test="columnType != null">
+        column_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSigned != null">
+        #{isSigned,jdbcType=INTEGER},
+      </if>
+      <if test="isUnsigned != null">
+        #{isUnsigned,jdbcType=INTEGER},
+      </if>
+      <if test="maxValue != null">
+        #{maxValue,jdbcType=BIGINT},
+      </if>
+      <if test="autoIncrement != null">
+        #{autoIncrement,jdbcType=BIGINT},
+      </if>
+      <if test="autoIncrementRatio != null">
+        #{autoIncrementRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="columnType != null">
+        #{columnType,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XSchemaFlattenedKeysMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XSchemaFlattenedKeys">
+    <result column="table_schema" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="index_name" jdbcType="VARCHAR" property="indexName" />
+    <result column="non_unique" jdbcType="BIGINT" property="nonUnique" />
+    <result column="subpart_exists" jdbcType="BIGINT" property="subpartExists" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.XSchemaFlattenedKeys">
+    <result column="index_columns" jdbcType="LONGVARCHAR" property="indexColumns" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    index_columns
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.XSchemaFlattenedKeys">
+    insert into x$schema_flattened_keys (table_schema, table_name, index_name, 
+      non_unique, subpart_exists, index_columns
+      )
+    values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{indexName,jdbcType=VARCHAR}, 
+      #{nonUnique,jdbcType=BIGINT}, #{subpartExists,jdbcType=BIGINT}, #{indexColumns,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XSchemaFlattenedKeys">
+    insert into x$schema_flattened_keys
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        table_schema,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="indexName != null">
+        index_name,
+      </if>
+      <if test="nonUnique != null">
+        non_unique,
+      </if>
+      <if test="subpartExists != null">
+        subpart_exists,
+      </if>
+      <if test="indexColumns != null">
+        index_columns,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexName != null">
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="nonUnique != null">
+        #{nonUnique,jdbcType=BIGINT},
+      </if>
+      <if test="subpartExists != null">
+        #{subpartExists,jdbcType=BIGINT},
+      </if>
+      <if test="indexColumns != null">
+        #{indexColumns,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

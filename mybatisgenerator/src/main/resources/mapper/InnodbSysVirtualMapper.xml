@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbSysVirtualMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbSysVirtual">
+    <result column="TABLE_ID" jdbcType="BIGINT" property="tableId" />
+    <result column="POS" jdbcType="INTEGER" property="pos" />
+    <result column="BASE_POS" jdbcType="INTEGER" property="basePos" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbSysVirtual">
+    insert into INNODB_SYS_VIRTUAL (TABLE_ID, POS, BASE_POS
+      )
+    values (#{tableId,jdbcType=BIGINT}, #{pos,jdbcType=INTEGER}, #{basePos,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbSysVirtual">
+    insert into INNODB_SYS_VIRTUAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="pos != null">
+        POS,
+      </if>
+      <if test="basePos != null">
+        BASE_POS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="pos != null">
+        #{pos,jdbcType=INTEGER},
+      </if>
+      <if test="basePos != null">
+        #{basePos,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

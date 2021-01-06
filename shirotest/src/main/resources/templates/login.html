@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--login. html 是一个普通的登录页面，在登录失败时通过一个 div 显示登录失败信息。-->
+<body>
+<div>
+    <form action="/doLogin" method="post">
+        <input type="text" name="username"><br>
+        <input type="password" name="password"><br>
+        <div th:text="${error}"></div>
+        <input type="submit" value="登录">
+    </form>
+</div>
+</body>
+</html>

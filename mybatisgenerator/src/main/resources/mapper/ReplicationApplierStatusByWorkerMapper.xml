@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ReplicationApplierStatusByWorkerMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ReplicationApplierStatusByWorker">
+    <result column="CHANNEL_NAME" jdbcType="CHAR" property="channelName" />
+    <result column="WORKER_ID" jdbcType="BIGINT" property="workerId" />
+    <result column="THREAD_ID" jdbcType="BIGINT" property="threadId" />
+    <result column="SERVICE_STATE" jdbcType="CHAR" property="serviceState" />
+    <result column="LAST_SEEN_TRANSACTION" jdbcType="CHAR" property="lastSeenTransaction" />
+    <result column="LAST_ERROR_NUMBER" jdbcType="INTEGER" property="lastErrorNumber" />
+    <result column="LAST_ERROR_MESSAGE" jdbcType="VARCHAR" property="lastErrorMessage" />
+    <result column="LAST_ERROR_TIMESTAMP" jdbcType="TIMESTAMP" property="lastErrorTimestamp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.ReplicationApplierStatusByWorker">
+    insert into replication_applier_status_by_worker (CHANNEL_NAME, WORKER_ID, THREAD_ID, 
+      SERVICE_STATE, LAST_SEEN_TRANSACTION, LAST_ERROR_NUMBER, 
+      LAST_ERROR_MESSAGE, LAST_ERROR_TIMESTAMP)
+    values (#{channelName,jdbcType=CHAR}, #{workerId,jdbcType=BIGINT}, #{threadId,jdbcType=BIGINT}, 
+      #{serviceState,jdbcType=CHAR}, #{lastSeenTransaction,jdbcType=CHAR}, #{lastErrorNumber,jdbcType=INTEGER}, 
+      #{lastErrorMessage,jdbcType=VARCHAR}, #{lastErrorTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ReplicationApplierStatusByWorker">
+    insert into replication_applier_status_by_worker
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        CHANNEL_NAME,
+      </if>
+      <if test="workerId != null">
+        WORKER_ID,
+      </if>
+      <if test="threadId != null">
+        THREAD_ID,
+      </if>
+      <if test="serviceState != null">
+        SERVICE_STATE,
+      </if>
+      <if test="lastSeenTransaction != null">
+        LAST_SEEN_TRANSACTION,
+      </if>
+      <if test="lastErrorNumber != null">
+        LAST_ERROR_NUMBER,
+      </if>
+      <if test="lastErrorMessage != null">
+        LAST_ERROR_MESSAGE,
+      </if>
+      <if test="lastErrorTimestamp != null">
+        LAST_ERROR_TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="workerId != null">
+        #{workerId,jdbcType=BIGINT},
+      </if>
+      <if test="threadId != null">
+        #{threadId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceState != null">
+        #{serviceState,jdbcType=CHAR},
+      </if>
+      <if test="lastSeenTransaction != null">
+        #{lastSeenTransaction,jdbcType=CHAR},
+      </if>
+      <if test="lastErrorNumber != null">
+        #{lastErrorNumber,jdbcType=INTEGER},
+      </if>
+      <if test="lastErrorMessage != null">
+        #{lastErrorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="lastErrorTimestamp != null">
+        #{lastErrorTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

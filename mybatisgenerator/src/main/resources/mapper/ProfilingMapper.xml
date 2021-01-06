@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ProfilingMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.Profiling">
+    <result column="QUERY_ID" jdbcType="INTEGER" property="queryId" />
+    <result column="SEQ" jdbcType="INTEGER" property="seq" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="DURATION" jdbcType="DECIMAL" property="duration" />
+    <result column="CPU_USER" jdbcType="DECIMAL" property="cpuUser" />
+    <result column="CPU_SYSTEM" jdbcType="DECIMAL" property="cpuSystem" />
+    <result column="CONTEXT_VOLUNTARY" jdbcType="INTEGER" property="contextVoluntary" />
+    <result column="CONTEXT_INVOLUNTARY" jdbcType="INTEGER" property="contextInvoluntary" />
+    <result column="BLOCK_OPS_IN" jdbcType="INTEGER" property="blockOpsIn" />
+    <result column="BLOCK_OPS_OUT" jdbcType="INTEGER" property="blockOpsOut" />
+    <result column="MESSAGES_SENT" jdbcType="INTEGER" property="messagesSent" />
+    <result column="MESSAGES_RECEIVED" jdbcType="INTEGER" property="messagesReceived" />
+    <result column="PAGE_FAULTS_MAJOR" jdbcType="INTEGER" property="pageFaultsMajor" />
+    <result column="PAGE_FAULTS_MINOR" jdbcType="INTEGER" property="pageFaultsMinor" />
+    <result column="SWAPS" jdbcType="INTEGER" property="swaps" />
+    <result column="SOURCE_FUNCTION" jdbcType="VARCHAR" property="sourceFunction" />
+    <result column="SOURCE_FILE" jdbcType="VARCHAR" property="sourceFile" />
+    <result column="SOURCE_LINE" jdbcType="INTEGER" property="sourceLine" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.Profiling">
+    insert into PROFILING (QUERY_ID, SEQ, STATE, 
+      DURATION, CPU_USER, CPU_SYSTEM, 
+      CONTEXT_VOLUNTARY, CONTEXT_INVOLUNTARY, BLOCK_OPS_IN, 
+      BLOCK_OPS_OUT, MESSAGES_SENT, MESSAGES_RECEIVED, 
+      PAGE_FAULTS_MAJOR, PAGE_FAULTS_MINOR, SWAPS, 
+      SOURCE_FUNCTION, SOURCE_FILE, SOURCE_LINE
+      )
+    values (#{queryId,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=DECIMAL}, #{cpuUser,jdbcType=DECIMAL}, #{cpuSystem,jdbcType=DECIMAL}, 
+      #{contextVoluntary,jdbcType=INTEGER}, #{contextInvoluntary,jdbcType=INTEGER}, #{blockOpsIn,jdbcType=INTEGER}, 
+      #{blockOpsOut,jdbcType=INTEGER}, #{messagesSent,jdbcType=INTEGER}, #{messagesReceived,jdbcType=INTEGER}, 
+      #{pageFaultsMajor,jdbcType=INTEGER}, #{pageFaultsMinor,jdbcType=INTEGER}, #{swaps,jdbcType=INTEGER}, 
+      #{sourceFunction,jdbcType=VARCHAR}, #{sourceFile,jdbcType=VARCHAR}, #{sourceLine,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.Profiling">
+    insert into PROFILING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="queryId != null">
+        QUERY_ID,
+      </if>
+      <if test="seq != null">
+        SEQ,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="duration != null">
+        DURATION,
+      </if>
+      <if test="cpuUser != null">
+        CPU_USER,
+      </if>
+      <if test="cpuSystem != null">
+        CPU_SYSTEM,
+      </if>
+      <if test="contextVoluntary != null">
+        CONTEXT_VOLUNTARY,
+      </if>
+      <if test="contextInvoluntary != null">
+        CONTEXT_INVOLUNTARY,
+      </if>
+      <if test="blockOpsIn != null">
+        BLOCK_OPS_IN,
+      </if>
+      <if test="blockOpsOut != null">
+        BLOCK_OPS_OUT,
+      </if>
+      <if test="messagesSent != null">
+        MESSAGES_SENT,
+      </if>
+      <if test="messagesReceived != null">
+        MESSAGES_RECEIVED,
+      </if>
+      <if test="pageFaultsMajor != null">
+        PAGE_FAULTS_MAJOR,
+      </if>
+      <if test="pageFaultsMinor != null">
+        PAGE_FAULTS_MINOR,
+      </if>
+      <if test="swaps != null">
+        SWAPS,
+      </if>
+      <if test="sourceFunction != null">
+        SOURCE_FUNCTION,
+      </if>
+      <if test="sourceFile != null">
+        SOURCE_FILE,
+      </if>
+      <if test="sourceLine != null">
+        SOURCE_LINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="queryId != null">
+        #{queryId,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="cpuUser != null">
+        #{cpuUser,jdbcType=DECIMAL},
+      </if>
+      <if test="cpuSystem != null">
+        #{cpuSystem,jdbcType=DECIMAL},
+      </if>
+      <if test="contextVoluntary != null">
+        #{contextVoluntary,jdbcType=INTEGER},
+      </if>
+      <if test="contextInvoluntary != null">
+        #{contextInvoluntary,jdbcType=INTEGER},
+      </if>
+      <if test="blockOpsIn != null">
+        #{blockOpsIn,jdbcType=INTEGER},
+      </if>
+      <if test="blockOpsOut != null">
+        #{blockOpsOut,jdbcType=INTEGER},
+      </if>
+      <if test="messagesSent != null">
+        #{messagesSent,jdbcType=INTEGER},
+      </if>
+      <if test="messagesReceived != null">
+        #{messagesReceived,jdbcType=INTEGER},
+      </if>
+      <if test="pageFaultsMajor != null">
+        #{pageFaultsMajor,jdbcType=INTEGER},
+      </if>
+      <if test="pageFaultsMinor != null">
+        #{pageFaultsMinor,jdbcType=INTEGER},
+      </if>
+      <if test="swaps != null">
+        #{swaps,jdbcType=INTEGER},
+      </if>
+      <if test="sourceFunction != null">
+        #{sourceFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceFile != null">
+        #{sourceFile,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceLine != null">
+        #{sourceLine,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

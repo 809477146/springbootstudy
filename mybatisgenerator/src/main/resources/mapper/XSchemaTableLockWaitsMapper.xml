@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XSchemaTableLockWaitsMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XSchemaTableLockWaits">
+    <result column="object_schema" jdbcType="VARCHAR" property="objectSchema" />
+    <result column="object_name" jdbcType="VARCHAR" property="objectName" />
+    <result column="waiting_thread_id" jdbcType="BIGINT" property="waitingThreadId" />
+    <result column="waiting_pid" jdbcType="BIGINT" property="waitingPid" />
+    <result column="waiting_lock_type" jdbcType="VARCHAR" property="waitingLockType" />
+    <result column="waiting_lock_duration" jdbcType="VARCHAR" property="waitingLockDuration" />
+    <result column="waiting_query_secs" jdbcType="BIGINT" property="waitingQuerySecs" />
+    <result column="waiting_query_rows_affected" jdbcType="BIGINT" property="waitingQueryRowsAffected" />
+    <result column="waiting_query_rows_examined" jdbcType="BIGINT" property="waitingQueryRowsExamined" />
+    <result column="blocking_thread_id" jdbcType="BIGINT" property="blockingThreadId" />
+    <result column="blocking_pid" jdbcType="BIGINT" property="blockingPid" />
+    <result column="blocking_lock_type" jdbcType="VARCHAR" property="blockingLockType" />
+    <result column="blocking_lock_duration" jdbcType="VARCHAR" property="blockingLockDuration" />
+    <result column="sql_kill_blocking_query" jdbcType="VARCHAR" property="sqlKillBlockingQuery" />
+    <result column="sql_kill_blocking_connection" jdbcType="VARCHAR" property="sqlKillBlockingConnection" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.XSchemaTableLockWaitsWithBLOBs">
+    <result column="waiting_account" jdbcType="LONGVARCHAR" property="waitingAccount" />
+    <result column="waiting_query" jdbcType="LONGVARCHAR" property="waitingQuery" />
+    <result column="blocking_account" jdbcType="LONGVARCHAR" property="blockingAccount" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    waiting_account, waiting_query, blocking_account
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.XSchemaTableLockWaitsWithBLOBs">
+    insert into x$schema_table_lock_waits (object_schema, object_name, waiting_thread_id, 
+      waiting_pid, waiting_lock_type, waiting_lock_duration, 
+      waiting_query_secs, waiting_query_rows_affected, 
+      waiting_query_rows_examined, blocking_thread_id, 
+      blocking_pid, blocking_lock_type, blocking_lock_duration, 
+      sql_kill_blocking_query, sql_kill_blocking_connection, 
+      waiting_account, waiting_query, blocking_account
+      )
+    values (#{objectSchema,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, #{waitingThreadId,jdbcType=BIGINT}, 
+      #{waitingPid,jdbcType=BIGINT}, #{waitingLockType,jdbcType=VARCHAR}, #{waitingLockDuration,jdbcType=VARCHAR}, 
+      #{waitingQuerySecs,jdbcType=BIGINT}, #{waitingQueryRowsAffected,jdbcType=BIGINT}, 
+      #{waitingQueryRowsExamined,jdbcType=BIGINT}, #{blockingThreadId,jdbcType=BIGINT}, 
+      #{blockingPid,jdbcType=BIGINT}, #{blockingLockType,jdbcType=VARCHAR}, #{blockingLockDuration,jdbcType=VARCHAR}, 
+      #{sqlKillBlockingQuery,jdbcType=VARCHAR}, #{sqlKillBlockingConnection,jdbcType=VARCHAR}, 
+      #{waitingAccount,jdbcType=LONGVARCHAR}, #{waitingQuery,jdbcType=LONGVARCHAR}, #{blockingAccount,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XSchemaTableLockWaitsWithBLOBs">
+    insert into x$schema_table_lock_waits
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectSchema != null">
+        object_schema,
+      </if>
+      <if test="objectName != null">
+        object_name,
+      </if>
+      <if test="waitingThreadId != null">
+        waiting_thread_id,
+      </if>
+      <if test="waitingPid != null">
+        waiting_pid,
+      </if>
+      <if test="waitingLockType != null">
+        waiting_lock_type,
+      </if>
+      <if test="waitingLockDuration != null">
+        waiting_lock_duration,
+      </if>
+      <if test="waitingQuerySecs != null">
+        waiting_query_secs,
+      </if>
+      <if test="waitingQueryRowsAffected != null">
+        waiting_query_rows_affected,
+      </if>
+      <if test="waitingQueryRowsExamined != null">
+        waiting_query_rows_examined,
+      </if>
+      <if test="blockingThreadId != null">
+        blocking_thread_id,
+      </if>
+      <if test="blockingPid != null">
+        blocking_pid,
+      </if>
+      <if test="blockingLockType != null">
+        blocking_lock_type,
+      </if>
+      <if test="blockingLockDuration != null">
+        blocking_lock_duration,
+      </if>
+      <if test="sqlKillBlockingQuery != null">
+        sql_kill_blocking_query,
+      </if>
+      <if test="sqlKillBlockingConnection != null">
+        sql_kill_blocking_connection,
+      </if>
+      <if test="waitingAccount != null">
+        waiting_account,
+      </if>
+      <if test="waitingQuery != null">
+        waiting_query,
+      </if>
+      <if test="blockingAccount != null">
+        blocking_account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectSchema != null">
+        #{objectSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="waitingThreadId != null">
+        #{waitingThreadId,jdbcType=BIGINT},
+      </if>
+      <if test="waitingPid != null">
+        #{waitingPid,jdbcType=BIGINT},
+      </if>
+      <if test="waitingLockType != null">
+        #{waitingLockType,jdbcType=VARCHAR},
+      </if>
+      <if test="waitingLockDuration != null">
+        #{waitingLockDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="waitingQuerySecs != null">
+        #{waitingQuerySecs,jdbcType=BIGINT},
+      </if>
+      <if test="waitingQueryRowsAffected != null">
+        #{waitingQueryRowsAffected,jdbcType=BIGINT},
+      </if>
+      <if test="waitingQueryRowsExamined != null">
+        #{waitingQueryRowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="blockingThreadId != null">
+        #{blockingThreadId,jdbcType=BIGINT},
+      </if>
+      <if test="blockingPid != null">
+        #{blockingPid,jdbcType=BIGINT},
+      </if>
+      <if test="blockingLockType != null">
+        #{blockingLockType,jdbcType=VARCHAR},
+      </if>
+      <if test="blockingLockDuration != null">
+        #{blockingLockDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlKillBlockingQuery != null">
+        #{sqlKillBlockingQuery,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlKillBlockingConnection != null">
+        #{sqlKillBlockingConnection,jdbcType=VARCHAR},
+      </if>
+      <if test="waitingAccount != null">
+        #{waitingAccount,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="waitingQuery != null">
+        #{waitingQuery,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="blockingAccount != null">
+        #{blockingAccount,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.XUserSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.XUserSummary">
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="statements" jdbcType="DECIMAL" property="statements" />
+    <result column="statement_latency" jdbcType="DECIMAL" property="statementLatency" />
+    <result column="statement_avg_latency" jdbcType="DECIMAL" property="statementAvgLatency" />
+    <result column="table_scans" jdbcType="DECIMAL" property="tableScans" />
+    <result column="file_ios" jdbcType="DECIMAL" property="fileIos" />
+    <result column="file_io_latency" jdbcType="DECIMAL" property="fileIoLatency" />
+    <result column="current_connections" jdbcType="DECIMAL" property="currentConnections" />
+    <result column="total_connections" jdbcType="DECIMAL" property="totalConnections" />
+    <result column="unique_hosts" jdbcType="BIGINT" property="uniqueHosts" />
+    <result column="current_memory" jdbcType="DECIMAL" property="currentMemory" />
+    <result column="total_memory_allocated" jdbcType="DECIMAL" property="totalMemoryAllocated" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.XUserSummary">
+    insert into x$user_summary (user, statements, statement_latency, 
+      statement_avg_latency, table_scans, file_ios, 
+      file_io_latency, current_connections, total_connections, 
+      unique_hosts, current_memory, total_memory_allocated
+      )
+    values (#{user,jdbcType=VARCHAR}, #{statements,jdbcType=DECIMAL}, #{statementLatency,jdbcType=DECIMAL}, 
+      #{statementAvgLatency,jdbcType=DECIMAL}, #{tableScans,jdbcType=DECIMAL}, #{fileIos,jdbcType=DECIMAL}, 
+      #{fileIoLatency,jdbcType=DECIMAL}, #{currentConnections,jdbcType=DECIMAL}, #{totalConnections,jdbcType=DECIMAL}, 
+      #{uniqueHosts,jdbcType=BIGINT}, #{currentMemory,jdbcType=DECIMAL}, #{totalMemoryAllocated,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.XUserSummary">
+    insert into x$user_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        user,
+      </if>
+      <if test="statements != null">
+        statements,
+      </if>
+      <if test="statementLatency != null">
+        statement_latency,
+      </if>
+      <if test="statementAvgLatency != null">
+        statement_avg_latency,
+      </if>
+      <if test="tableScans != null">
+        table_scans,
+      </if>
+      <if test="fileIos != null">
+        file_ios,
+      </if>
+      <if test="fileIoLatency != null">
+        file_io_latency,
+      </if>
+      <if test="currentConnections != null">
+        current_connections,
+      </if>
+      <if test="totalConnections != null">
+        total_connections,
+      </if>
+      <if test="uniqueHosts != null">
+        unique_hosts,
+      </if>
+      <if test="currentMemory != null">
+        current_memory,
+      </if>
+      <if test="totalMemoryAllocated != null">
+        total_memory_allocated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="statements != null">
+        #{statements,jdbcType=DECIMAL},
+      </if>
+      <if test="statementLatency != null">
+        #{statementLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="statementAvgLatency != null">
+        #{statementAvgLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="tableScans != null">
+        #{tableScans,jdbcType=DECIMAL},
+      </if>
+      <if test="fileIos != null">
+        #{fileIos,jdbcType=DECIMAL},
+      </if>
+      <if test="fileIoLatency != null">
+        #{fileIoLatency,jdbcType=DECIMAL},
+      </if>
+      <if test="currentConnections != null">
+        #{currentConnections,jdbcType=DECIMAL},
+      </if>
+      <if test="totalConnections != null">
+        #{totalConnections,jdbcType=DECIMAL},
+      </if>
+      <if test="uniqueHosts != null">
+        #{uniqueHosts,jdbcType=BIGINT},
+      </if>
+      <if test="currentMemory != null">
+        #{currentMemory,jdbcType=DECIMAL},
+      </if>
+      <if test="totalMemoryAllocated != null">
+        #{totalMemoryAllocated,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

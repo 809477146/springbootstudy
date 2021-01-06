@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.SlowLogMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.SlowLog">
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="query_time" jdbcType="TIME" property="queryTime" />
+    <result column="lock_time" jdbcType="TIME" property="lockTime" />
+    <result column="rows_sent" jdbcType="INTEGER" property="rowsSent" />
+    <result column="rows_examined" jdbcType="INTEGER" property="rowsExamined" />
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="last_insert_id" jdbcType="INTEGER" property="lastInsertId" />
+    <result column="insert_id" jdbcType="INTEGER" property="insertId" />
+    <result column="server_id" jdbcType="INTEGER" property="serverId" />
+    <result column="thread_id" jdbcType="BIGINT" property="threadId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sz.model.SlowLogWithBLOBs">
+    <result column="user_host" jdbcType="LONGVARCHAR" property="userHost" />
+    <result column="sql_text" jdbcType="LONGVARBINARY" property="sqlText" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    user_host, sql_text
+  </sql>
+  <insert id="insert" parameterType="com.sz.model.SlowLogWithBLOBs">
+    insert into slow_log (start_time, query_time, lock_time, 
+      rows_sent, rows_examined, db, 
+      last_insert_id, insert_id, server_id, 
+      thread_id, user_host, sql_text
+      )
+    values (#{startTime,jdbcType=TIMESTAMP}, #{queryTime,jdbcType=TIME}, #{lockTime,jdbcType=TIME}, 
+      #{rowsSent,jdbcType=INTEGER}, #{rowsExamined,jdbcType=INTEGER}, #{db,jdbcType=VARCHAR}, 
+      #{lastInsertId,jdbcType=INTEGER}, #{insertId,jdbcType=INTEGER}, #{serverId,jdbcType=INTEGER}, 
+      #{threadId,jdbcType=BIGINT}, #{userHost,jdbcType=LONGVARCHAR}, #{sqlText,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.SlowLogWithBLOBs">
+    insert into slow_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="queryTime != null">
+        query_time,
+      </if>
+      <if test="lockTime != null">
+        lock_time,
+      </if>
+      <if test="rowsSent != null">
+        rows_sent,
+      </if>
+      <if test="rowsExamined != null">
+        rows_examined,
+      </if>
+      <if test="db != null">
+        db,
+      </if>
+      <if test="lastInsertId != null">
+        last_insert_id,
+      </if>
+      <if test="insertId != null">
+        insert_id,
+      </if>
+      <if test="serverId != null">
+        server_id,
+      </if>
+      <if test="threadId != null">
+        thread_id,
+      </if>
+      <if test="userHost != null">
+        user_host,
+      </if>
+      <if test="sqlText != null">
+        sql_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="queryTime != null">
+        #{queryTime,jdbcType=TIME},
+      </if>
+      <if test="lockTime != null">
+        #{lockTime,jdbcType=TIME},
+      </if>
+      <if test="rowsSent != null">
+        #{rowsSent,jdbcType=INTEGER},
+      </if>
+      <if test="rowsExamined != null">
+        #{rowsExamined,jdbcType=INTEGER},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="lastInsertId != null">
+        #{lastInsertId,jdbcType=INTEGER},
+      </if>
+      <if test="insertId != null">
+        #{insertId,jdbcType=INTEGER},
+      </if>
+      <if test="serverId != null">
+        #{serverId,jdbcType=INTEGER},
+      </if>
+      <if test="threadId != null">
+        #{threadId,jdbcType=BIGINT},
+      </if>
+      <if test="userHost != null">
+        #{userHost,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sqlText != null">
+        #{sqlText,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

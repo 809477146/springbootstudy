@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TimeZoneTransitionMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TimeZoneTransition">
+    <id column="Time_zone_id" jdbcType="INTEGER" property="timeZoneId" />
+    <id column="Transition_time" jdbcType="BIGINT" property="transitionTime" />
+    <result column="Transition_type_id" jdbcType="INTEGER" property="transitionTypeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Time_zone_id, Transition_time, Transition_type_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sz.model.TimeZoneTransitionKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from time_zone_transition
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_time = #{transitionTime,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sz.model.TimeZoneTransitionKey">
+    delete from time_zone_transition
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_time = #{transitionTime,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sz.model.TimeZoneTransition">
+    insert into time_zone_transition (Time_zone_id, Transition_time, Transition_type_id
+      )
+    values (#{timeZoneId,jdbcType=INTEGER}, #{transitionTime,jdbcType=BIGINT}, #{transitionTypeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TimeZoneTransition">
+    insert into time_zone_transition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        Time_zone_id,
+      </if>
+      <if test="transitionTime != null">
+        Transition_time,
+      </if>
+      <if test="transitionTypeId != null">
+        Transition_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        #{timeZoneId,jdbcType=INTEGER},
+      </if>
+      <if test="transitionTime != null">
+        #{transitionTime,jdbcType=BIGINT},
+      </if>
+      <if test="transitionTypeId != null">
+        #{transitionTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sz.model.TimeZoneTransition">
+    update time_zone_transition
+    <set>
+      <if test="transitionTypeId != null">
+        Transition_type_id = #{transitionTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_time = #{transitionTime,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sz.model.TimeZoneTransition">
+    update time_zone_transition
+    set Transition_type_id = #{transitionTypeId,jdbcType=INTEGER}
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+      and Transition_time = #{transitionTime,jdbcType=BIGINT}
+  </update>
+</mapper>

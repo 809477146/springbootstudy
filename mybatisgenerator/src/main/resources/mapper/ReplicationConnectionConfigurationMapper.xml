@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.ReplicationConnectionConfigurationMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.ReplicationConnectionConfiguration">
+    <result column="CHANNEL_NAME" jdbcType="CHAR" property="channelName" />
+    <result column="HOST" jdbcType="CHAR" property="host" />
+    <result column="PORT" jdbcType="INTEGER" property="port" />
+    <result column="USER" jdbcType="CHAR" property="user" />
+    <result column="NETWORK_INTERFACE" jdbcType="CHAR" property="networkInterface" />
+    <result column="AUTO_POSITION" jdbcType="CHAR" property="autoPosition" />
+    <result column="SSL_ALLOWED" jdbcType="CHAR" property="sslAllowed" />
+    <result column="SSL_CA_FILE" jdbcType="VARCHAR" property="sslCaFile" />
+    <result column="SSL_CA_PATH" jdbcType="VARCHAR" property="sslCaPath" />
+    <result column="SSL_CERTIFICATE" jdbcType="VARCHAR" property="sslCertificate" />
+    <result column="SSL_CIPHER" jdbcType="VARCHAR" property="sslCipher" />
+    <result column="SSL_KEY" jdbcType="VARCHAR" property="sslKey" />
+    <result column="SSL_VERIFY_SERVER_CERTIFICATE" jdbcType="CHAR" property="sslVerifyServerCertificate" />
+    <result column="SSL_CRL_FILE" jdbcType="VARCHAR" property="sslCrlFile" />
+    <result column="SSL_CRL_PATH" jdbcType="VARCHAR" property="sslCrlPath" />
+    <result column="CONNECTION_RETRY_INTERVAL" jdbcType="INTEGER" property="connectionRetryInterval" />
+    <result column="CONNECTION_RETRY_COUNT" jdbcType="BIGINT" property="connectionRetryCount" />
+    <result column="HEARTBEAT_INTERVAL" jdbcType="DOUBLE" property="heartbeatInterval" />
+    <result column="TLS_VERSION" jdbcType="VARCHAR" property="tlsVersion" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.ReplicationConnectionConfiguration">
+    insert into replication_connection_configuration (CHANNEL_NAME, HOST, PORT, 
+      USER, NETWORK_INTERFACE, AUTO_POSITION, 
+      SSL_ALLOWED, SSL_CA_FILE, SSL_CA_PATH, 
+      SSL_CERTIFICATE, SSL_CIPHER, SSL_KEY, 
+      SSL_VERIFY_SERVER_CERTIFICATE, SSL_CRL_FILE, SSL_CRL_PATH, 
+      CONNECTION_RETRY_INTERVAL, CONNECTION_RETRY_COUNT, 
+      HEARTBEAT_INTERVAL, TLS_VERSION)
+    values (#{channelName,jdbcType=CHAR}, #{host,jdbcType=CHAR}, #{port,jdbcType=INTEGER}, 
+      #{user,jdbcType=CHAR}, #{networkInterface,jdbcType=CHAR}, #{autoPosition,jdbcType=CHAR}, 
+      #{sslAllowed,jdbcType=CHAR}, #{sslCaFile,jdbcType=VARCHAR}, #{sslCaPath,jdbcType=VARCHAR}, 
+      #{sslCertificate,jdbcType=VARCHAR}, #{sslCipher,jdbcType=VARCHAR}, #{sslKey,jdbcType=VARCHAR}, 
+      #{sslVerifyServerCertificate,jdbcType=CHAR}, #{sslCrlFile,jdbcType=VARCHAR}, #{sslCrlPath,jdbcType=VARCHAR}, 
+      #{connectionRetryInterval,jdbcType=INTEGER}, #{connectionRetryCount,jdbcType=BIGINT}, 
+      #{heartbeatInterval,jdbcType=DOUBLE}, #{tlsVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.ReplicationConnectionConfiguration">
+    insert into replication_connection_configuration
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        CHANNEL_NAME,
+      </if>
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="port != null">
+        PORT,
+      </if>
+      <if test="user != null">
+        USER,
+      </if>
+      <if test="networkInterface != null">
+        NETWORK_INTERFACE,
+      </if>
+      <if test="autoPosition != null">
+        AUTO_POSITION,
+      </if>
+      <if test="sslAllowed != null">
+        SSL_ALLOWED,
+      </if>
+      <if test="sslCaFile != null">
+        SSL_CA_FILE,
+      </if>
+      <if test="sslCaPath != null">
+        SSL_CA_PATH,
+      </if>
+      <if test="sslCertificate != null">
+        SSL_CERTIFICATE,
+      </if>
+      <if test="sslCipher != null">
+        SSL_CIPHER,
+      </if>
+      <if test="sslKey != null">
+        SSL_KEY,
+      </if>
+      <if test="sslVerifyServerCertificate != null">
+        SSL_VERIFY_SERVER_CERTIFICATE,
+      </if>
+      <if test="sslCrlFile != null">
+        SSL_CRL_FILE,
+      </if>
+      <if test="sslCrlPath != null">
+        SSL_CRL_PATH,
+      </if>
+      <if test="connectionRetryInterval != null">
+        CONNECTION_RETRY_INTERVAL,
+      </if>
+      <if test="connectionRetryCount != null">
+        CONNECTION_RETRY_COUNT,
+      </if>
+      <if test="heartbeatInterval != null">
+        HEARTBEAT_INTERVAL,
+      </if>
+      <if test="tlsVersion != null">
+        TLS_VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=CHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="networkInterface != null">
+        #{networkInterface,jdbcType=CHAR},
+      </if>
+      <if test="autoPosition != null">
+        #{autoPosition,jdbcType=CHAR},
+      </if>
+      <if test="sslAllowed != null">
+        #{sslAllowed,jdbcType=CHAR},
+      </if>
+      <if test="sslCaFile != null">
+        #{sslCaFile,jdbcType=VARCHAR},
+      </if>
+      <if test="sslCaPath != null">
+        #{sslCaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sslCertificate != null">
+        #{sslCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="sslCipher != null">
+        #{sslCipher,jdbcType=VARCHAR},
+      </if>
+      <if test="sslKey != null">
+        #{sslKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sslVerifyServerCertificate != null">
+        #{sslVerifyServerCertificate,jdbcType=CHAR},
+      </if>
+      <if test="sslCrlFile != null">
+        #{sslCrlFile,jdbcType=VARCHAR},
+      </if>
+      <if test="sslCrlPath != null">
+        #{sslCrlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="connectionRetryInterval != null">
+        #{connectionRetryInterval,jdbcType=INTEGER},
+      </if>
+      <if test="connectionRetryCount != null">
+        #{connectionRetryCount,jdbcType=BIGINT},
+      </if>
+      <if test="heartbeatInterval != null">
+        #{heartbeatInterval,jdbcType=DOUBLE},
+      </if>
+      <if test="tlsVersion != null">
+        #{tlsVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

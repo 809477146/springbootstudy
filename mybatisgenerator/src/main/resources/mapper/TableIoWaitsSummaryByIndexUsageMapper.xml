@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.TableIoWaitsSummaryByIndexUsageMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.TableIoWaitsSummaryByIndexUsage">
+    <result column="OBJECT_TYPE" jdbcType="VARCHAR" property="objectType" />
+    <result column="OBJECT_SCHEMA" jdbcType="VARCHAR" property="objectSchema" />
+    <result column="OBJECT_NAME" jdbcType="VARCHAR" property="objectName" />
+    <result column="INDEX_NAME" jdbcType="VARCHAR" property="indexName" />
+    <result column="COUNT_STAR" jdbcType="BIGINT" property="countStar" />
+    <result column="SUM_TIMER_WAIT" jdbcType="BIGINT" property="sumTimerWait" />
+    <result column="MIN_TIMER_WAIT" jdbcType="BIGINT" property="minTimerWait" />
+    <result column="AVG_TIMER_WAIT" jdbcType="BIGINT" property="avgTimerWait" />
+    <result column="MAX_TIMER_WAIT" jdbcType="BIGINT" property="maxTimerWait" />
+    <result column="COUNT_READ" jdbcType="BIGINT" property="countRead" />
+    <result column="SUM_TIMER_READ" jdbcType="BIGINT" property="sumTimerRead" />
+    <result column="MIN_TIMER_READ" jdbcType="BIGINT" property="minTimerRead" />
+    <result column="AVG_TIMER_READ" jdbcType="BIGINT" property="avgTimerRead" />
+    <result column="MAX_TIMER_READ" jdbcType="BIGINT" property="maxTimerRead" />
+    <result column="COUNT_WRITE" jdbcType="BIGINT" property="countWrite" />
+    <result column="SUM_TIMER_WRITE" jdbcType="BIGINT" property="sumTimerWrite" />
+    <result column="MIN_TIMER_WRITE" jdbcType="BIGINT" property="minTimerWrite" />
+    <result column="AVG_TIMER_WRITE" jdbcType="BIGINT" property="avgTimerWrite" />
+    <result column="MAX_TIMER_WRITE" jdbcType="BIGINT" property="maxTimerWrite" />
+    <result column="COUNT_FETCH" jdbcType="BIGINT" property="countFetch" />
+    <result column="SUM_TIMER_FETCH" jdbcType="BIGINT" property="sumTimerFetch" />
+    <result column="MIN_TIMER_FETCH" jdbcType="BIGINT" property="minTimerFetch" />
+    <result column="AVG_TIMER_FETCH" jdbcType="BIGINT" property="avgTimerFetch" />
+    <result column="MAX_TIMER_FETCH" jdbcType="BIGINT" property="maxTimerFetch" />
+    <result column="COUNT_INSERT" jdbcType="BIGINT" property="countInsert" />
+    <result column="SUM_TIMER_INSERT" jdbcType="BIGINT" property="sumTimerInsert" />
+    <result column="MIN_TIMER_INSERT" jdbcType="BIGINT" property="minTimerInsert" />
+    <result column="AVG_TIMER_INSERT" jdbcType="BIGINT" property="avgTimerInsert" />
+    <result column="MAX_TIMER_INSERT" jdbcType="BIGINT" property="maxTimerInsert" />
+    <result column="COUNT_UPDATE" jdbcType="BIGINT" property="countUpdate" />
+    <result column="SUM_TIMER_UPDATE" jdbcType="BIGINT" property="sumTimerUpdate" />
+    <result column="MIN_TIMER_UPDATE" jdbcType="BIGINT" property="minTimerUpdate" />
+    <result column="AVG_TIMER_UPDATE" jdbcType="BIGINT" property="avgTimerUpdate" />
+    <result column="MAX_TIMER_UPDATE" jdbcType="BIGINT" property="maxTimerUpdate" />
+    <result column="COUNT_DELETE" jdbcType="BIGINT" property="countDelete" />
+    <result column="SUM_TIMER_DELETE" jdbcType="BIGINT" property="sumTimerDelete" />
+    <result column="MIN_TIMER_DELETE" jdbcType="BIGINT" property="minTimerDelete" />
+    <result column="AVG_TIMER_DELETE" jdbcType="BIGINT" property="avgTimerDelete" />
+    <result column="MAX_TIMER_DELETE" jdbcType="BIGINT" property="maxTimerDelete" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.TableIoWaitsSummaryByIndexUsage">
+    insert into table_io_waits_summary_by_index_usage (OBJECT_TYPE, OBJECT_SCHEMA, OBJECT_NAME, 
+      INDEX_NAME, COUNT_STAR, SUM_TIMER_WAIT, 
+      MIN_TIMER_WAIT, AVG_TIMER_WAIT, MAX_TIMER_WAIT, 
+      COUNT_READ, SUM_TIMER_READ, MIN_TIMER_READ, 
+      AVG_TIMER_READ, MAX_TIMER_READ, COUNT_WRITE, 
+      SUM_TIMER_WRITE, MIN_TIMER_WRITE, AVG_TIMER_WRITE, 
+      MAX_TIMER_WRITE, COUNT_FETCH, SUM_TIMER_FETCH, 
+      MIN_TIMER_FETCH, AVG_TIMER_FETCH, MAX_TIMER_FETCH, 
+      COUNT_INSERT, SUM_TIMER_INSERT, MIN_TIMER_INSERT, 
+      AVG_TIMER_INSERT, MAX_TIMER_INSERT, COUNT_UPDATE, 
+      SUM_TIMER_UPDATE, MIN_TIMER_UPDATE, AVG_TIMER_UPDATE, 
+      MAX_TIMER_UPDATE, COUNT_DELETE, SUM_TIMER_DELETE, 
+      MIN_TIMER_DELETE, AVG_TIMER_DELETE, MAX_TIMER_DELETE
+      )
+    values (#{objectType,jdbcType=VARCHAR}, #{objectSchema,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, 
+      #{indexName,jdbcType=VARCHAR}, #{countStar,jdbcType=BIGINT}, #{sumTimerWait,jdbcType=BIGINT}, 
+      #{minTimerWait,jdbcType=BIGINT}, #{avgTimerWait,jdbcType=BIGINT}, #{maxTimerWait,jdbcType=BIGINT}, 
+      #{countRead,jdbcType=BIGINT}, #{sumTimerRead,jdbcType=BIGINT}, #{minTimerRead,jdbcType=BIGINT}, 
+      #{avgTimerRead,jdbcType=BIGINT}, #{maxTimerRead,jdbcType=BIGINT}, #{countWrite,jdbcType=BIGINT}, 
+      #{sumTimerWrite,jdbcType=BIGINT}, #{minTimerWrite,jdbcType=BIGINT}, #{avgTimerWrite,jdbcType=BIGINT}, 
+      #{maxTimerWrite,jdbcType=BIGINT}, #{countFetch,jdbcType=BIGINT}, #{sumTimerFetch,jdbcType=BIGINT}, 
+      #{minTimerFetch,jdbcType=BIGINT}, #{avgTimerFetch,jdbcType=BIGINT}, #{maxTimerFetch,jdbcType=BIGINT}, 
+      #{countInsert,jdbcType=BIGINT}, #{sumTimerInsert,jdbcType=BIGINT}, #{minTimerInsert,jdbcType=BIGINT}, 
+      #{avgTimerInsert,jdbcType=BIGINT}, #{maxTimerInsert,jdbcType=BIGINT}, #{countUpdate,jdbcType=BIGINT}, 
+      #{sumTimerUpdate,jdbcType=BIGINT}, #{minTimerUpdate,jdbcType=BIGINT}, #{avgTimerUpdate,jdbcType=BIGINT}, 
+      #{maxTimerUpdate,jdbcType=BIGINT}, #{countDelete,jdbcType=BIGINT}, #{sumTimerDelete,jdbcType=BIGINT}, 
+      #{minTimerDelete,jdbcType=BIGINT}, #{avgTimerDelete,jdbcType=BIGINT}, #{maxTimerDelete,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.TableIoWaitsSummaryByIndexUsage">
+    insert into table_io_waits_summary_by_index_usage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        OBJECT_TYPE,
+      </if>
+      <if test="objectSchema != null">
+        OBJECT_SCHEMA,
+      </if>
+      <if test="objectName != null">
+        OBJECT_NAME,
+      </if>
+      <if test="indexName != null">
+        INDEX_NAME,
+      </if>
+      <if test="countStar != null">
+        COUNT_STAR,
+      </if>
+      <if test="sumTimerWait != null">
+        SUM_TIMER_WAIT,
+      </if>
+      <if test="minTimerWait != null">
+        MIN_TIMER_WAIT,
+      </if>
+      <if test="avgTimerWait != null">
+        AVG_TIMER_WAIT,
+      </if>
+      <if test="maxTimerWait != null">
+        MAX_TIMER_WAIT,
+      </if>
+      <if test="countRead != null">
+        COUNT_READ,
+      </if>
+      <if test="sumTimerRead != null">
+        SUM_TIMER_READ,
+      </if>
+      <if test="minTimerRead != null">
+        MIN_TIMER_READ,
+      </if>
+      <if test="avgTimerRead != null">
+        AVG_TIMER_READ,
+      </if>
+      <if test="maxTimerRead != null">
+        MAX_TIMER_READ,
+      </if>
+      <if test="countWrite != null">
+        COUNT_WRITE,
+      </if>
+      <if test="sumTimerWrite != null">
+        SUM_TIMER_WRITE,
+      </if>
+      <if test="minTimerWrite != null">
+        MIN_TIMER_WRITE,
+      </if>
+      <if test="avgTimerWrite != null">
+        AVG_TIMER_WRITE,
+      </if>
+      <if test="maxTimerWrite != null">
+        MAX_TIMER_WRITE,
+      </if>
+      <if test="countFetch != null">
+        COUNT_FETCH,
+      </if>
+      <if test="sumTimerFetch != null">
+        SUM_TIMER_FETCH,
+      </if>
+      <if test="minTimerFetch != null">
+        MIN_TIMER_FETCH,
+      </if>
+      <if test="avgTimerFetch != null">
+        AVG_TIMER_FETCH,
+      </if>
+      <if test="maxTimerFetch != null">
+        MAX_TIMER_FETCH,
+      </if>
+      <if test="countInsert != null">
+        COUNT_INSERT,
+      </if>
+      <if test="sumTimerInsert != null">
+        SUM_TIMER_INSERT,
+      </if>
+      <if test="minTimerInsert != null">
+        MIN_TIMER_INSERT,
+      </if>
+      <if test="avgTimerInsert != null">
+        AVG_TIMER_INSERT,
+      </if>
+      <if test="maxTimerInsert != null">
+        MAX_TIMER_INSERT,
+      </if>
+      <if test="countUpdate != null">
+        COUNT_UPDATE,
+      </if>
+      <if test="sumTimerUpdate != null">
+        SUM_TIMER_UPDATE,
+      </if>
+      <if test="minTimerUpdate != null">
+        MIN_TIMER_UPDATE,
+      </if>
+      <if test="avgTimerUpdate != null">
+        AVG_TIMER_UPDATE,
+      </if>
+      <if test="maxTimerUpdate != null">
+        MAX_TIMER_UPDATE,
+      </if>
+      <if test="countDelete != null">
+        COUNT_DELETE,
+      </if>
+      <if test="sumTimerDelete != null">
+        SUM_TIMER_DELETE,
+      </if>
+      <if test="minTimerDelete != null">
+        MIN_TIMER_DELETE,
+      </if>
+      <if test="avgTimerDelete != null">
+        AVG_TIMER_DELETE,
+      </if>
+      <if test="maxTimerDelete != null">
+        MAX_TIMER_DELETE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectSchema != null">
+        #{objectSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null">
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexName != null">
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="countStar != null">
+        #{countStar,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerWait != null">
+        #{sumTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerWait != null">
+        #{minTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerWait != null">
+        #{avgTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerWait != null">
+        #{maxTimerWait,jdbcType=BIGINT},
+      </if>
+      <if test="countRead != null">
+        #{countRead,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerRead != null">
+        #{sumTimerRead,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerRead != null">
+        #{minTimerRead,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerRead != null">
+        #{avgTimerRead,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerRead != null">
+        #{maxTimerRead,jdbcType=BIGINT},
+      </if>
+      <if test="countWrite != null">
+        #{countWrite,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerWrite != null">
+        #{sumTimerWrite,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerWrite != null">
+        #{minTimerWrite,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerWrite != null">
+        #{avgTimerWrite,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerWrite != null">
+        #{maxTimerWrite,jdbcType=BIGINT},
+      </if>
+      <if test="countFetch != null">
+        #{countFetch,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerFetch != null">
+        #{sumTimerFetch,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerFetch != null">
+        #{minTimerFetch,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerFetch != null">
+        #{avgTimerFetch,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerFetch != null">
+        #{maxTimerFetch,jdbcType=BIGINT},
+      </if>
+      <if test="countInsert != null">
+        #{countInsert,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerInsert != null">
+        #{sumTimerInsert,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerInsert != null">
+        #{minTimerInsert,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerInsert != null">
+        #{avgTimerInsert,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerInsert != null">
+        #{maxTimerInsert,jdbcType=BIGINT},
+      </if>
+      <if test="countUpdate != null">
+        #{countUpdate,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerUpdate != null">
+        #{sumTimerUpdate,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerUpdate != null">
+        #{minTimerUpdate,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerUpdate != null">
+        #{avgTimerUpdate,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerUpdate != null">
+        #{maxTimerUpdate,jdbcType=BIGINT},
+      </if>
+      <if test="countDelete != null">
+        #{countDelete,jdbcType=BIGINT},
+      </if>
+      <if test="sumTimerDelete != null">
+        #{sumTimerDelete,jdbcType=BIGINT},
+      </if>
+      <if test="minTimerDelete != null">
+        #{minTimerDelete,jdbcType=BIGINT},
+      </if>
+      <if test="avgTimerDelete != null">
+        #{avgTimerDelete,jdbcType=BIGINT},
+      </if>
+      <if test="maxTimerDelete != null">
+        #{maxTimerDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

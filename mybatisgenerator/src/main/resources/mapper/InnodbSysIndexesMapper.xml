@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.dao.InnodbSysIndexesMapper">
+  <resultMap id="BaseResultMap" type="com.sz.model.InnodbSysIndexes">
+    <result column="INDEX_ID" jdbcType="BIGINT" property="indexId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TABLE_ID" jdbcType="BIGINT" property="tableId" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="N_FIELDS" jdbcType="INTEGER" property="nFields" />
+    <result column="PAGE_NO" jdbcType="INTEGER" property="pageNo" />
+    <result column="SPACE" jdbcType="INTEGER" property="space" />
+    <result column="MERGE_THRESHOLD" jdbcType="INTEGER" property="mergeThreshold" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sz.model.InnodbSysIndexes">
+    insert into INNODB_SYS_INDEXES (INDEX_ID, NAME, TABLE_ID, 
+      TYPE, N_FIELDS, PAGE_NO, 
+      SPACE, MERGE_THRESHOLD)
+    values (#{indexId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{tableId,jdbcType=BIGINT}, 
+      #{type,jdbcType=INTEGER}, #{nFields,jdbcType=INTEGER}, #{pageNo,jdbcType=INTEGER}, 
+      #{space,jdbcType=INTEGER}, #{mergeThreshold,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sz.model.InnodbSysIndexes">
+    insert into INNODB_SYS_INDEXES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indexId != null">
+        INDEX_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="nFields != null">
+        N_FIELDS,
+      </if>
+      <if test="pageNo != null">
+        PAGE_NO,
+      </if>
+      <if test="space != null">
+        SPACE,
+      </if>
+      <if test="mergeThreshold != null">
+        MERGE_THRESHOLD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indexId != null">
+        #{indexId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tableId != null">
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="nFields != null">
+        #{nFields,jdbcType=INTEGER},
+      </if>
+      <if test="pageNo != null">
+        #{pageNo,jdbcType=INTEGER},
+      </if>
+      <if test="space != null">
+        #{space,jdbcType=INTEGER},
+      </if>
+      <if test="mergeThreshold != null">
+        #{mergeThreshold,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
