@@ -56,6 +56,10 @@ management:
       show-details: when_authorized
       #与show-details: when_authorized合起来使用 表示认证的用户必须具有ADMIN角色才能查看details信息
       roles: ADMIN
+  info:
+    git:
+      # simple 只展示一部分核心提交信息  full 展示全部提交信息
+      mode: full
 spring:
   security:
     user:
